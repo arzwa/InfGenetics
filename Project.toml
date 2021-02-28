@@ -1,0 +1,4 @@
+name = "InfGenetics"
+uuid = "709ca5ec-f63b-404f-8da4-072868e8c3f7"
+authors = ["arzwa <arzwa@psb.vib-ugent.be>"]
+version = "0.1.0"
