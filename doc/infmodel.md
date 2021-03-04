@@ -20,31 +20,67 @@ header-includes: |
 The infinitesimal model assumes that offspring trait values $z_{ij}$ of a
 parental pair with trait values $z_i$ and $z_j$ are normally distributed:
 
-$$ z_{ij} \sim \mathcal{N}\Big(\frac{z_i + z_j}{2}, V\Big) $$
+$$ z_{ij} \sim \mathcal{N}\Big(\frac{z_i + z_j}{2}, V_{ij}\Big) $$
 
-where $V$ is called the *segregation variance* and is determined by the
+where $V_{ij}$ is called the *segregation variance* and is determined by the
 hereditary process. The basic infinitesimal model can be derived as the limit
 of a model where a quantitative trait is controlled by a large number $n$ of
 Mendelian loci with additive gene action, each of small effect $\sim
-O(\sqrt{n})$, as $n$ gets large. 
+O(\sqrt{n})$. 
 
-Importantly, $V$ is not a function of $z_i$ or $z_j$, but can evolve over
+Importantly, $V_{ij}$ is not a function of $z_i$ or $z_j$, but can evolve over
 time. If populations are finite, inbreeding will cause the segregation
 variance to decrease as a function of the inbreeding coefficients of the
-parental individuals.
+parental individuals. 
+
+A slightly different, and perhaps more insightful, way to specify the same
+model is to write $z_{ij} = X_i + X_j$, where $X_i$ is the contribution of
+parent $i$ to the genotypic value of the offspring and $X_j$ the same for $j$.
+That is, $X_i$ is the genotypic value of a gamete from $i$.  For gametes
+produced by a normal meiotic division, we assume $X_i \sim \No(z_i/2, V_i)$,
+where $V_i$ is the contribution to the segregation variance from $i$. We
+therefore have $V_{ij} = (V_i + V_j)/2$.  This way of formulating the model
+stresses that segregation occurs independently in both parents, contributing
+additively to the segregation variance (which is the variance among offspring
+within a family).
 
 While the basic phenotypic model holds for arbitrary ploidy levels, the
 evolution of the segregation variance in finite populations differs for
-different ploidy levels.
+different ploidy levels. In addition, when considering mixed-ploidy
+populations, we need to consider how equilibrium variances in the model scale
+with ploidy level, and how offspring of different ploidy levels are derived
+from a parental pair.
 
 ## Haploids and diploids
+
+For haploids the recursion for the IBD coefficients in terms of the pedigree
+matrix is
+
+$$F_{i,j}' = \begin{cases}
+    \sum_k \sum_l P_{i,k} P_{j,l} F_{k,l} & \text{if } i \ne j \\
+    0 & \text{if } i = j
+    \end{cases} $$
+    
+For diploids, it should be:   
+    
+$$F_{i,j}' = \sum_k \sum_l P_{i,k} P_{j,l} \begin{cases} 
+    F_{k,l} & \text{if } k \ne l \\
+    \frac{1}{2}(1 + F_{k,k}) & \text{if } k = l
+    \end{cases} $$
+    
+Although I wonder whether this is correct for $F_{i,i}'$, since this is defined
+as the probability of IBD of distinct homologs in $i$. Consider an individual
+$i$ offspring from $k$ and $l$, then there will be a term $P_{i,k}P_{i,k}
+\frac{1}{2}(1 + F_{k,k}) = \frac{1}{8}(1+F_{k,k})$ in the sum for $F_{i,i}$,
+which makes no sense?
 
 ## Tetraploids without double reduction
 
 ### The segregation variance
 
-The expected segregation variance for a family with parents $i$ and $j$ of
-identical ploidy levels can be decomposed into a contribution from both parents
+Under inbreeding, the expected segregation variance for a family with parents
+$i$ and $j$ of identical ploidy levels can be decomposed into a contribution
+from both parents
 
 $$ \Ex[V_{ij}] = \Ex[V_i] + \Ex[V_j] $$
 
@@ -115,7 +151,7 @@ F_{i,j}(t) &= \sum_k \sum_l P_{i,k} P_{j,l} F_{k,l}^\ast(t-1)
 where 
 
 $$ F_{k,l}^\ast(t) = \begin{cases} F_{k,l}(t) & \text{if } k \ne l \\
-    \frac{1}{4}\big(1 + 3F_{k,k}(t-1)\big) & \text{if } k = l \end{cases} $$
+    \frac{1}{4}\big(1 + 3F_{k,k}(t)\big) & \text{if } k = l \end{cases} $$
     
 To see the latter, note that $k = l$ means that $i$ and $j$ share a parent, in
 which case for a given gene in $i$, there is a $1/2$ chance it came from te
@@ -165,6 +201,30 @@ reduction leads to a kind of 'internal' inbreeding, as the segregation variance
 is reduced with respect to $V_i^\ast$.
 
 # The infinitesimal model for mixed-ploidy populations
+
+## Scaling of genetic variance across ploidy levels
+
+If we consider the infinitesimal model as the limit of a large number of
+additive Mendelian loci, the genotypic value of an individual is defined as
+
+$$ z = \sum_{k=1}^n \sum_{l=1}^m a_{k,l} $$
+
+where $a_{k,m}$ is the allelic effect of homolog $l$ of locus $k$. Clearly, if
+we assume identical allelic effects in diploids and congeneric polyploids, the
+phenotypic range of tetraploids will be double that of diploids. While the
+assumption of additive allelic effects is of course in itself problematic,
+conditional on this assumption, the assumption of *equal* additive effects
+across ploidy levels seems rather unbiological.
+
+We introduce a scaler for allelic effects in an $m$-ploid $\sqrt{\beta_m}$, so that
+
+$$ z = \sqrt{\beta_m} \sum_{k=1}^n \sum_{l=1}^m a_{k,l} $$
+
+where we define $\beta_2 = 1$, so that $a_{k\cdot}$ is the effect the allele
+would have in a diploid individual. With this model the HWLE additive genetic
+variance $V_{A,m}$ and the base segregation variance $V_{0,m}$ in an $m$-ploid
+population are $\frac{m}{2}\beta_m V_{A,2}$ and $\frac{m}{2}\beta_m V_{0,2}$
+respectively.
 
 ## Unreduced gamete formation in diploids
 
@@ -240,26 +300,77 @@ Clearly, the mechanism of unreduced gamete formation creates segregation
 variance, as not all random tetraploid offspring from a single diploid parental
 pair will receive the same pair of genes from each parent, depending on whether
 or not recombination has occurred and FDR rather than SDR generates the
-unreduced gamete.
+unreduced gamete. 
 
-[The challenge now is to relate the segregation variance for a $2n \times 2n
-\rightarrow 4n$ cross to $V_{0,2}$, the segregation variance in the diploid
-base population of unrelated individuals, or $V_{0,4}$ (i.e. $V_0$ in a
-conspecific tetraploid population). I guess $V_{0,4}$ is the way to go.
-$V_{0,4}$ has to be defined in relation to $V_{0,2}$ by making assumptions on
-the scaling of the quantitative genetics across ploidy levels.]
+If we consider the diploid genotype $Aa$ depicted in the diagram above and consider
+$X_A$ the number of $A$ alleles transmitted, we can easily find
 
-Let $V_{0,2}$ and $V_{0,4}$ denote the segregation variances in the diploid
-base population and hypothetical conspecific tetraploid base population. The
-segregation variance associated with a $2n \times 2n \rightarrow 4n$ cross
-between individuals $i$ and $j$ can be found in terms of the inbreeding
-coefficients and $V_{0,4}$ [I think...].
+$$\var X_A = \Big(1 - c - f + \frac{3}{2}cf \Big) := \xi$$
 
-I think (by an educated guess confirmed by experiments) it should be 
+which is also the probability of transmitting two copies of the same allele.
+We shall denote this derived quantity as $\xi$.
 
-$$ \frac{V_{0,2}}{2} \big((1 - c) (1 - f) + \frac{1}{2} c f \big) ( 1- F_{i,i} ) $$ 
+Of course, if the locus is IBD with probability $F_{i,i}$, we have that the
+expected value of $\var X_A$ is $\xi(1-F_{i,i})$.  Under the
+model delineated above with the scaling of allelic effects across ploidy
+levels, we find that the contribution of a single parent $i$ to the segregation
+variance among tetraploid offspring of a diploid parental pair is
 
-But this is in terms of $V_{0,2}$, i.e. it is the segregation variance
-contributed by an unreduced diploid gamete if the quantitative genetic
-specifics carry over across ploidy levels. Can we just replace by $V_{0,4}$, 
-not sure...
+$$ V_i = 2\beta_4 V_{0,2} \xi (1 - F_{i,i})$$ 
+
+Notably, the mean offspring phenotype among tetraploid offspring from a diploid
+cross can no longer be the average of the two parental phenotypes if we assume
+the infinitesimal model as the limit of the Mendelian unlinked additive loci
+model. The expected contribution of a single parent $i$ will be $X_i =
+\sqrt{\beta_4}z_i$ so that for a cross of two diploids via unreduced gametes
+
+$$z_{ij} \sim \No\Big(\sqrt{\beta_4}(z_i + z_j), V_i + V_j\Big)$$
+
+## Inbreeding coefficients in the mixed-ploidy system
+
+In a mixed-ploidy system tracking inbreeding coefficients becomes slightly more
+complicated, as our recursions will differ whether some individual is derived
+from parents of the same cytotype or not.
+
+Recall that $\xi$ is the probability that an unreduced gamete transmits two
+copies of the same allele at some locus. We still have that for a tetraploid
+individual $i$
+
+$$ F_{i,i}' = \sum_k \sum_l P_{i,k}P_{i,l} 
+    \frac{1}{6}\big(F^\ast_{k,k} + F^\ast_{l,l} + 4F_{k,l}\big) $$
+
+where 
+
+$$ F_{k,k}^\ast = \begin{cases}
+    F_{k,k} & \text{if } m_k = 4 \\ 
+    F_{k,k} + \xi & \text{if } m_k = 2 
+    \end{cases} $$
+
+For $F_{i,j}'$ we still have 
+
+$$ F_{i,j}' = \sum_k \sum_l P_{i,k}P_{i,l} F^\ast_{k,l} $$
+
+where now
+
+$$ F_{k,l}^\ast = \begin{cases}
+    F_{k,l} & \text{if } k \ne l \\ 
+    \frac{1}{2}(1 + F_{k,k}) & \text{if } k = l, m_k = 2 \\ 
+    \frac{1}{4}(1 + 3F_{k,k}) & \text{if } k = l, m_k = 4 
+    \end{cases}$$
+
+(I think)
+
+Lastly we need $G_i$, the probability that the two genes transmitted by a
+tetraploid individual $i$ to an offspring are not IBD.
+
+$$ G_i = 1 - \frac{1}{6}\Big(F_{k,k}^\ast + F_{l,l}^\ast + 4F_{k,l}\Big) $$
+
+where 
+
+$$ F_{k,k} = \begin{cases} 
+        F_{k,k}(1-\xi) + \xi & \text{if } m_k = 2 \\
+        F_{k,k} & \text{if } m_k = 4 
+    \end{cases}$$
+
+I think that's it (ignoring triploids and double reduction for now). Not sure
+how to organize the calculations yet though.
