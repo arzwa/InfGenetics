@@ -17,171 +17,130 @@ header-includes: |
 
 # The basic infinitesimal model
 
-The infinitesimal model assumes that offspring trait values $z_{ij}$ of a
+## Phenotypic model definition
+
+The infinitesimal model assumes that offspring trait values $Z$ of a
 parental pair with trait values $z_i$ and $z_j$ are normally distributed:
 
-$$ z_{ij} \sim \mathcal{N}\Big(\frac{z_i + z_j}{2}, V_{ij}\Big) $$
+$$ Z_{ij} \sim \mathcal{N}\Big(\frac{z_i + z_j}{2}, V_{i,j}\Big) $$
 
-where $V_{ij}$ is called the *segregation variance* and is determined by the
+where $V_{i,j}$ is called the *segregation variance* and is determined by the
 hereditary process. The basic infinitesimal model can be derived as the limit
 of a model where a quantitative trait is controlled by a large number $n$ of
 Mendelian loci with additive gene action, each of small effect $\sim
 O(\sqrt{n})$. 
 
-Importantly, $V_{ij}$ is not a function of $z_i$ or $z_j$, but can evolve over
-time. If populations are finite, inbreeding will cause the segregation
-variance to decrease as a function of the inbreeding coefficients of the
-parental individuals. 
 
 A slightly different, and perhaps more insightful, way to specify the same
-model is to write $z_{ij} = X_i + X_j$, where $X_i$ is the contribution of
+model is to write $Z_{ij} = X_i + X_j$, where $X_i$ is the contribution of
 parent $i$ to the genotypic value of the offspring and $X_j$ the same for $j$.
 That is, $X_i$ is the genotypic value of a gamete from $i$.  For gametes
 produced by a normal meiotic division, we assume $X_i \sim \No(z_i/2, V_i)$,
-where $V_i$ is the contribution to the segregation variance from $i$. We
-therefore have $V_{ij} = (V_i + V_j)/2$.  This way of formulating the model
-stresses that segregation occurs independently in both parents, contributing
-additively to the segregation variance (which is the variance among offspring
-within a family).
+where $V_i$ is the contribution to the segregation variance from $i$.
+Segregation occurs independently in both parents, contributing additively to
+the segregation variance  $V_{i,j} = (V_i + V_j)/2$.
 
-While the basic phenotypic model holds for arbitrary ploidy levels, the
-evolution of the segregation variance in finite populations differs for
-different ploidy levels. In addition, when considering mixed-ploidy
-populations, we need to consider how equilibrium variances in the model scale
-with ploidy level, and how offspring of different ploidy levels are derived
-from a parental pair.
+## Inbreeding
 
-## Haploids and diploids
+Importantly, $V_{i,j}$ is not a function of $z_i$ or $z_j$, but can evolve over
+time. If populations are finite, inbreeding will lead to drift and cause the
+segregation variance to decrease as a function of the relatedness of the
+parental individuals. Importantly, while the basic phenotypic model holds for
+arbitrary ploidy levels, genetic drift -- and consequently, the evolution of the
+segregation variance in finite populations -- will differ for different ploidy
+levels. 
 
-For haploids the recursion for the IBD coefficients in terms of the pedigree
-matrix is
+### Haploids and diploids
+
+The infinitesimal model for finite populations of haploid an diploid
+individuals is described in detail in @barton2017. Let $F_{i,j}$ be the
+inbreeding coefficient for a pair of individuals $(i,j)$, defined as the
+probability that a gene in $i$ is identical by descent (IBD) to a gene in $j$.
+We define $F_{i,i}$ to be the probability that two *distinct* genes in $i$ are
+IBD. In the haploid case, the segregation variance for a parental pair $(i,j)$
+is reduced with inbreeding to $V_{ij} = V_0 (1-F_{i,j})$, where $V_0$ is the
+segregation variance in the base population consisting of unrelated
+individuals. For a diploid pair, the segregation variance is 
+
+$$V_{ij} = V_i + V_j = \frac{V_0}{2}(1-F_{i,i}) + \frac{V_0}{2}(1-F_{j,j}) = 
+    V_0 \Big(1 - \frac{F_{i,i} + F_{j,j}}{2}\Big)$$
+
+When simulating the infinitesimal model, we need a way to efficiently track the
+inbreeding coefficients during the simulation. To do so, we will make use of
+the pedigree matrix $P$ as in @barton2017.  For haploids the recursion for the
+inbreeding coefficients in the offspring generation ($F'$) in terms of $P$ and
+the inbreeding coefficients in the preceding generation ($F$) is
 
 $$F_{i,j}' = \begin{cases}
     \sum_k \sum_l P_{i,k} P_{j,l} F_{k,l} & \text{if } i \ne j \\
     0 & \text{if } i = j
     \end{cases} $$
     
-For diploids, it should be:   
-    
+As given by @barton2017. The same authors give for diploids
+
 $$F_{i,j}' = \sum_k \sum_l P_{i,k} P_{j,l} \begin{cases} 
     F_{k,l} & \text{if } k \ne l \\
     \frac{1}{2}(1 + F_{k,k}) & \text{if } k = l
     \end{cases} $$
     
-Although I wonder whether this is correct for $F_{i,i}'$, since this is defined
-as the probability of IBD of distinct homologs in $i$. Consider an individual
-$i$ offspring from $k$ and $l$, then there will be a term $P_{i,k}P_{i,k}
-\frac{1}{2}(1 + F_{k,k}) = \frac{1}{8}(1+F_{k,k})$ in the sum for $F_{i,i}$,
-which makes no sense?
+But this is incorrect[^error] for $i=j$, since $F_{i,i}$ is defined as the
+probability of identity by descent (IBD) of *distinct* homologs in $i$.
+The correct expression for the diagonal elements of $F$ is
 
-## Tetraploids without double reduction
-
-### The segregation variance
-
-Under inbreeding, the expected segregation variance for a family with parents
-$i$ and $j$ of identical ploidy levels can be decomposed into a contribution
-from both parents
-
-$$ \Ex[V_{ij}] = \Ex[V_i] + \Ex[V_j] $$
-
-We will determine $\Ex[V_i]$. We define $V_0$ to be the segregation variance in
-the base population consisting of unrelated individuals, so that $\Ex[V_i] =
-V_0/2$ in the absence of inbreeding.
-
-Assume the parents of $i$ in the previous generation were $k$ and $l$ and
-consider the contribution of a single locus to $\Ex[V_i]$. We can consider
-three mutually exclusive patterns of ancestry:
-
-1. $i$ transmits both genes it inherited from $k$ (w.p. $1/6$)
-2. $i$ transmits both genes it inherited from $l$ (w.p. $1/6$)
-3. $i$ transmits two genes inherited from distinct parents (w.p. $2/3$)
-
-When the two genes transmitted are IBD, they do not contribute to the 
-segregation variance. Therefore, the expected contribution to the segregation
-variance for a single locus $\Ex[v_i]$ conditional on, for instance, scenario 1
-above would be 
-
-$$\Ex[v_i] = 0 \times F_{k,k}(t-1) + (v_0/2) (1 - F_{k,k}(t-1))$$
-
-Where $v_0 = V_0/n$ is the average per-locus segregation variance in the base
-population. Combining all cases, we get
-
-\begin{align*}
-\Ex[V_i] &= \frac{1}{6} \frac{V_0}{2}\big(1 - F_{k,k}(t-1)\big) + 
-        \frac{1}{6} \frac{V_0}{2} \big(1-F_{l,l}(t-1)\big) + 
-        \frac{2}{3}\frac{V_0}{2}\big(1 - F_{k,l}(t-1)\big) \\
-    &= \frac{V_0}{2} \bigg( 1 - \frac{1}{6}\big(F_{k,k}(t-1) + 
-        F_{l,l}(t-1) + 4F_{k,l}(t-1)\big)\bigg) \\
-    &\equiv \frac{V_0}{2} G_i
-\end{align*}
-
-Note that $G_i$ as defined here is the probability that the two genes
-transmitted by $i$ to its offspring are not IBD. If $i$ had parents $k$
-and $j$:
-
-$$G_i = 1 - \frac{1}{6}\big(F_{k,k} + F_{l,l} + 4F_{k,l}\Big)$$
-
-Where the inbreeding coefficients are from the generation of the parents of
-$i$. The total segregation variance for the parental pair $(i,j)$ will be
-
-$$\Ex[V_{ij}] = V_0\bigg(\frac{G_i + G_j}{2}\bigg)$$
-
-That is, in autotetraploids that do not undergo double reduction, the
-infinitesimal model (as a limit of Mendelian additive loci) under inbreeding is
-defined as the model where offspring trait values of parents $i$ and $j$
-follows a Gaussian distribution:
-
-$$z_{ij} \sim \No\Bigg(\frac{z_i + z_j}{2}, 
-    V_0\bigg(\frac{G_i + G_j}{2}\bigg)\Bigg)$$
-
-Where $V_0$ is the segregation variance in the base population and where $G_i$
-is the probability that the two genes at a locus transmitted by $i$ are not
-IBD.  Note again that $G_i$ is a function of the inbreeding coefficients of the
-*parents* of $i$, so that in the tetraploid model, the inbreeding coefficients
-of *grandparents* are needed for computing the segregation variance.
-
-### Recursions for the inbreeding coefficients
-
-\begin{align*}
-F_{i,i}(t) &= \sum_k \sum_l P_{i,k} P_{i,l} \frac{1}{6}\big(F_{k,k}(t-1) + 
-    F_{l,l}(t-1) + 4F_{k,l}(t-1)\big) \\
-F_{i,j}(t) &= \sum_k \sum_l P_{i,k} P_{j,l} F_{k,l}^\ast(t-1) 
-\end{align*}
-
-where 
-
-$$ F_{k,l}^\ast(t) = \begin{cases} F_{k,l}(t) & \text{if } k \ne l \\
-    \frac{1}{4}\big(1 + 3F_{k,k}(t)\big) & \text{if } k = l \end{cases} $$
+$$ F_{i,i}' = \begin{cases} 
+    \frac{1}{2}(1 + F_{k,k})  & k = l \\
+    F_{k,l} & k \ne l 
+    \end{cases} $$
     
-To see the latter, note that $k = l$ means that $i$ and $j$ share a parent, in
-which case for a given gene in $i$, there is a $1/2$ chance it came from te
-shared parent, in which case there is a $1/2$ chance that $j$ inherited the
-same gene independently and there is a $1/4$ chance that this gene is picked in
-$j$, so that the probability a given gene is IBD with a random gene in $j$ is
-$1/16 = P_{i,k}P_{j,k}(1/4)$. When the genes trace back to distinct lineages in
-the same parent, with probability $P_{i,k}P_{j,k}(3/4)$, they are IBD with
-probability $F_{k,k}(t-1)$. Note that the probability that both genes trace
-back to the same parent is embodied in the pedigree matrix $P$, while
-$F_{k,k}^\ast$ is the probability of being IBD *conditional* on tracing to the
-same parent.
+where $k$ and $l$ are the parents of $i$. 
 
-The recursions for the inbreeding coefficients and the law for the reduction of
-segregation variance with inbreeding together enable simulation of the
-infinitesimal model for tetraploid populations (without double reduction).
-I verified the correctness of the derived recursions by comparing simulations
-from the infinitesimal model to individual-based simulations of a random mating
-tetraploid population with a large number ($n=1000$) of unlinked additive
-Mendelian loci of small effect ($\sim O(1/\sqrt{4n}$).
+### Tetraploids without double reduction
 
-![Comparison of the evolution of the segregation variance under inbreeding for
-the infinitesimal model (black line) and the 1000 unlinked additive loci model
-(grey). A population of 50 individuals is simulated over 1000 generations.  In
-red the approximation $V_0 e^{-t/4N}$ is shown.](img/tet-segvar.pdf)
+We define $F_{i,i}$ in a tetraploid individual $i$ as the probability that two
+randomly picked distinct genes at some locus in $i$ are IBD. With this
+definition we can easily see that, in the absence of double reduction, the
+segregation variance contributed by $i$ is 
 
-## Double reduction
+$$V_i = \frac{V_0}{2} (1 - F_{i,i})$$
+
+If $i$ had parents $k$ and $l$, we can, given the $F$ values of the parental
+generation, compute $F_{i,i}'$. To do so, we consider three mutually exclusive
+patterns of ancestry: two randomly picked distinct genes in $i$ are either (1)
+both inherited from $k$ (w.p. $1/6$), (2) both inherited from $l$ (w.p. $1/6$)
+or (3) each inherited from a different parent (w.p. $2/3$). Clearly, if $k \ne
+l$ and when there is no double reduction:
+
+$$F_{i,i}' = \frac{1}{6}F_{k,k} + \frac{1}{6}F_{l,l} + \frac{3}{2}F_{k,l}$$
+
+If $k = l$ we find that $F_{i,i}' = \frac{1}{4}(1 + 3F_{k,k})$. For all other
+(non-diagonal) entries in $F$, a recursion similar to the diploid case is found
+
+$$F_{i,j}' = \sum_k \sum_l P_{i,k}P_{j,l} F^\ast_{k,l}$$
+
+with 
+
+$$ F_{k,l}^\ast = \begin{cases} F_{k,l} & \text{if } k \ne l \\
+    \frac{1}{4}\big(1 + 3F_{k,k}\big) & \text{if } k = l \end{cases} $$
+
+It turns out that for a population of
+$m$-ploids, where $m \in \{1,2,4\}$, the update rule for $F$ can be written
+succintly in matrix notation.
+
+$$F' = P \Big(F + \frac{1}{m}\big(I - \mathrm{diag}F\big)\Big)  P^T$$
+
+but with the diagonal elements given by $F_{i,i}'$.
+
+[^error]: Consider an individual $i$ which is an offspring from $k$ and $l$,
+with $k \ne l$. There will be a term $P_{i,k}^2 \frac{1}{2}(1 + F_{k,k}) =
+\frac{1}{8}(1+F_{k,k})$ as well as a term $P_{i,l}^2(1+F_{l,l})$ in the
+sum for $F_{i,i}$, both of which are spurious since $F_{i,i}$ is the probability
+that two distinct genes are IBD, and the probability that two *distinct* genes 
+come from parent $k$ is not $P_{i,k}^2$ but 0. 
+
+### Double reduction
 
 When tetravalents are formed, a form of internal inbreeding may occur as a
-result of the phenomenan called double reduction. Schematically, double 
+result of the phenomenon called double reduction. Schematically, double 
 reduction for a genotype $ABCD$ could look like:
 
     <a scheme>
@@ -200,12 +159,23 @@ individual $i$ in the absence of double reduction. This verifies that double
 reduction leads to a kind of 'internal' inbreeding, as the segregation variance
 is reduced with respect to $V_i^\ast$.
 
+## Simulations
+
+![Decline of genetic variance ($V_G$) with inbreeding (drift) in a population
+of 100 haploids (black), 100 diploids (red) and 100 tetraploids (blue) with
+equal $V_0$ and initial $V_G$. Solid lines show the (approximate for
+tetraploids) expected exponential decline
+$V_G(0)e^{-t/(mN)}$.](img/124.pdf){width=60%}
+
 # The infinitesimal model for mixed-ploidy populations
 
 ## Scaling of genetic variance across ploidy levels
 
-If we consider the infinitesimal model as the limit of a large number of
-additive Mendelian loci, the genotypic value of an individual is defined as
+When considering mixed-ploidy populations, we need to consider how equilibrium
+variances in the model scale with ploidy level, and how offspring of different
+ploidy levels are derived from a parental pair.  If we consider the
+infinitesimal model as the limit of a large number of additive Mendelian loci,
+the genotypic value of an individual is defined as
 
 $$ z = \sum_{k=1}^n \sum_{l=1}^m a_{k,l} $$
 
@@ -311,10 +281,10 @@ which is also the probability of transmitting two copies of the same allele.
 We shall denote this derived quantity as $\xi$.
 
 Of course, if the locus is IBD with probability $F_{i,i}$, we have that the
-expected value of $\var X_A$ is $\xi(1-F_{i,i})$.  Under the
-model delineated above with the scaling of allelic effects across ploidy
-levels, we find that the contribution of a single parent $i$ to the segregation
-variance among tetraploid offspring of a diploid parental pair is
+expected value of $\var X_A$ is $\xi(1-F_{i,i})$.  Under the model delineated
+above with the scaling of allelic effects across ploidy levels, we find that
+the contribution of a single diploid parent $i$ to the segregation variance
+among tetraploid offspring is
 
 $$ V_i = 2\beta_4 V_{0,2} \xi (1 - F_{i,i})$$ 
 
@@ -324,7 +294,7 @@ the infinitesimal model as the limit of the Mendelian unlinked additive loci
 model. The expected contribution of a single parent $i$ will be $X_i =
 \sqrt{\beta_4}z_i$ so that for a cross of two diploids via unreduced gametes
 
-$$z_{ij} \sim \No\Big(\sqrt{\beta_4}(z_i + z_j), V_i + V_j\Big)$$
+$$Z_{ij} \sim \No\Big(\sqrt{\beta_4}(z_i + z_j), V_i + V_j\Big)$$
 
 ## Inbreeding coefficients in the mixed-ploidy system
 
@@ -333,17 +303,16 @@ complicated, as our recursions will differ whether some individual is derived
 from parents of the same cytotype or not.
 
 Recall that $\xi$ is the probability that an unreduced gamete transmits two
-copies of the same allele at some locus. We still have that for a tetraploid
-individual $i$
+copies of the same allele at some locus. Let $m_k$ denote the ploidy level of
+individual $k$. We still have that for a tetraploid individual $i$
 
-$$ F_{i,i}' = \sum_k \sum_l P_{i,k}P_{i,l} 
-    \frac{1}{6}\big(F^\ast_{k,k} + F^\ast_{l,l} + 4F_{k,l}\big) $$
+$$ F_{i,i}' = \frac{1}{6}\big(F^\ast_{k,k} + F^\ast_{l,l} + 4F_{k,l}\big) $$
 
-where 
+where now 
 
 $$ F_{k,k}^\ast = \begin{cases}
     F_{k,k} & \text{if } m_k = 4 \\ 
-    F_{k,k} + \xi & \text{if } m_k = 2 
+    F_{k,k}(1-\xi) + \xi & \text{if } m_k = 2 
     \end{cases} $$
 
 For $F_{i,j}'$ we still have 
@@ -358,19 +327,9 @@ $$ F_{k,l}^\ast = \begin{cases}
     \frac{1}{4}(1 + 3F_{k,k}) & \text{if } k = l, m_k = 4 
     \end{cases}$$
 
-(I think)
+(I think), so that we still have a matrix expression
 
-Lastly we need $G_i$, the probability that the two genes transmitted by a
-tetraploid individual $i$ to an offspring are not IBD.
+$$ F' = P \Big(F + \big(I - m \mathrm{diag} F\big)\Big) P^T $$
 
-$$ G_i = 1 - \frac{1}{6}\Big(F_{k,k}^\ast + F_{l,l}^\ast + 4F_{k,l}\Big) $$
-
-where 
-
-$$ F_{k,k} = \begin{cases} 
-        F_{k,k}(1-\xi) + \xi & \text{if } m_k = 2 \\
-        F_{k,k} & \text{if } m_k = 4 
-    \end{cases}$$
-
-I think that's it (ignoring triploids and double reduction for now). Not sure
-how to organize the calculations yet though.
+still holds, but where $m$ is now a vector where the $k$th element is $1/m_k$,
+recording the reciprocal of the ploidy levels in the parental generation.
