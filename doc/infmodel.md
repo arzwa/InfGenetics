@@ -38,21 +38,21 @@ That is, $X_i$ is the genotypic value of a gamete from $i$.  For gametes
 produced by a normal meiotic division, we assume $X_i \sim \No(z_i/2, V_i)$,
 where $V_i$ is the contribution to the segregation variance from $i$.
 Segregation occurs independently in both parents, contributing additively to
-the segregation variance  $V_{i,j} = (V_i + V_j)/2$.
+the segregation variance  $V_{i,j} = V_i + V_j$.
 
 ## Inbreeding
 
-Importantly, $V_{i,j}$ is not a function of $z_i$ or $z_j$, but can evolve over
-time. If populations are finite, inbreeding will lead to drift and cause the
-segregation variance to decrease as a function of the relatedness of the
-parental individuals. Importantly, while the basic phenotypic model holds for
-arbitrary ploidy levels, genetic drift -- and consequently, the evolution of the
-segregation variance in finite populations -- will differ for different ploidy
-levels. 
+Importantly, $V_{i,j}$ is not a function of $z_i$ or $z_j$ (although they may
+be correlated), but can evolve over time. If populations are finite, inbreeding
+will lead to drift and cause the segregation variance to decrease as a function
+of the relatedness of the parental individuals. Importantly, while the basic
+phenotypic model holds for arbitrary ploidy levels, genetic drift -- and
+consequently, the evolution of the segregation variance in finite populations
+-- will differ for different ploidy levels. 
 
 ### Haploids and diploids
 
-The infinitesimal model for finite populations of haploid an diploid
+The infinitesimal model for finite populations of haploid and diploid
 individuals is described in detail in @barton2017. Let $F_{i,j}$ be the
 inbreeding coefficient for a pair of individuals $(i,j)$, defined as the
 probability that a gene in $i$ is identical by descent (IBD) to a gene in $j$.
@@ -200,7 +200,7 @@ respectively.
 
 Naively, one may think that an unreduced gamete contains the parental genome,
 and that as a result the segregation variance for a $2n \times 2n \rightarrow
-4n$ cross would be 0. However, the mechanisms of unreduced gamete formation do
+4n$ cross would be zero. However, the mechanisms of unreduced gamete formation do
 not necessarily lead to a faithful transmission of the complete diploid genome.
 Unreduced gametes are formed in two ways, depending on the meiotic abberation
 that leads to their origin: (1) first division restitution (FDR) of (2) second

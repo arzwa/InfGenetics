@@ -2,6 +2,14 @@ module InfGenetics
 
 using LinearAlgebra, Distributions
 
+export InfDeme, randgen, evolve
+
+function evolve(fun, x, n)
+    for i=1:n
+        x = fun(x)
+    end
+end
+
 """
     InfDeme
 
@@ -70,6 +78,110 @@ Fdiag(d::InfDeme{Val{4}}, i, j) = i == j ?
 
 update_F(d::InfDeme{Val{1}}, P) = P * d.F * P'
 update_F(d::InfDeme{Val{K}}, P) where K = P * (d.F + (I - Diagonal(d.F))/K) * P' 
+
+
+# Mixed-ploidy deme
+# =================
+struct InfDemeMixed{T}
+    z::Vector{T}
+    F::Matrix{T}
+    U::Matrix{T}   # unreduced gamete rate matrix
+    w::Vector{T}   # ploidy specific viability (Pr germination)
+    k::Vector{Int} # ploidy levels 
+    V::Vector{T}   # base 1/2 segregation variance for different ploidy levels
+    β::Vector{T}   # allelic effect scalers
+    ξ::T           # 1 - c - f + (3/2)cf
+end
+
+(d::InfDemeMixed)(z, F, k) = InfDemeMixed(z, F, d.U, d.w, k, d.V, d.β, d.ξ)
+
+Base.length(d::InfDemeMixed) = length(d.z)
+
+function InfDemeMixed(z, U, V0, β, ξ; w=[0., 1., 0., 1.], k=fill(2, length(z)))
+    N = length(z)
+    F = zeros(N, N)
+    V = [(m/2)*β[m]*V0 for m=1:length(w)]
+    InfDemeMixed(z, F, U, w, k, V, β, ξ) 
+end
+
+# ploidy level of a random gamete from i
+randk(d::InfDemeMixed, i) = sample(1:4, Weights(d.U[d.k[i],:]))
+
+# contribution to the segvar from parent i for offspring of ploidy ko
+function segvar(d::InfDemeMixed, i, ko) 
+    if 2d.k[i] == ko 
+        d.V[ko] * d.ξ * (1 - d.F[i,i])
+    else
+        d.V[ko] * (1 - d.F[i,i])
+    end
+end
+
+function offmean(d::InfDemeMixed, i, ko)
+    if d.k[i] == ko
+        d.z[i] / 2
+    elseif 2d.k[i] == ko 
+        d.β[ko] * d.z[i]
+    end
+end
+
+function getFi(d::InfDemeMixed, i, ko)
+    if 2d.k[i] == ko 
+        d.F[i,i] * (1 - d.ξ) + d.ξ
+    else
+        d.F[i,i]
+    end
+end
+
+function Fdiag(d::InfDemeMixed, i, j, ko)
+    Fi = getFi(d::InfDemeMixed, i, ko)
+    Fj = getFi(d::InfDemeMixed, j, ko)
+    return if i == j  # selfing, but correct if selfing of unreduced gametes?
+        (1/ko)*(1 + (ko - 1)*Fi)
+    elseif ko == 2
+        d.F[i,j]
+    elseif ko == 4
+        (Fi + Fj + d.F[i,j])/6
+    end
+end
+
+function randoff(d::InfDemeMixed, i, j)
+    ki = randk(d, i)
+    kj = randk(d, j)
+    ko = ki + kj
+    rand() > d.w[ko] && return -1, -1, -1, -1.0
+    β  = d.β[ko]
+    Cij = segvar(d, i, ko) + segvar(d, j, ko)
+    Zij = offmean(d, i, ko) + offmean(d, j, ko)
+    ko, ki, kj, rand(Normal(Zij, √Cij))
+end
+
+function update_F(d::InfDemeMixed, P)
+    P * (d.F + (I - Diagonal(d.F)) ./ d.k) * P'
+end
+
+function randgen(d)
+    z = similar(d.z)
+    k = similar(d.k)
+    P = zeros(size(d.F)) 
+    N = length(d)
+    Fd = zeros(length(z))
+    o = 1
+    while o <= N
+        i = rand(1:N)
+        j = rand(1:N)
+        ko, kki, kkj, zo = randoff(d, i, j)
+        ko == -1 && continue
+        P[o,i] += kki/ko
+        P[o,j] += kkj/ko
+        k[o] = ko
+        z[o] = zo
+        Fd[o] = Fdiag(d, i, j, ko)
+        o += 1
+    end
+    F = update_F(d, P)
+    F[diagind(F)] .= Fd
+    return d(z, F, k)
+end
 
 
 # Tetraploids (obsolete and wrong)
