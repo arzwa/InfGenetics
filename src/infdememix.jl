@@ -1,27 +1,31 @@
 # Think of an environmental context (natural selection, density regulation, ...)
+# we might explicitly split this up in genetic/ecological component
 abstract type PopulationContext end
 
 # ~ Barton & Etheridge
 struct DirectionalSelection{T} <: PopulationContext
-    b::T  # selection gradient
-    # add density dependence?
+    θ::T  # selection gradient
+    r::T
+    K::T
 end
 
 # ~ Polechova & Barton
-struct StabilizingSelection{T} <: PopulationContext
+@with_kw struct StabilizingSelection{T} <: PopulationContext
     θ::T    # phenotypic optimum
     ω::T    # variance of stabilizing selection
-    r::T    # growth rate
-    K::T    # carrying capacity (can be Inf when no density dependence)
+    r::T = 1.0   # growth rate
+    K::T = Inf   # carrying capacity (can be Inf when no density dependence)
+    ν::T = 0.0   # migration rate
+    z̄::T = NaN   # mean of migrant
+    V::T = NaN   # variance of migrant
 end
 
-(c::StabilizingSelection)(;θ=c.θ, ω=c.ω, r=c.r, K=c.K) = 
-    StabilizingSelection(θ, ω, r, K)
+(c::StabilizingSelection)(; kwargs...) = reconstruct(c; kwargs...) 
 
 @with_kw struct InfDemeMix{T}
     z::Vector{T}   # trait values (scalars, for now)
     F::Vector{T}   = zeros(length(z)) # inbreeding
-    Φ::Matrix{T}   = zeros(length(z), length(z)) # coancestry
+    Φ::Matrix{T}   = diagm(fill(0.5, length(z))) # coancestry
     m::Vector{Int} = fill(2, length(z)) # ploidy levels
     U::Matrix{T}   = [0.95 0.05 ; 0.0 0.0 ; 0.0 0.95]  # cytotype × gamete 
     w::Vector{T}   = [1., 1., 1.]  # cytotype specific viability 
@@ -38,8 +42,7 @@ end
 # Cytotype-specific assortativity is one additional thing we may be interested
 # in.
 
-(d::InfDemeMix)(;z=d.z, F=d.F, Φ=d.Φ, m=d.m, U=d.U) = 
-    InfDemeMix(z=z, F=F, Φ=Φ, m=m, U=U, w=d.w, V=d.V, β=d.β, α=d.α, ξ=d.ξ)
+(d::InfDemeMix)(; kwargs...) = reconstruct(d; kwargs...)
 
 Base.getindex(d::InfDemeMix, i) = (d.z[i], d.m[i], d.F[i])
 Base.length(d::InfDemeMix) = length(d.z)
@@ -118,25 +121,12 @@ function randoff(f::Family{T}, d::InfDemeMix) where T
     z, (mi + mj)::Int, F::T
 end
 
-# apply directional selection: changes the frequencies of each component
-# (cytotype) by multiplying with environmental fitness, and shifts the trait
-# distribution according to Gaussian-exponential convolution
-# note that the fitness function is w(z) = exp(b*z) (z > 0 => w > 1)
-#function directional_selection!(f::Family, b)
-#    for i=1:2, j=1:2
-#        f.X[i,j,1] == 0. && continue  # prevent NaN issues
-#        f.X[i,j,1] *= (exp(b * avg(f, i, j) + (b^2/2) * var(f, i, j)))
-#        f.X[i,j,2] += b * var(f, i, j)
-#    end
-#    return f
-#end
-
 𝔼fitness(family) = sum(family.X[:,1])
 
 # Selection happens on a collection of families. We return a set of (possible
 # non-unique) families, and the offspring generation can be obtained by
 # sampling one offpsring individual from each.
-function selection(d::InfDemeMix, context::StabilizingSelection)
+function selection(d::InfDemeMix, context::PopulationContext)
     @unpack r, K = context
     fs  = offspring_distribution(d)
     fs′ = map(f->selection(f, context), fs)
@@ -166,6 +156,42 @@ function selection(f::Family, context::StabilizingSelection)
         X[k,3] = ϕ
     end
     return Family(f.i, f.j, X)
+end
+
+# apply directional selection: changes the frequencies of each component
+# (cytotype) by multiplying with environmental fitness, and shifts the trait
+# distribution according to Gaussian-exponential convolution
+# note that the fitness function is w(z) = exp(b*z) (z > 0 => w > 1)
+function selection(f::Family, context::DirectionalSelection)
+    @unpack θ = context
+    X = fill(NaN, 4, 3)
+    for i=1:2, j=1:2  # each gametic ploidy combination
+        k = _toindex(i, j)
+        if f.X[k,1] == 0. 
+            X[k,1] = 0.
+            continue
+        end
+        z̄ = avg(f, i, j)
+        v = var(f, i, j)
+        X[k,1] = (exp(θ * z̄) + (θ^2/2) * v) * f.X[k,1]
+        X[k,2] = θ * v + f.X[k,2]
+        X[k,3] = v
+    end
+    return Family(f.i, f.j, X)
+end
+
+# XXX assume diploids for now
+function migration(d::InfDemeMix, context::PopulationContext)
+    @unpack ν, z̄, V = context
+    ν == 0. && return d
+    M = rand(Poisson(ν))
+    M == 0 && return d
+    N = length(d)
+    z = [d.z; rand(Normal(z̄, √V), M)]
+    F = [d.F; zeros(M)]
+    Φ = [d.Φ zeros(N,M); zeros(M,N) diagm(fill(0.5, M))]
+    m = [d.m; fill(2, M)]
+    d(z=z, F=F, Φ=Φ, m=m)
 end
 
 function segvar(d::InfDemeMix, m, mi, Fi)
@@ -217,6 +243,8 @@ end
 
 # a single generation of random mating with selection
 function generation(d::InfDemeMix, context::PopulationContext)
+    # migration
+    d = migration(d, context)
     N = length(d)
     N == 0 && return deepcopy(d)
     S = selection(d, context)
