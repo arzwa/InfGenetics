@@ -24,7 +24,7 @@ header-includes: |
 The infinitesimal model assumes that offspring trait values $Z$ of a
 parental pair with trait values $z_i$ and $z_j$ are normally distributed:
     $$ Z_{ij} \sim \mathcal{N}\Big(\frac{z_i + z_j}{2}, V_{i,j}\Big) $$
-where $V_{i,j}$ is called the *segregation variance* and is determined by the
+where $V_{ij}$ is called the *segregation variance* and is determined by the
 hereditary process. The basic infinitesimal model can be derived as the limit
 of a model where a quantitative trait is controlled by a large number $n$ of
 unlinked Mendelian loci with additive gene action, each of small effect $\sim
@@ -37,7 +37,7 @@ That is, $X_i$ is the genotypic value of a gamete from $i$.  For gametes
 produced by a normal meiotic division, we assume $X_i \sim \No(z_i/2, V_i)$,
 where $V_i$ is the contribution to the segregation variance from $i$.
 Segregation occurs independently in both parents, contributing additively to
-the segregation variance  $V_{i,j} = V_i + V_j$.
+the segregation variance  $V_{ij} = V_i + V_j$.
 When considered as the limit of a large number of unlinked additive Mendelian
 loci of small effect, we can partition the segregation variance in
 contributions from each locus 
@@ -60,9 +60,9 @@ will be Gaussian with variance $2V_0$.
 
 ## Inbreeding and the evolution of the segregation variance
 
-Importantly, $V_{i,j}$ is not a function of $z_i$ or $z_j$ (although they may
+Importantly, $V_{ij}$ is not a function of $z_i$ or $z_j$ (although they may
 be correlated), but nevertheless evolves over time.
-For a finite populatoin, inbreeding will lead to an increase in homozygosity
+For a finite population, inbreeding will lead to an increase in homozygosity
 and cause the segregation variance to decrease over time.
 Indeed, from the viewpoint of the Mendelian limit, it is clear that in the
 extreme case where an idividual is completely homozygous for all loci affecting
@@ -132,7 +132,7 @@ efficiently track the inbreeding and coancestry coefficients during the
 simulation.
 The recursion for the inbreeding coefficients is
 \begin{align*}
-    F_i &= \frac1 2 (1 + \Phi_{kl}) & \text{diploids} \\  
+    F_i &= \Phi_{kl}& \text{diploids} \\  
     F_i &= \frac1 6 (F_k + F_l + 4\Phi_{kl}) & \text{tetraploids} 
 \end{align*}
 where $k$ and $l$ are the parents of $i$ (note that $k = l$ is possible).
@@ -228,13 +228,12 @@ Indeed, double reduction leads to a kind of 'internal inbreeding' [@lw1],
 accelerating the decay of heterozygosity.
 While double reduction does not affect the recursions for the coancestry
 coefficients (due to the symmetry of the phenomenon), it does affect the
-inbreeding coefficient, as the following calculation shows
+inbreeding coefficient, let $F^\ast_k = F_k(1-\alpha) + \alpha$ be the
+probability that a sampled gamete from tetraploid individual $k$ contains IBD
+genes at a locus, the previous recursive relation for the inbreeding
+coefficient in tetraploids becomes:
 \begin{align*}
-F_i &= 
-             \Big(\frac 1 6 F_k + \frac1 6 F_l + \frac2 3 \Phi_{kl}\Big)(1-\alpha)^2 \\
-    &\qquad+ \Big(\frac 1 6 + \frac1 6 F_l + \frac2 3 \Phi_{kl}    \Big)\alpha(1-\alpha) \\
-    &\qquad+ \Big(\frac 1 6 F_k + \frac1 6 + \frac2 3  \Phi_{kl}   \Big)\alpha(1-\alpha) \\
-    &\qquad+ \Big(\frac 1 6 + \frac1  6 + \frac2 3 \Phi_{kl}       \Big)\alpha^2 \\
+F_i &= \frac{1}{6}F^\ast_k + \frac{1}{6}F^\ast_l + \frac{2}{3}\Phi_{kl} \\  
     &= \frac{1}{6} \bigg(2\alpha + (1-\alpha)(F_k + F_l) + 4\Phi_{kl} \bigg)
 \end{align*}
 In @fig:wfsim, simulations for a Wright-Fisher population model with a
@@ -256,40 +255,63 @@ level.
 When considering mixed-ploidy populations, we need to consider how equilibrium
 variances in the model scale with ploidy level, and how offspring of different
 ploidy levels are derived from a parental pair. 
+Throughout the following paragraphs, we specialize to a diploid --
+autotetraploid complex, possibly allowing for triploid hybrids, where
+polyploids originate through the fusion of unreduced gametes.
 
 ## Scaling of genetic variance across ploidy levels
 
-[should start from the variance per allele? at equilibrium $V_0$ for dips,
-$V_0/2$ for tets (since $2V_0 = \var[Z] = \var[X_1 + X_2 + X_3 + X_4] =
-4\var[X]$ in tet case?)]
+The equilibrium phenotypic variance $V_z = \var[Z]$ under the infinitesimal
+model was derived above as $2V_0$, where $V_0$ is the segregation variance.
+This argument is independent of the ploidy level, as long as the population is
+of a single (and even-ploid) cytotype.
+In diploids, this entails that the variance of the additive effect $X$ of a
+randomly sampled haploid genome from the base population is $V_x = \var[X] =
+V_0$, whereas for tetraploids this would be $V_x = V_0/2$.
+Indeed, in general, we have for $m$-ploids under infinitesimal assumptions that
+$2V_0 = V_z = \var[X_1 + \dots + X_m] = mV_x$.
+When considering a mixed-ploidy system, we hence shall have to make additional
+assumptions on how the genetic variance scales across ploidy levels.
+If we assume equal equilibrium variances (and concomitantly segregation
+variances), the genetic variance for a haploid genome in tetraploids will be
+halve that of diploids, entailing a reduction in the additive allelic effect
+per locus as ploidy level rises.
+On the other hand, if we assume equal allelic effects, and hence that the
+genetic variance associated with a hypothetical haploid genome copy is
+identical across ploidy levels, then the segregation and equilibrium variances
+in tetraploids will be twice those of diploids, and the associated phenotypic
+range will be doubled as well.
 
-If we consider the infinitesimal model as the limit of a large number of
-additive Mendelian loci, the genotypic value of an individual of ploidy level
-$m$ is defined as
-$$ z = \sum_{k=1}^n \sum_{l=1}^m a_{k,l} $$
-where $a_{k,m}$ is the allelic effect of homolog $l$ of locus $k$.
-In a mixed-ploidy system, it may seem natural to assume equal allelic effects
-in diploids and congeneric polyploids.
-However, clearly, if we make such an assumption, the phenotypic range of
-tetraploids will be double that of diploids.
-While the assumption of an additive genetic architecture is of course
-problematic in itself, this additional assumption may be particularly
-unjustified.
-We hence introduce an additional scaling parameter $\beta_m$ for ploidy level
-$m$, such that the segregation variance $V_{0,m} = \beta_m V_{0,2}$.
+To ease interpretation, let us consider an underlying Mendelian system,
+consisting of $n$ unlinked additive bi-allelic loci in Hardy-Weinberg and
+linkage equilibrium (HWLE).
+Assuming that the additive effects in tetraploids are homogeneously scaled by a
+factor $\beta$, the following relationships hold in the infinitesimal limit:
+$$
+ \frac{V_{z,4}}{V_{z,2}} = \frac{V_{0,4}}{V_{0,2}} = \frac{2V_{x,4}}{V_{x,2}} =
+ \frac{2 \sum_i^n (\beta a_i)^2 p_i(1-p_i)}{\sum_i^n a_i^2 p_i(1-p_i)} =
+ 2\beta^2
+$$
+So we see that assuming equal equilibrium phenotypic variances $V_{z,4}/V_{z,2}
+= 1$ entails that allelic effects are scaled by a factor $\beta=2^{-1/2}$.
+On the other hand, assuming equal allelic effects ($\beta=1$) entails that the
+phenotypic variance in tetraploids is twice that of diploids, as we noted above.
+To study the effect of such assumptions, we introduce $\beta_m$ as a parameter
+so that $V_{z,m} = \beta_4^2 V_{z,2}$, keeping in mind its interpretation as a
+scaler of allelic effects in the Mendelian system.
 
-We can provide an interpretation for this parameter in the context of the
-underlying hypothetical Mendelian system.
-The (additive) genetic variance for a genetic architecture consisting of $n$
-unlinked biallelic loci in an $m$-ploid population at Hardy-Weinberg and
-linkage equilibrium (HWLE) is given by
-    $$\tilde{V}_{A} = k \sum_{i=1}^n a_i^2 p_i(1-p_i)$$
-Which should equal the equilibrium prediction $2V_0$ of the infinitesimal model
-in the large $n$ limit.
-If we rescale the segregation variance in $m$-ploids $V_{0,m}$ relative to that
-in diploids so that $V_{0,m} = \beta_m V_{0,2}$, this can be interpreted as a
-scaling of $\sqrt{\beta_m}$ of the allelic effects of the underlying Mendelian
-system.
+When two diploids with trait values $z_i$ and $z_j$ produce tetraploid
+offspring through unreduced gametes, we shall hence have the following
+offspring trait distribution
+    $$Z_{ij} \sim \mathcal{N}\big(\beta_4(z_i + z_j), \beta_4^2 V_{ij} \big)$$
+where the relevant $V_{ij}$ of such a cross is derived in the following
+section.
+When a triploid is formed through the union of a reduced and unreduced gamete
+from $i$ and $j$ respectively, we similarly have
+    $$Z_{ij} \sim \mathcal{N}\Big(\beta_3\Big(\frac{z_i}{2} + z_j\Big), 
+        \beta_3^2 V_{ij} \Big)$$
+It remains to be seen whether such assumptions can actually be motivated
+empirically.
 
 ## Unreduced gamete formation in diploids
 
@@ -365,31 +387,56 @@ Clearly, the mechanism of unreduced gamete formation generates segregation
 variance, as not all random tetraploid offspring from a single diploid parental
 pair will receive the same pair of genes from each parent, depending on whether
 or not recombination has occurred and FDR rather than SDR generates the
-unreduced gamete. 
+unreduced gamete.
+Writing the genotype at a locus in the diploid parent as $X_1X_2$, with allelic
+effects $X_1$ and $X_2$, the genotypic value of an unreduced gamete will be
+$$Y = \begin{cases}
+    2X_1 & \text{w.p. } p_1 = \frac1 4 f c + \frac1 2 (1-f)(1-c) \\
+    2X_2 & \text{w.p. } p_1 \\
+    X_1 + X_2 & \text{w.p. } p_2 = 1-2p_1 
+    \end{cases}$$
+and, conditional on $X_1$ and $X_2$ not being IBD, we find that, by the law of
+total variance, $\var[Y] = 4p_1V_x$.
+Defining $\xi = 2p_1$, the segregation variance contributed by an unreduced
+gamete of individual $i$ is hence
+    $$V_{i,22} = 2(1-F_i)\xi V_x$$ 
+where $V_x$ will depend on the cytotype of the zygote to which this gamete
+(potentially) contributes (e.g. $\beta_4^2 V_{x,2}$ in the tetraploid case).
 
-If we consider the diploid genotype $Aa$ depicted in the diagram above and consider
-$X_A$ the number of $A$ alleles transmitted, we can easily find
+## Triploids
 
-$$\var X_A = \Big(1 - c - f + \frac{3}{2}cf \Big) := \xi$$
+Triploids, when viable, may be important for the dynamics of mixed-ploidy
+populations due to the formation of a so-called triploid bridge.
+The formation of triploids presents no issues, we simply need to track the
+segregation variance contributions from both donor gametes, and relate these to
+$V_{0,3}$.
 
-which is also the probability of transmitting two copies of the same allele.
-We shall denote this derived quantity as $\xi$.
+Sexual reproduction in triploids is however more complicated.
+Meiosis, if it happens, usually results in aneuploid gametes, as there are no
+know mechanisms to coordinate the assortment of chromosomes in for instance a
+haploid and diploid gamete [@ramsey1998].
+Experimental results indicate that, at least in yeast, triploids usually form
+trivalents and undergo recombination, after which each trivalent is randomly
+assorted in the daughter cells, some receiving one, others two copies of a
+given chromosome [@charles2010].
+In the absence of gametic nonreduction, the probability
+of obtaining euploid gametes (two diploid and two haploid gametes) from such 
+a process is $(1/2)^n$, where $n$ is the number of chromosomes. If the number
+of chromosomes is small this is not negligible, for instance in *A. thaliana*
+we would have $(1/2)^5 \approx 0.03$. This is on the order of the unreduced
+gamete formation rate and -- if we wish to incorporate triploids in the model
+-- should not be ignored if $n$ is sufficiently small.
 
-Of course, if the locus is IBD with probability $F_{i,i}$, we have that the
-expected value of $\var X_A$ is $\xi(1-F_{i,i})$.  Under the model delineated
-above with the scaling of allelic effects across ploidy levels, we find that
-the contribution of a single diploid parent $i$ to the segregation variance
-among tetraploid offspring is
+Assuming that aneuploid gametes do not contribute to viable gametes or
+crossings, we shall hence need to make certain assumptions on what percentage
+of meioses render euploid ($1n, 2n$ or $3n$) gametes. 
+Triploid gametes generate additional difficulty, since in order to compute the
+contributed variance under inbreeding, we would need an additional identity
+coefficient recording the probability that three genes are IBD at a locus.
 
-$$ V_i = 2\beta_4 V_{0,2} \xi (1 - F_{i,i})$$ 
+The question remains what the segregation variance contributed by a haploid,
+diploid or triploid gamete to its offspring is. 
 
-Notably, the mean offspring phenotype among tetraploid offspring from a diploid
-cross can no longer be the average of the two parental phenotypes if we assume
-the infinitesimal model as the limit of the Mendelian unlinked additive loci
-model. The expected contribution of a single parent $i$ will be $X_i =
-\sqrt{\beta_4}z_i$ so that for a cross of two diploids via unreduced gametes
-
-$$Z_{ij} \sim \No\Big(\sqrt{\beta_4}(z_i + z_j), V_i + V_j\Big)$$
 
 ## Inbreeding coefficients in the mixed-ploidy system
 
@@ -398,63 +445,31 @@ complicated, as our recursions will differ whether some individual is derived
 from parents of the same cytotype or not.
 
 Recall that $\xi$ is the probability that an unreduced gamete transmits two
-copies of the same allele at some locus. Let $m_k$ denote the ploidy level of
-individual $k$. We still have that for a tetraploid individual $i$
+copies of the same allele at some locus.
+Let $m_k$ denote the ploidy level of individual $k$.
+We still have that for a tetraploid individual $i$
+    $$ F_i = \frac{1}{6}\big(F^\ast_k + F^\ast_l + 4\Phi_{k,l}\big) $$
+where now, assuming no triploid gametes exist in the system,
+    $$ F_k^\ast = \begin{cases}
+        F_k(1-\xi) + \xi & \text{if } m_k \in \{2,3\} \\
+        F_k(1-\alpha) + \alpha & \text{if } m_k = 4 
+        \end{cases} $$
+For a triploid individual, where the parent contributing the $2n$ gamete is
+$k$, we have
+    $$ F_i = \frac1 3 \big(F_k(1-\xi) + \xi + 2\Phi_{kl}\big) $$
+For $\Phi$ the recursion above remains valid, but where diagonal elements are
+now given by
+    $$\Phi_{ii} = \frac{1}{m_i} \big(1 + (m_i-1)F_i\big)$$
+    
+## Segregation variances
 
-$$ F_{i,i}' = \frac{1}{6}\big(F^\ast_{k,k} + F^\ast_{l,l} + 4F_{k,l}\big) $$
+| **gamete**   | $1x$                        | $2x$                                             |
+| --------:    | --------------------:       | -----------------------------------------------: |
+| **cytotype** |                             |                                                  |
+| $2n$         | $(1-F)\frac{V_0}{2}$  | $2 (1-F)\xi V_0$                                 |
+| $3n$         | $(1-F)\frac{4V_0}{9}$ | $(1-F)(\frac{1}{3} + \xi)\frac{4V_0}{3}$         |
+| $4n$         | $\cdot$               | $(1-F)(1+2\alpha)\frac{V_0}{2}$                  |
 
-where now 
-
-$$ F_{k,k}^\ast = \begin{cases}
-    F_{k,k} & \text{if } m_k = 4 \\ 
-    F_{k,k}(1-\xi) + \xi & \text{if } m_k = 2 
-    \end{cases} $$
-
-For $F_{i,j}'$ we still have 
-
-$$ F_{i,j}' = \sum_k \sum_l P_{i,k}P_{i,l} F^\ast_{k,l} $$
-
-where now
-
-$$ F_{k,l}^\ast = \begin{cases}
-    F_{k,l} & \text{if } k \ne l \\ 
-    \frac{1}{2}(1 + F_{k,k}) & \text{if } k = l, m_k = 2 \\ 
-    \frac{1}{4}(1 + 3F_{k,k}) & \text{if } k = l, m_k = 4 
-    \end{cases}$$
-
-(I think), so that we still have a matrix expression
-
-$$ F' = P \Big(F + \big(I - m \mathrm{diag} F\big)\Big) P^T $$
-
-still holds, but where $m$ is now a vector where the $k$th element is $1/m_k$,
-recording the reciprocal of the ploidy levels in the parental generation.
-
-## Triploids
-
-In the above we did not include triploid individuals in the population. Triploids
-may however be important for the dynamics of mixed-ploidy populations due to the 
-formation of a so-called triploid bridge.
-
-The formation of triploids presents no issues, we simply need to track the
-segregation variance contributions from both donor gametes, and relate these to
-$V_{0,3}$. The reproduction of triploids is however more complicated. We may
-assume that aneuploid gametes do not contribute to viable crossings and we need
-assumptions on what percentage of meioses render euploid ($1n, 2n$ or $3n$)
-gametes. We may treat these as parameters. 
-
-Experimental results indicate that, at least in yeast, triploid usually form
-trivalents and undergo recombination, after which each trivalent is randomly
-assorted in the daighter cells, some receiving one, others two copies of a
-given chromosome. In the absence of gametic nonreduction, the probability
-of obtaining euploid gametes (two diploid and two haploid gametes) from such 
-a process is $(1/2)^n$, where $n$ is the number of chromosomes. If the number
-of chromosomes is small this is not negligible, for instance in *A. thaliana*
-we would have $(1/2)^5 \approx 0.03$. This is on the order of the unreduced
-gamete formation rate and -- if we wish to incorporate triploids in the model
--- should not be ignored if $n$ is sufficiently small.
-
-The question remains what the segregation variance contributed by a haploid,
-diploid or triploid gamete to its offspring is. 
 
 
 # References
