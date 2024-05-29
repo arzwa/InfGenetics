@@ -433,9 +433,20 @@ of meioses render euploid ($1n, 2n$ or $3n$) gametes.
 Triploid gametes generate additional difficulty, since in order to compute the
 contributed variance under inbreeding, we would need an additional identity
 coefficient recording the probability that three genes are IBD at a locus.
-
 The question remains what the segregation variance contributed by a haploid,
 diploid or triploid gamete to its offspring is. 
+The contribution of haploid and diploid gametes from diploid, triploid and
+tetraploid parents to the segregation variance can be summarized in the
+following table:
+
+\footnotesize
+| **gamete**   | $1x$                        | $2x$                                             |
+| --------:    | --------------------:       | -----------------------------------------------: |
+| **cytotype** |                             |                                                  |
+| $2n$         | $(1-F)\frac{V_0}{2}$        | $2 (1-F)\xi V_0$                                 |
+| $3n$         | $(1-F)\frac{4V_0}{9}$       | $(1-F)(\frac{1}{3} + \xi)\frac{4V_0}{3}$         |
+| $4n$         | $\cdot$                     | $(1-F)(1+2\alpha)\frac{V_0}{2}$                  |
+\normalsize
 
 
 ## Inbreeding coefficients in the mixed-ploidy system
@@ -461,15 +472,5 @@ For $\Phi$ the recursion above remains valid, but where diagonal elements are
 now given by
     $$\Phi_{ii} = \frac{1}{m_i} \big(1 + (m_i-1)F_i\big)$$
     
-## Segregation variances
-
-| **gamete**   | $1x$                        | $2x$                                             |
-| --------:    | --------------------:       | -----------------------------------------------: |
-| **cytotype** |                             |                                                  |
-| $2n$         | $(1-F)\frac{V_0}{2}$  | $2 (1-F)\xi V_0$                                 |
-| $3n$         | $(1-F)\frac{4V_0}{9}$ | $(1-F)(\frac{1}{3} + \xi)\frac{4V_0}{3}$         |
-| $4n$         | $\cdot$               | $(1-F)(1+2\alpha)\frac{V_0}{2}$                  |
-
-
 
 # References

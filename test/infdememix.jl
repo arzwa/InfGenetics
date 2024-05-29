@@ -77,3 +77,18 @@ plot!(z->pdf(Normal((zi + zj)/2 + b*vij, √vij), z))
 plot!(z->pdf(Normal((zi + zj)/2, √vij), z))
 
 
+
+d = InfDemeMix(z = [3., 3., 0., 0.], 
+               m = [2, 4, 2, 2],
+               U = [0.9 0.1 ; 0.05 0.05; 0.0 0.95], 
+               w = [1.0, 1.0, 1.0],
+               β = [1.0, 1.0, 1.0], 
+               α = 0.2, 
+               ξ = 0.5)
+
+context = StabilizingSelection(θ=3., ω=1.0, r=1.1, K=500.)
+fs  = offspring_distribution(d)
+fs′ = map(f->selection(f, context), fs)
+w̄ij = 𝔼fitness.(fs′)
+sum(w̄ij, dims=2)
+
