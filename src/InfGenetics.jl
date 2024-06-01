@@ -2,7 +2,7 @@ module InfGenetics
 
 using LinearAlgebra, Distributions, StatsBase, Random, Parameters
 
-export jeffreys_interval, Umat, simest, simest2, simuntil
+export jeffreys_interval, Umat, simest, simest2, simuntil, fiterate
 export InfDemeMixEstPair, InfDemeMixEstSelf, InfDemeMixEst, InfDemeMix, InfDemeHS, InfPop, FinPop, generation
 
 include("infmix.jl")

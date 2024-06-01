@@ -15,9 +15,9 @@ end
 
 # Basic model
 # ===========
-nrep = 10000
+nrep = 1000
 ms   = 10 .^ range(log10(0.1), stop=log10(3), length=10)
-zs   = [-2.0, -1.5, -1.0]
+zs   = [2.0, 1.5, 1.0]
 γ    = 0.25
 U    = Umat(0.05, 0.05)
 nmax = 10000

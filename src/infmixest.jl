@@ -12,7 +12,7 @@
     γ::T = 0.25                         # selection gradient
     m::T = 1.0                          # 𝔼 number of migrants/gen                          
     V::T = 0.5                          # Vx (haplotype variance in diploids)
-    θ::Vector{T} = fill(-1.0, 3)        # trait mean of migrants
+    θ::Vector{T} = ones(3)              # trait value at which growth rate becomes positive
     c::Vector{T} = cytotype_equilibrium(U)
 end
 
@@ -27,7 +27,7 @@ function cytotype_equilibrium(U)
     [g1^2, 2g1*(1-g1), (1-g1)^2] 
 end
 
-hapsegvar(c, F, V) = 1 < c < 4 ? (c-1)/c * (1-F) * V : 0.0
+hapsegvar(c, F, V)    = 1 < c < 4 ? (c-1)/c * (1-F) * V           : 0.0
 dipsegvar(c, α, F, V) = 1 < c ≤ 4 ? (2/c)*(c*(1 + α) - 2)*(1-F)*V : 0.0
 # NOTE: dipsegvar:
 # tet (2/4)(2 + 4α)(1-F)V 
@@ -36,7 +36,7 @@ dipsegvar(c, α, F, V) = 1 < c ≤ 4 ? (2/c)*(c*(1 + α) - 2)*(1-F)*V : 0.0
 # hence
 #    (2/c)(c-2 + cα)(1-F)V
 #   =(2/c)(c(1+α)-2)(1-F)V
-Ew(z̄, V, γ) = exp(γ*z̄ + (γ^2/2)*V)
+Ew(z̄, V, γ, θ) = exp(γ*(z̄ - θ) + (γ^2/2)*V)
 
 dim2idx(k) = k > 2 ? k - 1 : k  
 
@@ -44,7 +44,7 @@ dim2idx(k) = k > 2 ? k - 1 : k
     Zᵢⱼ ∼ N{βᵢⱼ[(gᵢ/cᵢ)(zᵢ/βᵢ) + (gⱼ/cⱼ)(zⱼ/βⱼ)], Vᵢ + Vⱼ}
 """
 function family_distribution(M::InfDemeMixEst, xi, xj)
-    @unpack U, β, γ, V, α, w = M 
+    @unpack U, β, γ, V, α, w, θ = M 
     zi, Fi, ci = xi
     zj, Fj, cj = xj
     Vi1 = hapsegvar(ci, Fi, V)
@@ -54,19 +54,19 @@ function family_distribution(M::InfDemeMixEst, xi, xj)
     # diploid offspring
     z2 = β[1] * ((1/ci)*(zi/β[ci-1]) + (1/cj)*(zj/β[cj-1]))
     V2 = β[1]^2 * (Vi1 + Vj1)
-    w2  = Ew(z2, V2, γ) * U[ci-1,1] * U[cj-1,1] * w[1]
+    w2  = Ew(z2, V2, γ, θ[1]) * U[ci-1,1] * U[cj-1,1] * w[1]
     # triploid offspring 1
     z31 = β[2] * ((2/ci)*(zi/β[ci-1]) + (1/cj)*(zj/β[cj-1]))
     V31 = β[2]^2 * (Vi2 + Vj1)
-    w31 = Ew(z31, V31, γ) * U[ci-1,2] * U[cj-1,1] * w[2]
+    w31 = Ew(z31, V31, γ, θ[2]) * U[ci-1,2] * U[cj-1,1] * w[2]
     # triploid offspring 1
     z32 = β[2] * ((1/ci)*(zi/β[ci-1]) + (2/cj)*(zj/β[cj-1]))
     V32 = β[2]^2 * (Vi1 + Vj2)
-    w32 = Ew(z32, V32, γ) * U[ci-1,1] * U[cj-1,2] * w[2]
+    w32 = Ew(z32, V32, γ, θ[2]) * U[ci-1,1] * U[cj-1,2] * w[2]
     # tetraploid offspring
     z4 = β[3] * ((2/ci)*(zi/β[ci-1]) + (2/cj)*(zj/β[cj-1]))
     V4 = β[3]^2 * (Vi2 + Vj2)
-    w4  = Ew(z4, V4, γ) * U[ci-1,2] * U[cj-1,2] * w[3]
+    w4  = Ew(z4, V4, γ, θ[3]) * U[ci-1,2] * U[cj-1,2] * w[3]
     [w2, w31, w32, w4], [z2, z31, z32, z4], [V2, V31, V32, V4]
 end
 
@@ -148,7 +148,7 @@ function migration(M::InfDemeMixEst, pop::InfPop)
     nm = rand(Poisson(m))
     cm = rand(Multinomial(nm, M.c))
     cm = vcat([fill(i+1, k) for (i, k) in enumerate(cm)]...)
-    zm = [rand(Normal(θ[m-1], β[m-1]*√V)) for m in cm]
+    zm = [rand(Normal(0.0, β[m-1]*√2V)) for m in cm]
     z  = [pop.z ; zm]
     c  = [pop.c ; cm]
     F  = [pop.F ; zeros(nm)]
@@ -156,10 +156,10 @@ function migration(M::InfDemeMixEst, pop::InfPop)
     InfPop(z=z, c=c, F=F, Φ=Φ)
 end
 
-function _otherfitness(M, pop)
-    @unpack θ, α, β, γ, w, U, m, V = M
-    [(U[k-1,1] + U[k-1,2])*w[k-1]*exp(γ*zk) for (zk,k) in zip(pop.z,pop.c)]  
-end
+#function _otherfitness(M, pop)
+#    @unpack θ, α, β, γ, w, U, m, V = M
+#    [(U[k-1,1] + U[k-1,2])*w[k-1]*exp(γ*zk) for (zk,k) in zip(pop.z,pop.c)]  
+#end
 
 function generation(M::InfDemeMixEst, pop::InfPop{T}) where T
     @unpack θ, α, β, γ, σ, ρ, U, m, V = M
