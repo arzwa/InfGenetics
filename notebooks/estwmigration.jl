@@ -12,10 +12,20 @@ function mle_censored_geometric(c, xs)
     optimize(fun, 0.0, 1.0).minimizer
 end
 
+# example        
+sim = simest(InfDemeMixEst(m=1.0, θ=fill(2.0, 3), U=U), nmax=nmax, Nest=Nest)
+
+z_ = map(x->x.z, last.(sim[2]))
+P1 = plot(); for i=1:length(z_)
+    scatter!(fill(i, length(z_[i])), z_[i], color=:black, ms=2)
+end; plot!(legend=false)
+P2 = plot(mapreduce(x->log10.(counts(x.c, 2:4)), hcat, last.(sim[2]))',
+    legend=false, marker=true, ms=2)
+plot(P1, P2, size=(600,200))
 
 # Basic model
 # ===========
-nrep = 1000
+nrep = 5000
 ms   = 10 .^ range(log10(0.1), stop=log10(3), length=10)
 zs   = [2.0, 1.5, 1.0]
 γ    = 0.25
@@ -41,7 +51,7 @@ for col in eachcol(sims)
         1/mle_censored_geometric(nmax, ts)
     end
     z = col[1][2]
-    plot!(ms, t, marker=true, ms=2, label="\$\\bar{z}_s = $z\$")
+    plot!(ms, t, marker=true, ms=2, label="\$\\theta = $z\$")
 end
 P1 = plot(P1, marker=true, ms=2, yscale=:log10, xlabel="\$m\$",
     ylabel="\$\\overline{T}\$", xscale=:log10, legend=:topleft)

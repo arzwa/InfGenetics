@@ -27,6 +27,7 @@ function cytotype_equilibrium(U)
     [g1^2, 2g1*(1-g1), (1-g1)^2] 
 end
 
+Ew(z̄, V, γ, θ) = exp(γ*(z̄ - θ) + (γ^2/2)*V)
 hapsegvar(c, F, V)    = 1 < c < 4 ? (c-1)/c * (1-F) * V           : 0.0
 dipsegvar(c, α, F, V) = 1 < c ≤ 4 ? (2/c)*(c*(1 + α) - 2)*(1-F)*V : 0.0
 # NOTE: dipsegvar:
@@ -36,9 +37,6 @@ dipsegvar(c, α, F, V) = 1 < c ≤ 4 ? (2/c)*(c*(1 + α) - 2)*(1-F)*V : 0.0
 # hence
 #    (2/c)(c-2 + cα)(1-F)V
 #   =(2/c)(c(1+α)-2)(1-F)V
-Ew(z̄, V, γ, θ) = exp(γ*(z̄ - θ) + (γ^2/2)*V)
-
-dim2idx(k) = k > 2 ? k - 1 : k  
 
 """
     Zᵢⱼ ∼ N{βᵢⱼ[(gᵢ/cᵢ)(zᵢ/βᵢ) + (gⱼ/cⱼ)(zⱼ/βⱼ)], Vᵢ + Vⱼ}
