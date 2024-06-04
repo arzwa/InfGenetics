@@ -1,0 +1,32 @@
+\begin{thebibliography}{4}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Felber and Bever(1997)]{felber1997}
+F.~Felber and J.~D. Bever.
+\newblock Effect of triploid fitness on the coexistence of diploids and
+  tetraploids.
+\newblock \emph{Biological Journal of the Linnean Society}, 60\penalty0
+  (1):\penalty0 95--106, 1997.
+
+\bibitem[Moody et~al.(1993)Moody, Mueller, and Soltis]{moody1993}
+M.~E. Moody, L.~Mueller, and D.~Soltis.
+\newblock Genetic variation and random drift in autotetraploid populations.
+\newblock \emph{Genetics}, 134\penalty0 (2):\penalty0 649--657, 1993.
+
+\bibitem[Rausch and Morgan(2005)]{rausch2005}
+J.~H. Rausch and M.~T. Morgan.
+\newblock The effect of self-fertilization, inbreeding depression, and
+  population size on autopolyploid establishmen.
+\newblock \emph{Evolution}, 59\penalty0 (9):\penalty0 1867--1875, 2005.
+
+\bibitem[Rousset(2004)]{rousset2004}
+F.~Rousset.
+\newblock \emph{Genetic structure and selection in subdivided populations},
+  volume~40.
+\newblock Princeton University Press, 2004.
+
+\end{thebibliography}

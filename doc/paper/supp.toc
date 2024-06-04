@@ -1,0 +1,10 @@
+\contentsline {section}{\numberline {S1}Supplementary Figures}{2}{section.1}%
+\contentsline {section}{\numberline {S2}Supplementary Information}{4}{section.2}%
+\contentsline {subsection}{\numberline {S2.1}Inbreeding in autotetraploids }{4}{subsection.2.1}%
+\contentsline {subsection}{\numberline {S2.2}Mixed-ploidy infinitesimal model}{4}{subsection.2.2}%
+\contentsline {subsubsection}{\numberline {S2.2.1}Discrete locus model and variance scaling }{4}{subsubsection.2.2.1}%
+\contentsline {subsubsection}{\numberline {S2.2.2}Segregation variance }{5}{subsubsection.2.2.2}%
+\contentsline {subsection}{\numberline {S2.3}Deterministic mixed-ploidy model }{5}{subsection.2.3}%
+\contentsline {subsection}{\numberline {S2.4}Stochastic mixed-ploidy model }{7}{subsection.2.4}%
+\contentsline {subsection}{\numberline {S2.5}Expected time to diploid ancestry }{7}{subsection.2.5}%
+\contentsline {subsection}{\numberline {S2.6}Effective population size of a mixed-ploidy deme }{8}{subsection.2.6}%
