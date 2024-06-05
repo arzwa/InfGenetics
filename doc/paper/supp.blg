@@ -3,44 +3,44 @@ Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: supp.aux
 The style file: abbrvnat.bst
 Database file #1: /home/arthur_z/vimwiki/bib.bib
-You've used 4 entries,
+You've used 12 entries,
             2773 wiz_defined-function locations,
-            622 strings with 5233 characters,
-and the built_in function-call counts, 1763 in all, are:
-= -- 158
-> -- 82
-< -- 4
-+ -- 28
-- -- 24
-* -- 143
-:= -- 273
-add.period$ -- 12
-call.type$ -- 4
-change.case$ -- 19
-chr.to.int$ -- 4
-cite$ -- 8
-duplicate$ -- 81
-empty$ -- 155
-format.name$ -- 32
-if$ -- 362
+            673 strings with 6644 characters,
+and the built_in function-call counts, 5578 in all, are:
+= -- 501
+> -- 304
+< -- 8
++ -- 102
+- -- 90
+* -- 482
+:= -- 857
+add.period$ -- 36
+call.type$ -- 12
+change.case$ -- 64
+chr.to.int$ -- 12
+cite$ -- 24
+duplicate$ -- 246
+empty$ -- 468
+format.name$ -- 112
+if$ -- 1151
 int.to.chr$ -- 1
 int.to.str$ -- 1
-missing$ -- 5
-newline$ -- 28
-num.names$ -- 16
-pop$ -- 37
+missing$ -- 14
+newline$ -- 68
+num.names$ -- 48
+pop$ -- 117
 preamble$ -- 1
-purify$ -- 16
+purify$ -- 54
 quote$ -- 0
-skip$ -- 61
+skip$ -- 185
 stack$ -- 0
-substring$ -- 86
-swap$ -- 5
-text.length$ -- 1
+substring$ -- 264
+swap$ -- 14
+text.length$ -- 2
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 39
+type$ -- 122
 warning$ -- 0
-while$ -- 18
+while$ -- 55
 width$ -- 0
-write$ -- 59
+write$ -- 163

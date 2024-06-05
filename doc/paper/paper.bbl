@@ -1,4 +1,4 @@
-\begin{thebibliography}{31}
+\begin{thebibliography}{32}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -30,6 +30,12 @@ N.~H. Barton, A.~M. Etheridge, and A.~V{\'e}ber.
 J.~Bezanson, A.~Edelman, S.~Karpinski, and V.~B. Shah.
 \newblock Julia: A fresh approach to numerical computing.
 \newblock \emph{SIAM review}, 59\penalty0 (1):\penalty0 65--98, 2017.
+
+\bibitem[Bretagnolle et~al.(1995)Bretagnolle, , and Thompson]{bretagnolle1995}
+F.~Bretagnolle, , and J.~D. Thompson.
+\newblock Gametes with the somatic chromosome number: mechanisms of their
+  formation and role in the evolution of autopolyploid plants.
+\newblock \emph{New Phytologist}, 129\penalty0 (1):\penalty0 1--22, 1995.
 
 \bibitem[Brown et~al.(2024)Brown, Abbott, and Twyford]{brown2024}
 M.~R. Brown, R.~J. Abbott, and A.~D. Twyford.

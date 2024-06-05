@@ -119,26 +119,28 @@ autotetraploids establish in the novel habitat before diploids do.
 \textbf{notation}   & \textbf{description}   \\ \cline{1-2}
 $N, N_k$ & total population size, population size of the $k$-ploid cytotype \\
 $\pi_k$ & equilibrium frequency of the $k$-ploid cytotype \\
-$u$ & probability that an unreduced gamete is formed in diploids
-($u=u_{22}=u_{32}=1-u_{42}$)\\
+$u$ & probability of unreduced gamete formation ($u=u_{22}=u_{32}=1-u_{42}$)\\
 $v$ & probability that a triploid produces a haploid/diploid gamete
-($v=u_{31}=u_{32}$)\\
+  ($v=u_{31}=u_{32}$)\\
+$m$ & expected number of migrants per generation arriving in the new habitat \\
 $z_i$ & trait value of individual $i$ \\
+$c_i$ & ploidy level of individual $i$ \\
+$g_i$ & ploidy level of gamete produced by individual $i$ in a particular cross\\
+$V$ & segregation variance in the reference diploid population \\
+$V_{i,k}$ & gametic segregation variance associated with the production of a
+  $k$-ploid gamete by individual $i$ \\
+$\beta_{k}$ & scaling factor for allelic effects in $k$-ploids \\
+$F_i$ & inbreeding coefficient in individual $i$ \\
+$\Phi_{ij}$ & coancestry coefficient for individuals $i$ and $j$ \\
+$\alpha_k$ & probability that the two genes at a locus in a diploid gamete
+  formed by a $k$-ploid individual descend from the same parental gene copy\\
+$\gamma$ & strength of directional selection in the new habitat\\
+$\theta$ & trait value beyond which the growth rate becomes positive in the new habitat \\
 $w_{ij}$ & fitness of parental pair $(i,j)$ \\
 $w_{ij}^{kl}$ & expected fitness of offspring from parental pair $(i,j)$ when
 $i$ contributes a $k$-ploid gamete and $j$ contributes a $l$-ploid gamete \\
-$c_i$ & ploidy level of individual $i$ \\
-$\beta_{k}$ & scaling factor for allelic effects in $k$-ploids \\
-$\gamma$ & strength of directional selection \\
-$F_i$ & inbreeding coefficient in individual $i$ \\
-$V_{i,k}$ & gametic segregation variance associated with the production of a
-  $k$-ploid gamete by individual $i$ \\
-$V$ & segregation variance in the reference diploid population \\
-  $\alpha_k$ & probability that the two genes at a locus in a diploid gamete
-  formed by a $k$-ploid individual descend from the same parental gene copy\\
 $\sigma_k$ & selfing rate in $k$-ploids \\
 $\rho_k$ & probability of assortative mating in $k$-ploids \\
-$m$ & expected number of migrants per generation arriving in the new habitat \\
 \cline{1-2}
 \end{tabularx}%
 \end{table}
@@ -275,7 +277,7 @@ individual carries two copies of the same homolog, is the probability of
 1/6 \citep{stift2008}.
 The value of $\alpha_2$ depends on the relative frequency of unreduced gamete
 formation through so-called \textit{first} and \textit{second division
-restitution} \citep{storme2013}.
+restitution} \citep{bretagnolle1995,storme2013}.
 We summarize the expressions for the gametic segregation variance in
 \cref{tbl:segvar}.
 Detailed derivations can be found in \cref{s-sec:segvar}.
@@ -327,9 +329,11 @@ coefficients across the different ploidy levels.
 Denoting the parents of individual $i$ by $k$ and $l$, the recursion for the
 inbreeding coefficients in the mixed-ploidy case becomes
 \begin{align}
-    F_i &= \Phi_{kl} & \text{if } & c_i = 2 \\ 
+    F_i &= \Phi_{kl} & \text{if } & c_i = 2 \nonumber \\ 
     F_i &= \frac{1}{3}\left(F_k^\ast + 2\Phi_{kl}\right) & \text{if } 
-        & c_i = 3, g_k = 2, g_l = 1 \\ 
+        & c_i = 3, g_k = 2, g_l = 1 \nonumber \\ 
+    F_i &= \frac{1}{3}\left(F_l^\ast + 2\Phi_{kl}\right) & \text{if } 
+        & c_i = 3, g_k = 1, g_l = 2 \nonumber \\ 
     F_i &= \frac1 6 (F_k^\ast + F_l^\ast + 4\Phi_{kl}) & \text{if } & c_i = 4
 \end{align}
 where $F_k^\ast = \alpha_{c_k} + (1-\alpha_{c_k})F_k$ (\cref{s-sec:tetinbred}).
@@ -436,13 +440,13 @@ approximation to the evolution of a quantitative trait determined by $L$
 additive loci.
 We find that the infinitesimal model with inbreeding generally yields accurate
 predictions for the evolution of the genetic variance when the number of loci
-is sufficiently large ($L \ge 100$, say, \cref{fig:vztet}).
-Furthermore, we confirm that, in the absence of double reducyion, the decay in
+is sufficiently large ($L \ge 100$, say, \cref{fig:vztet,s-fig:fininf}).
+Furthermore, we confirm that, in the absence of double reduction, the decay in
 genetic variance due to inbreeding after a time $t$ is well-predicted by
 $e^{-t/4N}$ (\cref{fig:vztet}A), as expected from the results of \cite{arnold2012}.
 As predicted, double reduction leads to an immediate increase in genetic
 variance, but leads to accelerated inbreeding, causing faster loss of genetic
-variance in the long-term (\cref{fig:vztet}B).
+variance in the long-term (\cref{fig:vztet,s-fig:fininf}).
 As noted by \cite{arnold2012}, the loss of genetic variation in the presence of
 double reduction cannot, however, be described by a single long-term effective
 population size.
@@ -475,7 +479,7 @@ population size is, to first order in $u$, given by $(1-2u)N$
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=0.8\linewidth]{/home/arthur_z/dev/InfGenetics/doc/img/tetfininf.pdf}
+\includegraphics[width=0.9\linewidth]{/home/arthur_z/dev/InfGenetics/doc/img/tetfininf.pdf}
 \caption{
 The infinitesimal model in autotetraploids.
 Comparisons are shown for the decay of the genetic variance ($V_z$) due to
@@ -500,12 +504,12 @@ use it to study the establishment of polyploids in a marginal habitat to which
 migrants from a mixed-ploidy source population are maladapted.
 
 We first consider the establishment of a population from a single migrant
-individual with trait value $z_0 < 0$.
+individual with trait value $z_0 = 0$.
 We assume $u=0$ and compare the probability of establishment when the migrant
 is diploid vs. tetraploid (\cref{fig:est1}).
 As noted by \cite{barton2018}, the establishment probability depends
 essentially on two dimensionless parameters, $\gamma\sqrt{2V}$ and
-$z_0/\sqrt{2V}$, corresponding to the intensity of selection and the degree of
+$\theta/\sqrt{2V}$, corresponding to the intensity of selection and the degree of
 maladaptation, respectively.
 We shall scale our results accordingly, assuming $2V=1$ throughout.
 
@@ -533,15 +537,18 @@ tetraploids canceled (\cref{fig:est1}B).
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=0.8\textwidth]{/home/arthur_z/dev/InfGenetics/doc/img/est2.pdf}
+\includegraphics[width=0.9\linewidth]{/home/arthur_z/dev/InfGenetics/doc/img/est1.pdf}
 \caption{
-(B) Establishment probability from a single diploid or tetraploid individual
-for increasing selection gradient $\gamma$.
-(A) Probability of a tetraploid individual with trait value $z_0 = -2$
+(A) Probability of establishment from a single diploid or tetraploid individual
+with trait value $z=0$ for increasing selection intensity $\gamma$.
+We assume $m=0$ and $u=0$, i.e. there is no migration, and no unreduced
+gametes are produced. The trait is scaled in tetraploids so as to yield the
+same genetic variance at HWLE ($\beta_4 = \sqrt{1/2}$)
+(B) Probability of a tetraploid individual with trait value $z = 0$
 successfully founding a population ($P_4$), relative to the probability for a
 diploid individual with the same trait value ($P_2$).
-The vertical dashed line marks the $\beta$ value that yields equal equilibrium
-variances across ploidy levels ($\beta = \sqrt{1/2}$).
+The vertical dashed line marks $\beta_4=\sqrt{1/2}$, for which the variance at
+HWLE is identical between diploids and autotetraploids.
 All results are estimated from 500.000 replicate simulations.
 \label{fig:est1}}
 \end{figure}
@@ -568,7 +575,8 @@ Hence, conditional on evading MCE, they should be able to adapt to the new
 habitat at a rate which is not strongly affected by the migration rate.
 
 \begin{figure}[t]
-\includegraphics[width=\linewidth]{/home/arthur_z/dev/InfGenetics/doc/img/estwmigration1.pdf}
+\centering
+\includegraphics[width=0.9\linewidth]{/home/arthur_z/dev/InfGenetics/doc/img/estwmigration1.pdf}
 \caption{
 Establishment with recurrent migration.
 (A) Expected time until a population is established in the novel habitat for
@@ -587,7 +595,8 @@ We assume $\gamma=0.25$ and $u=v=0.05$.
 
 
 \begin{figure}
-\includegraphics[width=\linewidth]{/home/arthur_z/dev/InfGenetics/doc/img/estwmigration-si.pdf}
+\centering
+\includegraphics[width=0.9\linewidth]{/home/arthur_z/dev/InfGenetics/doc/img/estwmigration-si.pdf}
 \caption{
 Establishment with recurrent migration and loss of self-incompatibility in
 polyploids.
