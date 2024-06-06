@@ -354,56 +354,7 @@ $P_{ik} \in \{0, \frac1 3, \frac1 2, \frac2 3, 1\}$ is the probability that a
 gene copy in $i$ is derived from parent $k$.
 
 
-\subsection{Mixed-ploidy infinitesimal model}
-
-\subsubsection{Discrete locus model and variance scaling \label{sec:scaling}}
-
-Consider an $L$-locus additive model, with two alleles (0 and 1) at each locus.
-For a $k$-ploid individual, let $X_{i,j}$ be the allele at homolog $j$ of locus
-$i$.
-We assume the trait value is determined by
-\begin{equation}
-  z = \sum_{i=1}^L\sum_{j=1}^k a_{i,k} X_{i,j}
-\end{equation}
-Where $a_{i,k}$ is the allelic effect of the 1 allele at locus $i$ in
-$k$-ploids.
-The genetic variance at HWLE in $k$-ploids ($\tilde{V}_{z,k}$) will then be
-\begin{equation}
-  \tilde{V}_{z,k} = k\sum_{i=1} a_{i,k}^2 p_iq_i = kV_{x,k}
-\end{equation}
-where we refer to $V_{x,k}$ as the variance associated with a haploid genome in
-$k$-ploids at HWLE.
-Note that we also have $\tilde{V}_{z,2} = 2V_{x,k} = 2V$, where $V$ is the
-segregation variance in the diploid population.
-
-We now assume $a_{i,k} = \beta_k a_{i,2}$, i.e. allelic effects in $k$-ploids
-are as in diploids, but scaled by a factor $\beta_k$.
-This implies that
-\begin{equation}
-  \frac{\tilde{V}_{z,k}}{\tilde{V}_{z,2}} 
-  = \frac{kV_{x,k}}{2V_{x,2}} = \frac{k}{2} \beta_{k}^2
-\end{equation}
-and hence also that $V_{x,k} = \beta_k^2 V_{x,2} = \beta_k^2 V$.
-These relations will also hold in the infinitesimal limit.
-Below, we derive the segregation variance expressions for the different meiotic
-processes in the mixed-ploidy models in terms of the $V_{x,k}$.
-Using the relationships outlined here, we will then be able to express all the
-required variances in terms of $V$.
-
-Note that under the above assumptions, not only the variance is rescaled, but
-also the expected value of offspring within a family.
-Specifically, for a $k$-ploid offspring of parental pair $i$ and $j$, where the
-gamete coming from $i$ is $g_i$-ploid and the other gamete $g_j$-ploid, we have
-\begin{equation}
-  \Ex[Z_{ij}] = \beta_k \left(\frac{g_i}{c_i}\frac{z_i}{\beta_{c_i}} + 
-    \frac{g_j}{c_j}\frac{z_j}{\beta_{c_j}}\right)
-\end{equation}
-where $c_i$ is the ploidy level of individual $i$.
-Here we rescale the parental trait values to the diploid scale by dividing by
-$\beta_{c_i}$, sum the expected rescaled gametic values, and rescale to the
-offspring ploidy level.
-
-\subsubsection{Segregation variance \label{sec:segvar}}
+\subsection{Segregation variance expressions for the mixed-ploidy infinitesimal model \label{sec:segvar}}
 
 Consider a single locus in a population of $k$-ploids, and let $X_1,\dots,X_k$
 denote a random genotype at this locus, where $X_i$ is the additive genetic
@@ -430,8 +381,9 @@ Using \cref{eq:eve}, we can then find the segregation variance
   $$\Ex[\Var[Y|X_1,X_2]] = v_x - \frac{v_x}{2} = \frac{v_x}{2}$$
 Summing over $L$ independent loci, we find the gametic segregation variance in
 diploids (which is halve the zygotic segregation variance $V$, by definition) as
-  $$V_{S(2,1)} = \frac{V}{2} = \sum_{i=1}^L \frac{v_{x,i}}{2} = \frac{V_{x,2}}{2}$$
-and hence $V=V_{x,2}$, where $V_{x,2}$ is as defined in \cref{sec:scaling}.
+  $$V_{S(2,1)} = \frac{V}{2} = \sum_{i=1}^L \frac{v_{x,i}}{2} = \frac{\Vx_{2}}{2}$$
+and hence $V=\Vx_{2}$, where $\Vx_{2}$ is the genetic variance associated with
+a haploid genome in the diploid cytotype, as defined in the main text.
 This will hold in the infinitsimal limit, where $L$ becomes very large and
 $v_x$ smaller and smaller.
 
@@ -439,10 +391,11 @@ Below, we derive the segregation variance associated with haploid and diploid
 gamete production in the three cytotypes of the mixed-ploidy population.
 We use \cref{eq:eve} to do this, and express the segregation variance for a
 $k$-ploid individual producing an $l$-ploid $V_{S(k,l)}$ in terms of the
-variance $V_{x,k}$ associated with a haploid genome in a (hypothetical)
-$k$-ploid reference population at HWLE. Using the scaling assumptions above,
-i.e. $V_{x,k} = \beta_k^2 V$, we can then express all segregation variances in
-terms of the diploid segregation variance in the reference population $V$.
+variance $\Vx_{k}$ associated with a haploid genome in a (hypothetical)
+$k$-ploid reference population at HWLE. Using the scaling assumptions outlined
+in the main text, i.e. $\Vx_{k} = \beta_k^2 V$, we can then express all
+segregation variances in terms of the diploid segregation variance in the
+reference population $V$.
 
 \paragraph{Meiosis in autotetraploids.}
 
@@ -483,10 +436,12 @@ Assuming that the probability of double reduction at any locus is $\alpha_4$,
 and summing over independent loci, we find that the gametic segregation
 variance in the presence of double reduction should be
 \begin{equation}
-V_{S(4,2)} = (1-\alpha_4)V_{x,4} + 3\alpha_4 V_{x,4} = V_{x,4}(1+2\alpha_4).
+V_{S(4,2)} = (1-\alpha_4)\Vx_{4} + 3\alpha_4 \Vx_{4} = \Vx_{4}(1+2\alpha_4).
 \label{eq:dr}
 \end{equation}
-where, again, $V_{x,4}$ is as defined in \cref{sec:scaling}.
+where, again, $\Vx_{4}$ is the genetic variance associated with a haploid
+genome in the (hypothetical) tetraploid reference population, as defined in the
+main text.
 
 \begin{figure}
 \begin{center}
@@ -617,7 +572,7 @@ Conditional on the latter event, we get
 \end{align*}
 Conditioning on the complementary event, all gametes have genetic value
 $Y = X_1+X_2$, so that the segregation variance is 0.
-Summing across independent loci, we have $V_{S(2,2)} = 2\alpha_2 V_{x,2}$.
+Summing across independent loci, we have $V_{S(2,2)} = 2\alpha_2 \Vx_{2}$.
 
 
 \paragraph{Meiosis in triploids.}
@@ -659,7 +614,7 @@ single locus
     &= v_x - \Var\left[\frac{1}{3}\left(X_1 + X_2 + X_3\right)\right] \\ 
     &= v_x - \frac{1}{9}3v_x = \frac{2}{3}v_x
 \end{align*}
-Summing over many loci, we have $V_{S(3,1)} = \frac{2}{3}V_{x,3}$.
+Summing over many loci, we have $V_{S(3,1)} = \frac{2}{3}\Vx_{3}$.
 When a triploid produces a diploid gamete, we assume there is, as in diploids
 and tetraploids, a probability $\alpha_3$ that the same gene copy ends up twice
 in the gamete.
@@ -678,8 +633,8 @@ Conditional on this \textit{not} happening,
 \end{align*} 
 Putting this together and summing over many loci, the segregation variance for
 a diploid gamete from a triploid individual would be
-  $$V_{S(3,2)} = \frac{8}{3}V_{x,3}\alpha_3 + \frac{2}{3}V_{x,3} (1-\alpha_3) 
-            = \frac{2}{3}V_{x,3}(1 + 3\alpha_3)$$ 
+  $$V_{S(3,2)} = \frac{8}{3}\Vx_{3}\alpha_3 + \frac{2}{3}\Vx_{3} (1-\alpha_3) 
+            = \frac{2}{3}\Vx_{3}(1 + 3\alpha_3)$$ 
 
 The different expressions for the gametic segregation variance in the
 mixed-ploidy model, adjusted for inbreeding, are summarized in

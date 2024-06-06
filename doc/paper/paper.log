@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.3.19)  5 JUN 2024 23:07
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.3.19)  6 JUN 2024 17:17
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -804,51 +804,53 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 13.
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2] [3] [4] [5] [6] [7]
-</home/arthur_z/dev/InfGenetics/doc/img/tetfininf.pdf, id=243, 542.025pt x 210.
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2] [3] [4] [5] [6] [7] [8
+]
+</home/arthur_z/dev/InfGenetics/doc/img/tetfininf.pdf, id=254, 542.025pt x 210.
 7875pt>
 File: /home/arthur_z/dev/InfGenetics/doc/img/tetfininf.pdf Graphic file (type p
 df)
 <use /home/arthur_z/dev/InfGenetics/doc/img/tetfininf.pdf>
 Package pdftex.def Info: /home/arthur_z/dev/InfGenetics/doc/img/tetfininf.pdf  
-used on input line 482.
+used on input line 510.
 (pdftex.def)             Requested size: 376.42575pt x 146.39235pt.
- [8] [9 </home/arthur_z/dev/InfGenetics/doc/img/tetfininf.pdf>]
-</home/arthur_z/dev/InfGenetics/doc/img/est1.pdf, id=274, 521.95pt x 210.7875pt
->
-File: /home/arthur_z/dev/InfGenetics/doc/img/est1.pdf Graphic file (type pdf)
-<use /home/arthur_z/dev/InfGenetics/doc/img/est1.pdf>
-Package pdftex.def Info: /home/arthur_z/dev/InfGenetics/doc/img/est1.pdf  used 
-on input line 540.
+ [9]
+</home/arthur_z/dev/InfGenetics/doc/img/est1b.pdf, id=271, 521.95pt x 210.7875p
+t>
+File: /home/arthur_z/dev/InfGenetics/doc/img/est1b.pdf Graphic file (type pdf)
+<use /home/arthur_z/dev/InfGenetics/doc/img/est1b.pdf>
+Package pdftex.def Info: /home/arthur_z/dev/InfGenetics/doc/img/est1b.pdf  used
+ on input line 568.
 (pdftex.def)             Requested size: 376.42575pt x 152.02097pt.
-</home/arthur_z/dev/InfGenetics/doc/img/estwmigration1.pdf, id=275, 521.95pt x 
+</home/arthur_z/dev/InfGenetics/doc/img/estwmigration1.pdf, id=272, 521.95pt x 
 210.7875pt>
 File: /home/arthur_z/dev/InfGenetics/doc/img/estwmigration1.pdf Graphic file (t
 ype pdf)
 <use /home/arthur_z/dev/InfGenetics/doc/img/estwmigration1.pdf>
 Package pdftex.def Info: /home/arthur_z/dev/InfGenetics/doc/img/estwmigration1.
-pdf  used on input line 579.
+pdf  used on input line 607.
 (pdftex.def)             Requested size: 376.42575pt x 152.02097pt.
-</home/arthur_z/dev/InfGenetics/doc/img/estwmigration-si.pdf, id=276, 542.025pt
+</home/arthur_z/dev/InfGenetics/doc/img/estwmigration-si.pdf, id=273, 542.025pt
  x 200.75pt>
 File: /home/arthur_z/dev/InfGenetics/doc/img/estwmigration-si.pdf Graphic file 
 (type pdf)
 <use /home/arthur_z/dev/InfGenetics/doc/img/estwmigration-si.pdf>
 Package pdftex.def Info: /home/arthur_z/dev/InfGenetics/doc/img/estwmigration-s
-i.pdf  used on input line 599.
+i.pdf  used on input line 627.
 (pdftex.def)             Requested size: 376.42575pt x 139.42128pt.
- [10 </home/arthur_z/dev/InfGenetics/doc/img/est1.pdf>]
-</home/arthur_z/dev/InfGenetics/doc/img/estwmigration-am.pdf, id=283, 542.025pt
+ [10 </home/arthur_z/dev/InfGenetics/doc/img/tetfininf.pdf>]
+</home/arthur_z/dev/InfGenetics/doc/img/estwmigration-am.pdf, id=281, 542.025pt
  x 200.75pt>
 File: /home/arthur_z/dev/InfGenetics/doc/img/estwmigration-am.pdf Graphic file 
 (type pdf)
 <use /home/arthur_z/dev/InfGenetics/doc/img/estwmigration-am.pdf>
 Package pdftex.def Info: /home/arthur_z/dev/InfGenetics/doc/img/estwmigration-a
-m.pdf  used on input line 619.
+m.pdf  used on input line 647.
 (pdftex.def)             Requested size: 418.25368pt x 154.91492pt.
- (./paper.bbl [11 </home/arthur_z/dev/InfGenetics/doc/img/estwmigration1.pdf>] 
-[12 </home/arthur_z/dev/InfGenetics/doc/img/estwmigration-si.pdf> </home/arthur
-_z/dev/InfGenetics/doc/img/estwmigration-am.pdf>] [13])
+ (./paper.bbl [11 </home/arthur_z/dev/InfGenetics/doc/img/est1b.pdf>] [12 </hom
+e/arthur_z/dev/InfGenetics/doc/img/estwmigration1.pdf>] [13 </home/arthur_z/dev
+/InfGenetics/doc/img/estwmigration-si.pdf> </home/arthur_z/dev/InfGenetics/doc/
+img/estwmigration-am.pdf>])
 [14] (./paper.aux)
 
 LaTeX Warning: There were multiply-defined labels.
@@ -857,13 +859,13 @@ Package rerunfilecheck Info: File `paper.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 24889 strings out of 480171
- 466133 string characters out of 5894489
+ 24890 strings out of 480171
+ 466120 string characters out of 5894489
  735212 words of memory out of 5000000
- 42350 multiletter control sequences out of 15000+600000
+ 42349 multiletter control sequences out of 15000+600000
  482373 words of font info for 78 fonts, out of 8000000 for 9000
  59 hyphenation exceptions out of 8191
- 89i,12n,92p,1088b,486s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 89i,12n,92p,1088b,476s stack positions out of 5000i,500n,10000p,200000b,80000s
 pdfTeX warning (dest): name{subsection.2.4} has been referenced but does not 
 exist, replaced by a fixed one
 
@@ -879,11 +881,8 @@ exist, replaced by a fixed one
 pdfTeX warning (dest): name{figure.caption.2} has been referenced but does not 
 exist, replaced by a fixed one
 
-pdfTeX warning (dest): name{subsubsection.2.6.1} has been referenced but does n
-ot exist, replaced by a fixed one
-
-pdfTeX warning (dest): name{subsubsection.2.6.2} has been referenced but does n
-ot exist, replaced by a fixed one
+pdfTeX warning (dest): name{subsection.2.6} has been referenced but does not ex
+ist, replaced by a fixed one
 
 pdfTeX warning (dest): name{subsubsection.2.5.1} has been referenced but does n
 ot exist, replaced by a fixed one
@@ -915,10 +914,10 @@ f-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/
 fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/
 type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/
 public/amsfonts/symbols/msbm10.pfb>
-Output written on paper.pdf (14 pages, 510602 bytes).
+Output written on paper.pdf (14 pages, 517980 bytes).
 PDF statistics:
- 425 PDF objects out of 1000 (max. 8388607)
- 358 compressed objects within 4 object streams
- 92 named destinations out of 1000 (max. 500000)
+ 424 PDF objects out of 1000 (max. 8388607)
+ 357 compressed objects within 4 object streams
+ 94 named destinations out of 1000 (max. 500000)
  38 words of extra memory for PDF output out of 10000 (max. 10000000)
 

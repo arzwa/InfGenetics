@@ -7,9 +7,7 @@
 \contentsline {subsection}{\numberline {S2.5}Inbreeding in the mixed-ploidy model}{9}{subsection.2.5}%
 \contentsline {subsubsection}{\numberline {S2.5.1}Effect of inbreeding on segregation variance in autotetraploids }{9}{subsubsection.2.5.1}%
 \contentsline {subsubsection}{\numberline {S2.5.2}Recursions for inbreeding coefficients in the mixed-ploidy model}{10}{subsubsection.2.5.2}%
-\contentsline {subsection}{\numberline {S2.6}Mixed-ploidy infinitesimal model}{11}{subsection.2.6}%
-\contentsline {subsubsection}{\numberline {S2.6.1}Discrete locus model and variance scaling }{11}{subsubsection.2.6.1}%
-\contentsline {subsubsection}{\numberline {S2.6.2}Segregation variance }{12}{subsubsection.2.6.2}%
+\contentsline {subsection}{\numberline {S2.6}Segregation variance expressions for the mixed-ploidy infinitesimal model }{11}{subsection.2.6}%
 \contentsline {paragraph}{Meiosis in autotetraploids.}{12}{section*.9}%
-\contentsline {paragraph}{Unreduced gamete formation in diploids.}{14}{figure.caption.12}%
-\contentsline {paragraph}{Meiosis in triploids.}{15}{section*.13}%
+\contentsline {paragraph}{Unreduced gamete formation in diploids.}{12}{figure.caption.12}%
+\contentsline {paragraph}{Meiosis in triploids.}{13}{section*.13}%

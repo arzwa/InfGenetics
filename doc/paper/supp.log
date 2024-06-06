@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.3.19)  5 JUN 2024 23:07
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.3.19)  6 JUN 2024 17:16
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -808,7 +808,7 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
 </home/arthur_z/dev/InfGenetics/doc/img/finsvsinf-polyploids-validation.pdf, id
-=78, 602.25pt x 160.6pt>
+=68, 602.25pt x 160.6pt>
 File: /home/arthur_z/dev/InfGenetics/doc/img/finsvsinf-polyploids-validation.pd
 f Graphic file (type pdf)
 <use /home/arthur_z/dev/InfGenetics/doc/img/finsvsinf-polyploids-validation.pdf
@@ -816,7 +816,7 @@ f Graphic file (type pdf)
 Package pdftex.def Info: /home/arthur_z/dev/InfGenetics/doc/img/finsvsinf-polyp
 loids-validation.pdf  used on input line 22.
 (pdftex.def)             Requested size: 418.25368pt x 111.53947pt.
-</home/arthur_z/vimwiki/build/img/2023-10-23/mixedploidy-Vz.pdf, id=79, 526.968
+</home/arthur_z/vimwiki/build/img/2023-10-23/mixedploidy-Vz.pdf, id=69, 526.968
 75pt x 489.32813pt>
 File: /home/arthur_z/vimwiki/build/img/2023-10-23/mixedploidy-Vz.pdf Graphic fi
 le (type pdf)
@@ -827,7 +827,7 @@ y-Vz.pdf  used on input line 38.
  [2
 
  </home/arthur_z/dev/InfGenetics/doc/img/finsvsinf-polyploids-validation.pdf>]
-</home/arthur_z/vimwiki/build/img/2023-10-23/mixedploidy-F.pdf, id=87, 489.3281
+</home/arthur_z/vimwiki/build/img/2023-10-23/mixedploidy-F.pdf, id=77, 489.3281
 3pt x 150.5625pt>
 File: /home/arthur_z/vimwiki/build/img/2023-10-23/mixedploidy-F.pdf Graphic fil
 e (type pdf)
@@ -837,7 +837,7 @@ y-F.pdf  used on input line 57.
 (pdftex.def)             Requested size: 418.25368pt x 128.6955pt.
  [3 </home/arthur_z/vimwiki/build/img/2023-10-23/mixedploidy-Vz.pdf>] [4 </home
 /arthur_z/vimwiki/build/img/2023-10-23/mixedploidy-F.pdf>]
-</home/arthur_z/vimwiki/build/img/2023-10-13/g1diff.pdf, id=6275, 602.25pt x 18
+</home/arthur_z/vimwiki/build/img/2023-10-13/g1diff.pdf, id=6265, 602.25pt x 18
 8.20313pt>
 File: /home/arthur_z/vimwiki/build/img/2023-10-13/g1diff.pdf Graphic file (type
  pdf)
@@ -848,7 +848,7 @@ Package pdftex.def Info: /home/arthur_z/vimwiki/build/img/2023-10-13/g1diff.pdf
  [5
 
 ] [6 </home/arthur_z/vimwiki/build/img/2023-10-13/g1diff.pdf>]
-</home/arthur_z/vimwiki/build/img/2023-10-22/timetodiploidancestord.pdf, id=752
+</home/arthur_z/vimwiki/build/img/2023-10-22/timetodiploidancestord.pdf, id=751
 1, 225.84375pt x 188.20313pt>
 File: /home/arthur_z/vimwiki/build/img/2023-10-22/timetodiploidancestord.pdf Gr
 aphic file (type pdf)
@@ -856,7 +856,7 @@ aphic file (type pdf)
 Package pdftex.def Info: /home/arthur_z/vimwiki/build/img/2023-10-22/timetodipl
 oidancestord.pdf  used on input line 215.
 (pdftex.def)             Requested size: 209.12683pt x 174.2833pt.
-</home/arthur_z/vimwiki/build/img/2023-10-13/mixedploidy-F-Ne.pdf, id=7522, 383
+</home/arthur_z/vimwiki/build/img/2023-10-13/mixedploidy-F-Ne.pdf, id=7512, 383
 .93437pt x 165.61874pt>
 File: /home/arthur_z/vimwiki/build/img/2023-10-13/mixedploidy-F-Ne.pdf Graphic 
 file (type pdf)
@@ -866,19 +866,19 @@ y-F-Ne.pdf  used on input line 230.
 (pdftex.def)             Requested size: 418.25368pt x 180.43492pt.
  [7] [8 </home/arthur_z/vimwiki/build/img/2023-10-22/timetodiploidancestord.pdf
 >] [9 </home/arthur_z/vimwiki/build/img/2023-10-13/mixedploidy-F-Ne.pdf>]
-[10] [11] [12] [13] [14] [15] (./supp.bbl [16]) [17] (./supp.aux)
+[10] [11] [12] [13] [14] (./supp.bbl [15]) [16] (./supp.aux)
 Package rerunfilecheck Info: File `supp.out' has not changed.
-(rerunfilecheck)             Checksum: 0E8E7E63FFB6E9B575F5BF43E314B36B;3101.
+(rerunfilecheck)             Checksum: 3AABCC1409C543CF9AB8358F8F9D4D12;2854.
  ) 
 Here is how much of TeX's memory you used:
- 25127 strings out of 480171
- 470585 string characters out of 5894489
- 742200 words of memory out of 5000000
- 42603 multiletter control sequences out of 15000+600000
+ 25117 strings out of 480171
+ 470417 string characters out of 5894489
+ 742197 words of memory out of 5000000
+ 42600 multiletter control sequences out of 15000+600000
  479935 words of font info for 69 fonts, out of 8000000 for 9000
  59 hyphenation exceptions out of 8191
  89i,16n,92p,1081b,942s stack positions out of 5000i,500n,10000p,200000b,80000s
-pdfTeX warning (dest): name{table.caption.8} has been referenced but does not
+pdfTeX warning (dest): name{table.caption.9} has been referenced but does not
  exist, replaced by a fixed one
 
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/
@@ -902,10 +902,10 @@ lic/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
 fonts/cm/cmsy9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
 m/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols
 /msbm10.pfb>
-Output written on supp.pdf (17 pages, 2429842 bytes).
+Output written on supp.pdf (16 pages, 2424832 bytes).
 PDF statistics:
- 9339 PDF objects out of 10688 (max. 8388607)
- 6242 compressed objects within 63 object streams
- 74 named destinations out of 1000 (max. 500000)
- 139 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 9317 PDF objects out of 10688 (max. 8388607)
+ 6221 compressed objects within 63 object streams
+ 67 named destinations out of 1000 (max. 500000)
+ 123 words of extra memory for PDF output out of 10000 (max. 10000000)
 
