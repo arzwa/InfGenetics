@@ -131,9 +131,9 @@ md"""
 """
 
 # ╔═╡ 0ea00635-fade-48d3-b971-f910a200b0b9
-ps = let n=100000
-	reps1 = sim(()->simest1(reconstruct(M1, V=0.5), InfPop(z=[-2.0], c=[2])), n)
-	reps2 = sim(()->simest1(M2, InfPop(z=[-2.0], c=[4])), n)
+ps = let n=500_000
+	reps1 = sim(()->simest1(reconstruct(M1, V=0.5), InfPop(z=[0.0], c=[2])), n)
+    reps2 = sim(()->simest1(M2, InfPop(z=[0.0], c=[4], θ=[2.0,2.0,2.0])), n)
 	a = sum(first.(reps1))/n
 	b = sum(first.(reps2))/n
 	a, b

@@ -4,7 +4,7 @@ addprocs(6)
 
 nrep = 10
 ngen = 2000
-L    = 500
+L    = 50
 N    = 250
 M    = InfDemeMix(U=[1.0 0.0; 0.0 0.0; 0.0 1.0])
 
@@ -84,22 +84,3 @@ plot!(P3, title="triploids, \$\\alpha=1/4\$")
 plot(P1, P2, P3, layout=(1,3), size=(600,160), margin=3Plots.mm, guidefont=9, titlefont=9)
 
 
-nrep = 1000
-M   = InfDemeMix(U=Umat(0.05,0.05), α=[1/4, 1/4, 1/6])
-Xid = pmap(1:nrep) do _
-    P = InfPop(z=rand(Normal(0, √(2M.V)), N), c=fill(2,N))
-    X = InfGenetics.fiterate((x,i)->generation(x, M, z->1), deepcopy(P), ngen, callback=cb)
-end    
-Xfd = pmap(1:nrep) do _
-    G = [randn(L,3)/√(2L) for i=1:N]
-    P = FinPop(sum.(G), G, fill(2, N))
-    X = fiterate((x,i)->generation(x, M, z->1), deepcopy(P), ngen, callback=cb)
-end
-
-res = map(1:3) do i
-    map([Xid, Xfd]) do X 
-        xs = map(x->getindex.(x, i), X)
-        Z = mapreduce(i->map(x->isempty(x) ? NaN : var(x), xs[i]), hcat, 1:nrep)
-        map(x->filter(!isnan, x) |> y->isempty(y) ? NaN : mean(y), eachrow(Z))
-    end
-end

@@ -1,4 +1,4 @@
-\begin{thebibliography}{32}
+\begin{thebibliography}{37}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -31,8 +31,16 @@ J.~Bezanson, A.~Edelman, S.~Karpinski, and V.~B. Shah.
 \newblock Julia: A fresh approach to numerical computing.
 \newblock \emph{SIAM review}, 59\penalty0 (1):\penalty0 65--98, 2017.
 
-\bibitem[Bretagnolle et~al.(1995)Bretagnolle, , and Thompson]{bretagnolle1995}
-F.~Bretagnolle, , and J.~D. Thompson.
+\bibitem[Booker and Schrider(2024)]{booker2024}
+W.~W. Booker and D.~R. Schrider.
+\newblock The genetic consequences of range expansion and its influence on
+  diploidization in polyploids.
+\newblock \emph{The American Naturalist}, 0\penalty0 (ja):\penalty0 null, 2024.
+\newblock \doi{10.1086/733334}.
+\newblock URL \url{https://doi.org/10.1086/733334}.
+
+\bibitem[Bretagnolle and Thompson(1995)]{bretagnolle1995}
+F.~Bretagnolle and J.~D. Thompson.
 \newblock Gametes with the somatic chromosome number: mechanisms of their
   formation and role in the evolution of autopolyploid plants.
 \newblock \emph{New Phytologist}, 129\penalty0 (1):\penalty0 1--22, 1995.
@@ -108,6 +116,12 @@ F.~Kauai, Q.~Bafort, F.~Mortier, M.~Van~Montagu, D.~Bonte, and Y.~Van~de Peer.
 \newblock \emph{Proceedings of the National Academy of Sciences}, 121\penalty0
   (21):\penalty0 e2400018121, 2024.
 
+\bibitem[K{\"o}hler et~al.(2010)K{\"o}hler, Scheid, and Erilova]{kohler2010}
+C.~K{\"o}hler, O.~M. Scheid, and A.~Erilova.
+\newblock The impact of the triploid block on the origin and evolution of
+  polyploid plants.
+\newblock \emph{Trends in Genetics}, 26\penalty0 (3):\penalty0 142--148, 2010.
+
 \bibitem[Kol{\'a}{\v{r}} et~al.(2017)Kol{\'a}{\v{r}}, {\v{C}}ertner, Suda,
   Sch{\"o}nswetter, and Husband]{kolar2017}
 F.~Kol{\'a}{\v{r}}, M.~{\v{C}}ertner, J.~Suda, P.~Sch{\"o}nswetter, and B.~C.
@@ -132,6 +146,12 @@ J.~M. Kreiner, P.~Kron, and B.~C. Husband.
 \newblock Evolutionary dynamics of unreduced gametes.
 \newblock \emph{Trends in Genetics}, 33\penalty0 (9):\penalty0 583--593,
   2017{\natexlab{b}}.
+
+\bibitem[Lande(1985)]{lande1985}
+R.~Lande.
+\newblock The fixation of chromosomal rearrangements in a subdivided population
+  with local extinction and colonization.
+\newblock \emph{Heredity}, 54\penalty0 (3):\penalty0 323--332, 1985.
 
 \bibitem[Levin(1975)]{levin1975}
 D.~A. Levin.
@@ -160,6 +180,12 @@ F.~Mortier, Q.~Bafort, S.~Milosavljevic, F.~Kauai, L.~Prost~Boxoen, Y.~Van~de
 \newblock Understanding polyploid establishment: temporary persistence or
   stable coexistence?
 \newblock \emph{Oikos}, page e09929, 2024.
+
+\bibitem[Novikova et~al.(2023)Novikova, Kolesnikova, and Scott]{novikova2023}
+P.~Y. Novikova, U.~K. Kolesnikova, and A.~D. Scott.
+\newblock Ancestral self-compatibility facilitates the establishment of
+  allopolyploids in brassicaceae.
+\newblock \emph{Plant Reproduction}, 36\penalty0 (1):\penalty0 125--138, 2023.
 
 \bibitem[Oswald and Nuismer(2011)]{oswald2011}
 B.~P. Oswald and S.~L. Nuismer.
@@ -209,6 +235,11 @@ M.~Stift, C.~Berenos, P.~Kuperus, and P.~H. van Tienderen.
   inheritance in tetraploids: a general procedure applied to rorippa (yellow
   cress) microsatellite data.
 \newblock \emph{Genetics}, 179\penalty0 (4):\penalty0 2113--2123, 2008.
+
+\bibitem[Turelli(2017)]{turelli2017}
+M.~Turelli.
+\newblock Commentary: Fisher’s infinitesimal model: A story for the ages.
+\newblock \emph{Theoretical population biology}, 118:\penalty0 46--49, 2017.
 
 \bibitem[Van~de Peer et~al.(2021)Van~de Peer, Ashman, Soltis, and
   Soltis]{vandepeer2021}

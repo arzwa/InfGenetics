@@ -146,7 +146,8 @@ function migration(M::InfDemeMixEst, pop::InfPop)
     nm = rand(Poisson(m))
     cm = rand(Multinomial(nm, M.c))
     cm = vcat([fill(i+1, k) for (i, k) in enumerate(cm)]...)
-    zm = [rand(Normal(0.0, β[m-1]*√2V)) for m in cm]
+    # Vzₖ/Vz₂ = (k/2)βₖ² => Vzₖ = kβₖ²V
+    zm = [rand(Normal(0.0, √(m*β[m-1]^2*V))) for m in cm]
     z  = [pop.z ; zm]
     c  = [pop.c ; cm]
     F  = [pop.F ; zeros(nm)]

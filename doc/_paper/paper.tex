@@ -159,86 +159,445 @@
 
 \section*{Model \& Methods}
 
-We first develop the infinitesimal model (in the sense of \cite{barton2017},
-i.e.~the `Gaussian descendants' approximation \citep{turelli2017}) for an
-autotetraploid population. We then consider mixed-ploidy populations in which
-diploids, triploids and tetraploids coexist and interbreed through the
-production of haploid and diploid gametes that combine freely.
+% Should connect more with literature and concepts of isolating mechanisms pre
+% vs. postzygotic isolation, and reinforcement etc. (see e.g. Parvathy &
+% Himani's paper introduction)
 
-{\subsection{The infinitesimal model}\label{the-infinitesimal-model}}
+Many plant species exhibit ploidy variation
+\citep{levin2002,soltis2007,rice2015}, and many of these \textit{mixed-ploidy}
+species have populations in which different cytotypes coexist or form contact
+zones \citep{kolar2017}.
+How such mixed-ploidy populations emerge and are maintained has proven somewhat
+challenging to understand.
+
+Consider for instance a randomly mating diploid population.
+Under the commonly accepted view that polyploids mostly emerge through the
+union of unreduced gametes \citep{bretagnolle1995,herben2016,kreiner2017b}, a
+new tetraploid individual originating by a chance encounter of two unreduced
+diploid gametes (an event occurring at an appreciable rate; \cite{kreiner2017})
+is highly unlikely to establish a stable tetraploid subpopulation, as most of
+its gametes will end up in unfit hybrids of odd ploidy level (triploid block,
+\cite{ramsey1998,kohler2010,brown2024}).
+This negative frequency dependence effect is commonly referred to as
+\textit{minority cytotype exclusion} (MCE), after \cite{levin1975}.
+It is well-appreciated that, due to MCE, in a large random mating mixed-ploidy
+population dominated by diploids, the rate of unreduced gamete formation needs
+to be extraordinarily high for tetraploids to establish (\cite{felber1997}, see
+also \cref{s-sec:det}).
+
+Hence, to explain the widespread occurrence of mixed-ploidy populations,
+additional factors besides the continuous formation of polyploids through the
+union of unreduced gametes need to be considered.
+Firstly, chance establishment of tetraploids through drift could occur.
+Indeed, the problem is somewhat analogous to the spread of underdominant
+chromosomal rearrangements, where local establishment through genetic drift and
+subsequent spreading in a subdivided population through local extinction and 
+recolonization dynamics has been suggested as a plausible model
+\citep{lande1985}.
+However, MCE is quite strong in randomly mating mixed-ploidy populations, and
+the population size has to be very small for local tetraploid establishment to
+occur at an appreciable rate (\cite{rausch2005}, see also \cref{s-sec:mchain}).
+Secondly, any form of prezygotic isolation between cytotypes could
+promote establishment of polyploid cytotypes by alleviating MCE.
+Particularly relevant are assortative mating by cytotype  (for instance through
+phenological differences across cytotypes, or differences in pollinators;
+\cite{kolar2017}), self-fertilization \citep{rausch2005,novikova2023}, and
+localized dispersal \citep{baack2005,kolar2017}.
+Finally, selection may be invoked to explain the establishment of polyploids.
+Tetraploids may have higher relative fitness than their diploid counterparts
+due to reduced inbreeding depression \citep{ronfort1999}, or due to being
+better adapted to (changing) environmental conditions \citep{vandepeer2021}. 
+
+None of these factors is likely to explain by itself the establishment of
+polyploids, and the consensus in the field appears to be that some mix of the
+above is required to explain the occurrence of mixed-ploidy populations in
+nature \citep{kolar2017,mortier2024}.
+In particular, polyploids are thought to establish mainly in novel, unoccupied
+habitats where they evade MCE (for instance at range edges, or after local
+extinction due to environmental change).
+However, such peripheral habitats are likely to present adaptive challenges to
+establishment \citep{kawecki2008}, and if polyploids are able to colonize such
+habitats at an appreciable rate, they must somehow be better adapted to local
+conditions, or more able to adapt to those conditions despite inbreeding and
+migration from the source population while the population is still small,
+compared to diploids.
+Indeed, when the source population is dominated by diploids, the probability
+that a migrant individual is tetraploid will be very small ($O(u^2)$ if $u$ is
+the probability that a diploid in the source population produces an unreduced
+gamete in meiosis), so that tetraploids need a substantial advantage during
+colonization if they are to establish before diploids do.
+
+While there have been substantial modeling efforts aimed at understanding
+autotetraploid establishment within diploid populations (e.g. \cite{levin1975,
+felber1991, felber1997, rausch2005, oswald2011, clo2022c, griswold2021}), the
+problem of polyploid establishment in a novel habitat which presents some adaptive
+challenge remains largely unaddressed, despite its centrality to verbal
+arguments about the establishment of polyploids in natural populations
+\citep{kolar2017, vandepeer2021, clo2022d}.
+
+Here we develop a model for the establishment of a mixed-ploidy population in a
+novel, unoccupied habitat based on \cite{barton2018}.
+In order to establish in the novel habitat, the population has to adapt to
+local environmental conditions.
+We assume fitness is determined by directional selection on a single polygenic
+trait which can be interpreted as log fitness at low density in the new
+habitat.
+As in \cite{barton2018}, we assume the trait follows the infinitesimal
+model (\textit{sensu} \cite{barton2017}, i.e. the `Gaussian descendants'
+infinitesimal model \citep{turelli2017}).
+We extend the infinitesimal model, and the approach for exact simulation of
+trait evolution under the infinitesimal model, to mixed-ploidy populations.
+We then use simulations to study tetraploid establishment, both from single
+migrants and under continuous migration from a predominantly diploid source
+population, examining the effects of autopolyploid genetics,
+maladaptive migration, selfing and assortative mating on the probability that
+autotetraploids establish in the novel habitat.
+
+
+\section*{Model and Methods}
+
+\begin{table}[t]
+\caption{Glossary of the main notation used in the main text.
+} \label{tbl:glossary}
+\centering
+\small
+\begin{tabularx}{\linewidth}{lX}
+\cline{1-2}
+\textbf{notation}   & \textbf{description}   \\ \cline{1-2}
+$N$ & total population size\\
+$N_k$ & population size of the $k$-ploid cytotype \\
+$\pi_k$ & equilibrium frequency of the $k$-ploid cytotype \\
+$u$ & probability of unreduced gamete formation ($u=u_{22}=u_{32}=1-u_{42}$)\\
+$v$ & probability that a triploid produces a haploid/diploid gamete
+  ($v=u_{31}=u_{32}$)\\
+$m$ & expected number of migrants per generation arriving in the new habitat \\
+$z_i$ & trait value of individual $i$ \\
+$c_i$ & ploidy level of individual $i$ \\
+$g_i$ & ploidy level of gamete produced by individual $i$ in a particular cross\\
+$V$ & segregation variance in the reference diploid population \\
+$V_{i,k}$ & gametic segregation variance associated with the production of a
+  $k$-ploid gamete by individual $i$ \\
+$\Vx_k$ & genetic variance associated with a haploid genome in the $k$-ploid
+  reference population (i.e. a $k$-ploid non-inbred population at HWLE) \\
+$\beta_{k}$ & scaling factor for allelic effects in $k$-ploids \\
+$F_i$ & inbreeding coefficient in individual $i$ \\
+$\Phi_{ij}$ & coancestry coefficient for individuals $i$ and $j$ \\
+$\alpha_k$ & probability that the two genes at a locus in a diploid gamete
+  formed by a $k$-ploid individual descend from the same parental gene copy\\
+$\gamma$ & strength of directional selection in the new habitat\\
+$\theta$ & trait value beyond which the growth rate becomes positive in the new
+habitat \\ $w_{ij}$ & fitness of parental pair $(i,j)$ \\
+$w_{ij}^{kl}$ & expected fitness of offspring from parental pair $(i,j)$ when
+$i$ contributes a $k$-ploid gamete and $j$ contributes a $l$-ploid gamete \\
+$\sigma_k$ & selfing rate in $k$-ploids \\
+$\rho_k$ & probability of assortative mating in $k$-ploids \\
+\cline{1-2}
+\end{tabularx}%
+\end{table}
+
+\subsection*{Mixed-ploidy population model}
+
+We consider a mixed-ploidy population of size $N$ consisting of $N_2$ diploid,
+$N_3$ triploid and $N_4=N-N_2-N_3$ tetraploid individuals.
+We assume an individual of ploidy level $k$ forms haploid and diploid gametes
+with proportions $u_{k1}$ and $u_{k2}$, as well as a proportion
+$1-u_{k1}-u_{k2}$ inviable (e.g. aneuploid or polyploid) gametes.
+The (relative) fecundity of a $k$-ploid individual is hence $u_{k1} + u_{k2}$.
+Unless stated otherwise, we will assume 
+\begin{equation}
+    \begin{pmatrix} 
+    u_{21} & u_{22} \\ 
+    u_{31} & u_{32} \\ 
+    u_{41} & u_{42} 
+    \end{pmatrix} =
+    \begin{pmatrix} 
+    1-u & u \\
+    v & v \\
+    0 & 1-u
+    \end{pmatrix} \label{eq:U}
+\end{equation}
+where $u$ is referred to as the proportion of unreduced gametes, and $2v$ is
+the proportion of euploid gametes produced by a triploid individual.
+
+When two individuals mate, we assume they produce gametes according to their
+ploidy level (\cref{eq:U}), which randomly combine to produce offspring (which
+may be inviable if one of the contributing gametes is inviable).
+Intrinsic fitness disadvantages associated with particular zygotic ploidy
+levels or cross types (e.g. modeling phenomena such as `triploid block') can be
+straighforwardly included at this level.
+An analysis of a deterministic model (i.e. where $N \rightarrow \infty$) for
+the cytotype dynamics and equilibrium cytotype composition under random mating
+is included in \cref{s-sec:det} (see also \cite{felber1997,kauai2024}).
+The stochastic version for finite and constant $N$ is analyzed briefly in
+\cref{s-sec:mchain}.
+
+\subsection*{Infinitesimal model}
+
+\paragraph*{The basic infinitesimal model.}
 
 Consider a population which expresses a quantitative trait determined by a
 large number of additive loci of small effect.
 The infinitesimal model approximates the inheritance of such a trait by
-assuming that the trait value \(Z_{ij}\) of a random offspring from parents
-with trait values \(z_i\) and \(z_j\) follows a Gaussian distribution with mean
-equal to the midparent value and variance which is independent of the mean:
-\begin{align}
-  Z_{ij} \sim \Normal\left(\frac{z_i + z_j}{2}, V_{ij}\right) \label{eq:inf}
-\end{align} 
-Here, \(V_{ij}\) is referred to as the \emph{segregation variance} in family
-\((i,j)\).
+assuming that the trait value $Z_{ij}$ of a random offspring from parents with
+trait values $z_i$ and $z_j$ follows a Gaussian distribution with mean equal to
+the midparent value and variance which is independent of the mean:
+  \begin{align}
+  Z_{ij} \sim \Normal\left(\frac{z_i + z_j}{2}, V_{ij}\right)
+  \label{eq:inf}
+  \end{align}
+Here, $V_{ij}$ is referred to as the \textit{segregation variance} in family
+$(i,j)$.
 This is the variation generated among offspring from the same parental pair due
 to random Mendelian segregation in meiosis.
 This approximation can be justified as arising from the limit where the number
 of loci determining the trait tends to infinity \citep{barton2017}.
 
-An equivalent, and for our purposes useful, way to characterize the model in
-diploids and polyploids is to write \(Z_{ij} = Y_i + Y_j\), where \(Y_i\) and
-\(Y_j\) are independent Gaussian random variables \(Y_i \sim
-\Normal\left(\frac{z_i}{2}, V_i\right)\) (and similarly for \(Y_j\)).
-We refer to \(Y_i\) as the (random) gametic value of individual \(i\), and to
-\(V_i\) as the \emph{gametic segregation variance} of individual \(i\)
-(clearly $V_{ij} = V_i + V_j$).
+An alternative, and for our purposes useful, way to characterize the model
+is to write $Z_{ij} = Y_i + Y_j$, where $Y_i$ and $Y_j$
+are independent Gaussian random variables $Y_i \sim \Normal\left(\frac{z_i}{2},
+V_i\right)$ (and similarly for $Y_j$).
+We refer to $Y_i$ as the (random) \textit{gametic value} of individual $i$, and
+to $V_i$ as the \textit{gametic segregation variance} of individual $i$.
 This formulation is helpful in that it highlights that Mendelian segregation
 occurs independently in both parents when gametes are produced, which then
 combine additively to determine the offspring trait value.
+This model applies readily to an autopolyploid population expressing a trait
+with infinitesimal genetics.
+For instance, when an autotetraploid produces a diploid gamete, it will pass on
+half its trait value to the gamete on average, with a variance determined by
+the details of tetraploid meiosis (which are not, in general, identical to
+those of diploid meiosis, see below).
 
-If we assume a population consisting of infinitely many unrelated
-individuals, expressing a trait with genetic variance \(V_z\) and
-segregation variance \(V_0\), we find that under random mating the
-variance in the offspring generation is
-\begin{align}
-V_z' &= \Ex[\Var[Z_{ij}|Z_i, Z_j]] + \Var[\Ex[Z_{ij}|Z_i,Z_j]] \nonumber \\
-   &= \Ex[V_{ij}] + \Var\left(\frac{Z_i + Z_j}{2}\right) \nonumber \\
-   &= V_0 + \frac{V_z}{2}\ .
-   \label{eq:eq}
-\end{align}
-So that at equilibrium (\(V_z'=V_z\)), we have \(V_z = 2V_0\) \citep{barton2017}.
+Note that in a finite population, the segregation variance will decay over time
+as the population becomes more inbred.
+Indeed, Mendelian segregation generates less variation among the gametes
+produced by individual $i$ when that individual is more inbred, as segregation
+at homozygous loci does not generate any variation.
+When $F_i$ is the inbreeding coefficient relative to some ancestral reference
+population with gametic segregation variance $V$ (i.e. the probability that two
+genes at a locus in individual $i$ sampled without replacement are identical by
+descent), the gametic segregation variance of individual $i$ will be
+$V_i = (1-F_i)V$.
+This holds for both diploids and tetraploids (\cref{s-sec:tetinbred}, also
+\cite{moody1993}). 
 
-Denoting by \(X\) the contribution to the trait value associated with a
-randomly sampled haploid genome from the population, we also have that, at
-equilibrium, \(V_z=2V_0=mV\), where \(V = \Var[X]\) and $m$ is the ploidy
-level.
-Note that no assumptions regarding $m$ have been made in the definition of the
-model.
-Indeed, as long as all individuals are of the same \emph{even} ploidy level,
-\cref{eq:inf} and \cref{eq:eq} apply equally well to the inheritance of an
-additive trait in polyploids as in diploids.
-Two factors however do lead to differences with the standard diploid model due
-to their effect on \(V_i\):
-(1) the potential occurrence of double reduction in polyploids affects the
-relationship between \(V\) and the segregation variance and 
-(2) the evolution of the segregation variance over time in finite populations
-is affected by the ploidy level.
+\paragraph{Scaling of traits across ploidy levels.}
+
+If we would somewhat naively assume that the allelic effects underlying an
+additive quantitative trait are identical across ploidy levels, 
+a tetraploid offspring from a cross between two diploids would yield, on average,
+a trait value which is the sum of the parental trait values, with a
+distribution that depends on the variance generated by the process producing
+unreduced gametes.
+This is not likely to reflect biological reality: tetraploids do not tend to
+have, for instance, twice the size of their diploid progenitors on average.
+Similarly, the genetic variance at Hardy-Weinberg and linkage equilibrium
+(HWLE) in tetraploids will be twice that of their diploid counterparts under
+such assumptions, which is similarly unrealistic \citep{clo2022}.
+
+In order to account for this, we introduce a scaling factor $\beta_k$,
+accounting for the effects of polyploidization \textit{per se} on trait
+expression in $k$-ploids.
+To introduce and interpret this parameter, we consider an $L$-locus additive
+model, with two alleles (0 and 1) at each locus.
+For a $k$-ploid individual, let $X_{i,j}$ be the allele at homolog $j$ of locus
+$i$.
+We assume the trait value is determined by
+\begin{equation}
+  z = \sum_{i=1}^L\sum_{j=1}^k a_{i,k} X_{i,j}
+\end{equation}
+Where $a_{i,k}$ is the allelic effect of the 1 allele at locus $i$ in
+$k$-ploids.
+The genetic variance at HWLE in $k$-ploids ($\tilde{V}_{z,k}$) will then be
+\begin{equation}
+  \tilde{V}_{z,k} = k\sum_{i=1}^L a_{i,k}^2 p_iq_i = k\Vx_{k}
+\end{equation}
+where we refer to $\Vx_{k}$ as the variance associated with a haploid genome in
+$k$-ploids at HWLE.
+Note that we also have $\tilde{V}_{z,2} = 2\Vx_{2} = 2V$ \citep{barton2017},
+where $V$ is the segregation variance in the diploid population.
+If we now assume $a_{i,k} = \beta_k a_{i,2}$, i.e. allelic effects in $k$-ploids
+are as in diploids, but scaled by a factor $\beta_k$.
+This implies that
+\begin{equation}
+  \frac{\tilde{V}_{z,k}}{\tilde{V}_{z,2}} 
+  = \frac{k\Vx_{k}}{2\Vx_{2}} = \frac{k}{2} \beta_{k}^2
+\end{equation}
+and hence also that $\Vx_{k} = \beta_k^2 \Vx_{2} = \beta_k^2 V$.
+These relations will also hold in the infinitesimal limit where $a_{i,2}
+\rightarrow 0$ as $L\rightarrow \infty$.
 
 
-\textbf{Perhaps we should organize the text around the table below. First
-outline mixed-ploidy population, then indicate that we need the variances
-associated with the different gametes that are produced. Gamete formation
-occurs independently, so that is all we need. So start with the infinitesimal
-model framed in terms of uniting gametes, and highlight that this works for any
-ploidy level, and mixed-ploidy populations as long as we can work out the
-segregation variances.}
+\paragraph{Mixed-ploidy infinitesimal model.}
 
-\begin{table}[]
-\begin{tabular}{l|rr}
-cytotype   & haploid gamete variance & diploid gamete variance             \\ \cline{1-3}
-diploid    & $\frac{1}{2}(1- F)V$    & $2\alpha_2(1-F)V$  \\
-triploid   & $\frac{2}{3}(1-F)V$     & $\frac{2}{3}(1 + \alpha_3)(1-F)V$   \\
-tetraploid & --                      & $(1+2\alpha_4)(1-F)V$             
-\end{tabular}%
+We can extend the infinitesimal model to the mixed-ploidy case, assuming that the
+gametic value, on the diploid trait scale, associated with a $k$-ploid gamete ($k
+\in \{1,2\}$) from individual $i$ of ploidy level $c_i \in \{2,3,4\}$ is a
+Gaussian random variable $Y_{i,k}$ with distribution
+  $$Y_{i,k} \sim \Normal\left(\frac{k}{c_i}\frac{z_i}{\beta_{c_i}}, V_{i,k}\right)$$
+where $V_{i,k}$ is the gametic segregation variance associated with the
+production of a $k$-ploid gamete by individual $i$.
+The trait value of an individual originating from the union of a $k$-ploid
+gamete of individual $i$ and an $l$-ploid gamete from individual $j$ is then
+  $$Z_{ij}^{kl} = \beta_{k+l}\left(Y_{i,k} + Y_{j,l}\right)$$
+i.e., $Z_{ij}^{kl}$ is a Gaussian random variate with distribution
+\begin{equation}
+  Z_{ij}^{kl} \sim \Normal\left(
+    \beta_{k+l} \left(
+          \frac{k}{c_i}\frac{z_i}{\beta_{c_i}} 
+        + \frac{l}{c_j}\frac{z_j}{\beta_{c_j}}\right), 
+    \beta_{k+l}^2 (V_{i,k} + V_{j,l})\right)
+   \label{eq:oneline}
+\end{equation}
+
+For the production of diploid gametes by a $k$-ploid individual, the
+segregation variance depends not only on the segregation variance in the base
+population ($V$) and the inbreeding coefficient ($F$), but also on the detailed
+assumptions on how these aberrant meiotic processes occur.
+Importantly however, these details only affect the gametic segregation variance
+through the quantity $\alpha_k$, which is the probability that a $k$-ploid
+transmits two copies of the same homolog to a diploid gamete.
+Note that $\alpha_4$, the probability that a diploid gamete of a tetraploid
+individual carries two copies of the same homolog, is the probability of
+\textit{double reduction} (e.g. \cite{lynch1998} p.57), and is upper bounded by
+1/6 \citep{stift2008}.
+The value of $\alpha_2$ depends on the relative frequency of unreduced gamete
+formation through so-called \textit{first} and \textit{second division
+restitution} \citep{bretagnolle1995,storme2013}.
+We summarize the expressions for the gametic segregation variance in
+\cref{tbl:segvar}.
+Detailed derivations can be found in \cref{s-sec:segvar}.
+
+
+\begin{table}[t]
+\caption{Gametic segregation variance for haploid and diploid gametes produced
+by the three cytotypes in the mixed-ploidy model. $F_i$ is the inbreeding
+coefficient of individual $i$ (producing the gamete), whereas $\alpha_k$ is the
+probability that a diploid gamete from a $k$-ploid individual receives two
+copies of the same parental gene. Note that we have $\alpha_3 \le 1/4$ and
+$\alpha_4 \le 1/6$.
+} \label{tbl:segvar}
+\centering
+\small
+\begin{tabularx}{\linewidth}{XXX}
+\cline{1-3}
+\textbf{cytotype}   & \textbf{haploid gamete variance} & \textbf{diploid gamete
+variance}        \\ \cline{1-3} \\[-2.5ex]
+diploid    & $\frac{1}{2}(1-F_i)V$    & $2\alpha_2(1-F_i)V$  \\ \\[-2.5ex]
+triploid   & $\frac{2}{3}(1-F_i)V$     & $\frac{2}{3}(1 + 3\alpha_3)(1-F_i)V$ \\ \\[-2.5ex]
+tetraploid & --                      & $(1+2\alpha_4)(1-F_i)V$             \\
+\cline{1-3}
+\end{tabularx}%
 \end{table}
+
+\paragraph{Recursions for inbreeding coefficients}
+
+We can simulate the mixed-ploidy infinitesimal model for a finite population
+through a straightforward extension of the approach outlined in
+\cite{barton2017}, provided we can efficiently track inbreeding and coancestry
+coefficients across the different ploidy levels.
+Denoting the parents of individual $i$ by $k$ and $l$, the recursion for the
+inbreeding coefficients in the mixed-ploidy case becomes
+\begin{align}
+    F_i &= \Phi_{kl} & \text{if } & c_i = 2 \nonumber \\ 
+    F_i &= \frac{1}{3}\left(F_k^\ast + 2\Phi_{kl}\right) & \text{if } 
+        & c_i = 3, g_k = 2, g_l = 1 \nonumber \\ 
+    F_i &= \frac{1}{3}\left(F_l^\ast + 2\Phi_{kl}\right) & \text{if } 
+        & c_i = 3, g_k = 1, g_l = 2 \nonumber \\ 
+    F_i &= \frac1 6 (F_k^\ast + F_l^\ast + 4\Phi_{kl}) & \text{if } & c_i = 4
+\end{align}
+where $F_k^\ast = \alpha_{c_k} + (1-\alpha_{c_k})F_k$ (\cref{s-sec:tetinbred}).
+The recursion for the coancestry coefficients in is given by
+\begin{align}
+    \Phi_{ii} &= \frac{1}{c_{i}} \left(1 + (c_i-1)F_i\right) \nonumber \\
+    \Phi_{ij} &= \sum_k \sum_l P_{ik}P_{jl} \Phi_{kl} & i \ne j 
+    \label{eq:coancestry}
+\end{align}
+where the sums are over individuals in the parental population, and where
+$P_{ik} \in \{0, \frac1 3, \frac1 2, \frac2 3, 1\}$ is the probability that a
+gene copy in $i$ is derived from parent $k$.
+
+\subsection*{Establishment model}
+
+Our model for the establishment of a population in an initially unoccupied
+habitat is based on \cite{barton2018}.
+We assume a large non-inbred `mainland' population at HWLE and cytotype
+equilibrium, with $\Ex[z] = 0$ irrespective of the cytotype.
+In generation $t$, $M(t)$ migrant individuals arrive on an island (the new
+habitat) joining $N^\ast(t)$ resident individuals, where $M(t)$ is Poisson
+distributed with mean $m$. 
+The migrant individuals are assumed to be unrelated to the resident
+individuals.
+After migration in generation $t$, the $N(t) = N^\ast(t) + M(t)$ individuals
+reproduce sexually, and the offspring thus produced survives until the next
+generation with a probability determined by their trait value.
+In the basic model, random selfing is allowed (but see below for a model with
+self-incompatibility).
+We assume the trait is under directional selection, with fitness is $w(z) =
+e^{\gamma(z - \theta)}$, where $\gamma$ is the intensity of directional
+selection and $\theta$ is the trait value for which the growth rate of the
+population becomes positive.
+
+Again following \cite{barton2018}, we simulate the model by first calculating
+the fitness of each parental pair $(i,j)$, which is the expected fitness of
+offspring of this pair
+\begin{equation}
+  w_{ij}
+    = \sum_{k=1}^2\sum_{l=1}^2 w_{ij}^{kl}
+    = \sum_{k=1}^2\sum_{l=1}^2 u_{c_{i},k}u_{c_{j},l}
+        \Ex\left[e^{\gamma(Z_{ij}^{kl} - \theta)}\right]
+\end{equation}
+The expectation on the right hand side can be calculated from \cref{eq:oneline}
+using the moment-generating function of the Gaussian.
+Having calculated the $w_{ij}$, the number of offspring surviving into the next
+generation is calculated as $N^\ast(t+1) = \sum_{i,j}w_{ij}/N(t)$.
+Next, $N^\ast(t+1)$ offspring individuals are sampled by sampling parental
+pairs and gametes proportional to $w_{ij}^{kl}$, and sampling a trait value
+in accordance with \cref{eq:oneline}. 
+
+
+\subsection*{Self-fertilization and assortative mating}
+
+We model partial self-fertilization by assuming that a proportion
+$\sigma_{c_i}$ of the ovules of individual $i$ with ploidy level $c_i$ are
+fertilized by self-pollen, while the remaining proportion $1-\sigma_{c_i}$ are
+fertilized by randomly sampled pollen (which may be self-pollen with
+probability $1/N$). 
+That is, the expected number of offspring from individual $i$ as mother
+surviving after selection is
+\begin{equation}
+\Ex[w_i] = \sigma_{c_i} w_{ii} +
+  (1-\sigma_{c_i})\left[\frac{1}{N}\sum_{j=1}^N w_{ij}\right]
+\end{equation}
+We hence assume no pollen limitation (all outcrossing ovules are fertilized),
+and no pollen discounting (the probability of being a father is unaffected by
+an individual's selfing rate).
+When modeling self-incompatibility, we assume there is no intrinsic
+disadvantage to self-incompatibility, except when there is only a single
+individual in the population, i.e.
+\begin{equation}
+\Ex[w_i] = \begin{cases}
+    \frac{1}{N-1}\sum_{j \ne i }w_{ij} & \text{if } N > 1\\ 
+    0 & \text{if } N=1 \end{cases}
+\end{equation}
+
+We model assortative mating by ploidy level in a similar way, assuming that a
+fraction $\rho_{c_i}$ of the ovules of individual $i$ are fertilized by pollen
+sampled from the $c_i$-ploid portion of the population, while a fraction
+$1-\rho_{c_i}$ is fertilized by pollen randomly sampled from the entire
+population.
+\begin{equation}
+\Ex[w_i] = \rho_{c_i} \frac{1}{N_{c_{i}}} \sum_{j=1}^N \delta_{c_i,c_j}w_{ij}
+ + (1-\rho_{c_i})
+\left[\frac{1}{N}\sum_{j=1}^N w_{ij}\right]
+\end{equation}
+
+\subsection*{Implementation and availability}
+
+Individual-based simulations for the mixed-ploidy infinitesimal model were
+implemented in Julia \citep{julia}.
+Documented code and simulation notebooks are available at
+\url{https://github.com/arzwa/InfGenetics}.
 
 \section*{Results}
 

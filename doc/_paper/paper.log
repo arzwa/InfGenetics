@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.3.19)  5 MAY 2024 23:00
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.3.19)  16 DEC 2024 19:11
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -984,120 +984,81 @@ LaTeX Font Warning: Font shape `OT1/cmss/m/it' in size <9> not available
 
 
 
+Package natbib Warning: Citation `barton2017' on page 1 undefined on input line
+ 157.
+
+
 Underfull \hbox (badness 10000) detected at line 157
 []
  []
 
 
-Underfull \hbox (badness 1178) in paragraph at lines 162--167
-\OT1/cmr/m/n/8.03 et al.[] [[]2017[]], i.e. the `Gaussian descendants' approxim
-ation
+Package natbib Warning: Citation `levin2002' on page 1 undefined on input line 
+167.
+
+
+Package natbib Warning: Citation `soltis2007' on page 1 undefined on input line
+ 167.
+
+
+Package natbib Warning: Citation `rice2015' on page 1 undefined on input line 1
+67.
+
+
+Package natbib Warning: Citation `kolar2017' on page 1 undefined on input line 
+169.
+
+
+Underfull \hbox (badness 2213) in paragraph at lines 166--172
+\OT1/cmr/m/n/8.03 ploidy populations emerge and are maintained has proven
  []
 
 
-Underfull \hbox (badness 2057) in paragraph at lines 162--167
-\OT1/cmr/m/n/8.03 [[]Turelli[], []2017[]]) for an autotetraploid population. We
- then
- []
+Package natbib Warning: Citation `bretagnolle1995' on page 1 undefined on input
+ line 175.
 
 
-Underfull \hbox (badness 1728) in paragraph at lines 170--176
-\OT1/cmr/m/n/8.03 Consider a population which expresses a quantitative trait
- []
+Package natbib Warning: Citation `herben2016' on page 1 undefined on input line
+ 175.
 
 
-Underfull \hbox (badness 1237) in paragraph at lines 197--201
-[]\OT1/cmr/m/n/8.03 If we assume a population consisting of infinitely many
- []
-
-[1
-Non-PDF special ignored!
-<special> ps: [{ThisPage} << /CropBox [0 0 595.2032 790.84435] >> /PUT pdfm...
-
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
+Package natbib Warning: Citation `kreiner2017b' on page 1 undefined on input li
+ne 175.
 
 
-]
-Underfull \hbox (badness 2065) in paragraph at lines 255--259
-\OT1/cmr/m/n/8.03 The authors affirm that all data necessary for confirming
- []
-
-(./paper.bbl
-Underfull \hbox (badness 1158) in paragraph at lines 22--26
-[]\OT1/cmr/m/n/8.03 K. Mather.  Reductional and equational separation of the
- []
-
-)
-
-LaTeX Font Warning: Font shape `OT1/cmss/m/it' in size <8.03> not available
-(Font)              Font shape `OT1/cmss/m/sl' tried instead on input line 282.
+Package natbib Warning: Citation `kreiner2017' on page 1 undefined on input lin
+e 177.
 
 
-
-Overfull \hbox (262.22952pt too wide) has occurred while \output is active
-[][] 
- []
-
-[2
-Non-PDF special ignored!
-<special> ps: [{ThisPage} << /CropBox [0 0 595.2032 790.84435] >> /PUT pdfm...
-
-]
-
-Package caption Warning: Unused \captionsetup[figure] on input line 82.
-See the caption package documentation for explanation.
+Package natbib Warning: Citation `ramsey1998' on page 1 undefined on input line
+ 180.
 
 
-Package caption Warning: Unused \captionsetup[ table] on input line 83.
-See the caption package documentation for explanation.
+Package natbib Warning: Citation `kohler2010' on page 1 undefined on input line
+ 180.
 
 
-Package caption Warning: Unused \captionsetup[longtable] on input line 84.
-See the caption package documentation for explanation.
-
-pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
-been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.347 \end{document}
-                     [1
-Non-PDF special ignored!
-<special> ps: [{ThisPage} << /CropBox [0 0 595.2032 790.84435] >> /PUT pdfm...
+Package natbib Warning: Citation `brown2024' on page 1 undefined on input line 
+180.
 
 
+Package natbib Warning: Citation `levin1975' on page 1 undefined on input line 
+182.
 
-] (./paper.aux)
-Package rerunfilecheck Info: File `paper.out' has not changed.
-(rerunfilecheck)             Checksum: 480B9022CC5CA4156B474BF19D3A2A74;493.
- ) 
-Here is how much of TeX's memory you used:
- 27729 strings out of 480171
- 522079 string characters out of 5894489
- 883558 words of memory out of 5000000
- 45160 multiletter control sequences out of 15000+600000
- 498545 words of font info for 143 fonts, out of 8000000 for 9000
- 63 hyphenation exceptions out of 8191
- 99i,11n,94p,17348b,403s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbsy10.pfb></u
-sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/shar
-e/texlive/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex8.pfb></usr/share/
-texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive
-/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-
-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fon
-ts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1
-/public/amsfonts/cm/cmss8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
-/amsfonts/cm/cmss9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfon
-ts/cm/cmssbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
-m/cmssi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss
-i9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb>
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/s
-hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti8.pfb></usr/share/te
-xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb></usr/share/texlive/t
-exmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on paper.pdf (3 pages, 194847 bytes).
-PDF statistics:
- 176 PDF objects out of 1000 (max. 8388607)
- 135 compressed objects within 2 object streams
- 30 named destinations out of 1000 (max. 500000)
- 37 words of extra memory for PDF output out of 10000 (max. 10000000)
 
+Package natbib Warning: Citation `felber1997' on page 1 undefined on input line
+ 185.
+
+
+LaTeX Warning: Reference `s-sec:det' on page 1 undefined on input line 186.
+
+
+Package natbib Warning: Citation `lande1985' on page 1 undefined on input line 
+196.
+
+
+Package natbib Warning: Citation `rausch2005' on page 1 undefined on input line
+ 199.
+
+
+LaTeX Warning: Reference `s-sec:mchain' on page 1 undefined on input line 199

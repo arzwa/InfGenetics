@@ -1,5 +1,6 @@
+using Pkg; Pkg.activate("/home/arthur_z/dev/InfGenetics/")
 using Distributed, StatsBase, Plots, Serialization, Distributions, Optim
-addprocs(6)
+addprocs(4)
 @everywhere using InfGenetics
 
 # estimate parameter of a censored geometric distribution by ML
@@ -12,26 +13,51 @@ function mle_censored_geometric(c, xs)
     optimize(fun, 0.0, 1.0).minimizer
 end
 
-# example        
-sim = simest(InfDemeMixEst(m=1.0, θ=fill(2.0, 3), U=U), nmax=nmax, Nest=Nest)
+# Example        
+# ========
+function dosim(M=InfDemeMixEst(m=1.0, θ=fill(2.0, 3), U=Umat(0.05,0.05)))
+    while true
+        xs = simest(M)
+        cs = counts(xs[2][end][2].c, 2:4)
+        @info cs; cs[3] > cs[2] && return xs
+    end
+end
 
-z_ = map(x->x.z, last.(sim[2]))
-P1 = plot(); for i=1:length(z_)
-    scatter!(fill(i, length(z_[i])), z_[i], color=:black, ms=2)
-end; plot!(legend=false)
-P2 = plot(mapreduce(x->log10.(counts(x.c, 2:4)), hcat, last.(sim[2]))',
-    legend=false, marker=true, ms=2)
-plot(P1, P2, size=(600,200))
+ex = dosim()
+
+z_ = map(x->x.z, last.(ex[2]))
+P1 = plot()
+for i=1:length(z_)
+    scatter!(fill(i, length(z_[i])), z_[i], color=:black, ms=2, label="")
+end
+plot!(legend=false, xlabel="generation", ylabel="\$z\$")
+hline!([2])
+P2 = plot(mapreduce(x->log10.(counts(x.c, 2:4)), hcat, last.(ex[2]))',
+    legend=:topleft, marker=true, ms=2, ylabel="\$\\log_{10}N_k\$",
+    xlabel="generation", label=["diploid" "triploid" "tetraploid"])
+plot(P1, P2, size=(260*2,210), margin=3Plots.mm)
+
 
 # Basic model
 # ===========
-nrep = 5000
+nrep = 50_000
 ms   = 10 .^ range(log10(0.1), stop=log10(3), length=10)
 zs   = [2.0, 1.5, 1.0]
 γ    = 0.25
 U    = Umat(0.05, 0.05)
 nmax = 10000
 Nest = 100
+    
+# get baseline results without migration (but with unreduced gametes)
+base = map(zs) do z
+    M  = InfDemeMixEst(m=0.0, θ=fill(z, 3), U=U, γ=γ)
+    nr = 500_000
+    x2 = map(_->simest2(M, x0=InfPop(z=[0.0], c=[2])), 1:nr)
+    x4 = map(_->simest2(M, x0=InfPop(z=[0.0], c=[4])), 1:nr)
+    p2 = sum(first.(x2) .&& map(x->argmax(x[3]) == 1, x2)) / nr
+    p4 = sum(first.(x4) .&& map(x->argmax(x[3]) == 3, x4)) / nr
+    (z=z, p2=p2, p4=p4)
+end
 
 sims = pmap(Iterators.product(ms, zs)) do (m, z)
     @info (m, z)
@@ -42,7 +68,10 @@ sims = pmap(Iterators.product(ms, zs)) do (m, z)
     (m, z, reps)
 end
 
-sims = deserialize("data/sims1.jls")
+#serialize("data/sims1.jls", sims)
+#sims = deserialize("data/sims1.jls")
+sims = deserialize("data/sims1b.jls")
+base = deserialize("data/baseline1.jls")
 
 P1 = plot(title="(A) Time to establishment")
 for col in eachcol(sims)
@@ -54,7 +83,8 @@ for col in eachcol(sims)
     plot!(ms, t, marker=true, ms=2, label="\$\\theta = $z\$")
 end
 P1 = plot(P1, marker=true, ms=2, yscale=:log10, xlabel="\$m\$",
-    ylabel="\$\\overline{T}\$", xscale=:log10, legend=:topleft)
+    ylabel="\$\\overline{T}\$", xscale=:log10, legend=:topleft, 
+    ylim=(100,500_000), yticks=[100,1000,10000,100000])
 
 P2 = plot(title="(B) Tetraploid establishment", xscale=:log10)
 map(eachcol(sims)) do col
@@ -70,26 +100,32 @@ map(eachcol(sims)) do col
     z = col[1][2]
     plot!(ms, p, 
         ribbon=(p .- first.(e), last.(e) .- p), fillalpha=0.2,
-        marker=true, ms=2, label="\$\\bar{z}_s = $z\$")
+        marker=true, ms=2, label="\$\\theta = $z\$")
 end
-hline!([InfGenetics.cytotype_equilibrium(U)[3]], label="\$\\pi_4\$",
+ppi = InfGenetics.cytotype_equilibrium(U)
+hline!(ppi[[3]], label="",
     color=:black, xlabel="\$m\$", ylabel="\$P_4\$", ls=:dash)
+for i=1:3
+    hline!([(ppi[3]*base[i].p4)/(ppi[1]*base[i].p2 + ppi[3]*base[i].p4)], color=i, 
+        label="")
+end
+plot!(bg_legend=:white)
 
-plot(P1, P2, size=(500,200), margin=3Plots.mm, titlefont=8)
-#savefig("doc/img/estwmigration1.pdf") |> texfig
+plot(P1, P2, size=(260*2,210), margin=3Plots.mm, titlefont=8)
+savefig("doc/img/estwmigration1.pdf") |> texfig
 
 
 # With selfing
 # =============
 # This is not just with selfing, but with loss of SI...
-nrep = 5000
-ms   = 10 .^ range(log10(0.1), stop=log10(3), length=10)
-zs   = -1.5
+nrep = 25_000
+ms   = 10 .^ range(log10(0.1), stop=log10(3), length=7)
+zs   = 1.5
 σs   = [[NaN, s, s] for s=0:0.2:1.0]
 γ    = 0.25
 u    = 0.05
 U    = Umat(u, u)
-nmax = 20000
+nmax = 10000
 Nest = 100
 
 sims = pmap(Iterators.product(ms, σs)) do (m, σ)
@@ -101,7 +137,8 @@ sims = pmap(Iterators.product(ms, σs)) do (m, σ)
     (m, σ[3], reps)
 end
 
-sims = deserialize("data/sims-si1.jls")
+#serialize("data/sims-si2-2024-08-20.jls", sims)
+sims = deserialize("data/sims-si2-2024-08-20.jls")
 
 P1 = plot(title="(A) Time to establishment")
 for col in eachcol(sims)
@@ -114,7 +151,8 @@ end
 P1 = plot(P1, marker=true, ms=2, xlabel="\$m\$",
     ylabel="\$\\overline{T}\$", xscale=:log10, legend=false, yscale=:log10)
 
-P2 = plot(title="(B) Tetraploid establishment", xscale=:log10)
+P2 = plot(title="(B) Tetraploid establishment", xscale=:log10,
+    legend=:outertopright, xlabel="\$m\$", ylabel="\$P_4\$")
 map(eachcol(sims)) do col
     xx = map(col) do reps
         nsucc = sum(first.(reps[3]))
@@ -130,13 +168,14 @@ map(eachcol(sims)) do col
         ribbon=(p .- first.(e), last.(e) .- p), fillalpha=0.2,
         marker=true, ms=2, label="\$\\sigma = $s\$")
 end
-hline!([InfGenetics.cytotype_equilibrium(U)[3]], label="\$\\pi_4\$",
-    color=:black, xlabel="\$m\$", ylabel="\$P_4\$", ls=:dash, 
-    legend=:outertopright, size=(350,220))
+#hline!([InfGenetics.cytotype_equilibrium(U)[3]], label="\$\\pi_4\$",
+#    color=:black, xlabel="\$m\$", ylabel="\$P_4\$", ls=:dash, 
+#    legend=:outertopright, size=(350,220))
 
 plot(P1, P2, size=(540,200), layout=grid(1,2,widths=[0.415,0.585]),
     margin=3Plots.mm, titlefont=8)
-savefig("doc/img/estwmigration-si.pdf") |> texfig
+
+savefig("doc/img/estwmigration-si2.pdf") |> texfig
 
 P1 = plot()
 for (j,col) in enumerate(eachcol(sims))
@@ -162,13 +201,13 @@ P1 = plot(P1, marker=true, ms=2, ylabel="\$P_4\$", size=(400,300), grid=true,
 
 # With assortative mating
 # =======================
-nrep = 5000
-ms   = 10 .^ range(log10(0.1), stop=log10(3), length=10)
-zs   = -1.5
+nrep = 25_000
+ms   = 10 .^ range(log10(0.1), stop=log10(3), length=7)
+zs   = 1.5
 ρs   = [fill(r, 3) for r=0:0.2:1.0]
 γ    = 0.25
 U    = Umat(0.05, 0.05)
-nmax = 20000
+nmax = 10000
 Nest = 100
 
 sims = pmap(Iterators.product(ms, ρs)) do (m, ρ)
@@ -180,7 +219,8 @@ sims = pmap(Iterators.product(ms, ρs)) do (m, ρ)
     (m, ρ[3], reps)
 end
 
-sims = deserialize("data/sims-am1.jls")
+#serialize("data/sims-am2-2024-08-20.jls", sims)
+#sims = deserialize("data/sims-am1.jls")
 
 P1 = plot(title="(A) Time to establishment")
 for col in eachcol(sims)
@@ -193,7 +233,9 @@ end
 P1 = plot(P1, marker=true, ms=2, xlabel="\$m\$",
     ylabel="\$\\overline{T}\$", xscale=:log10, legend=false, yscale=:log10)
 
-P2 = plot(title="(B) Tetraploid establishment", xscale=:log10)
+P2 = plot(title="(B) Tetraploid establishment", xscale=:log10,
+    xlabel="\$m\$", ylabel="\$P_4\$",
+    legend=:outertopright, size=(350,220))
 map(eachcol(sims)) do col
     xx = map(col) do reps
         nsucc = sum(first.(reps[3]))
@@ -206,15 +248,18 @@ map(eachcol(sims)) do col
     p = x ./ n
     s = col[1][2]
     plot!(ms, p, 
+        ylim=(0,1),
         ribbon=(p .- first.(e), last.(e) .- p), fillalpha=0.2,
         marker=true, ms=2, label="\$\\rho = $s\$")
 end
-hline!([InfGenetics.cytotype_equilibrium(U)[3]], label="\$\\pi_4\$",
-    color=:black, xlabel="\$m\$", ylabel="\$P_4\$", ls=:dash, 
-    legend=:outertopright, size=(350,220))
+#hline!([InfGenetics.cytotype_equilibrium(U)[3]], label="\$\\pi_4\$",
+#    color=:black, xlabel="\$m\$", ylabel="\$P_4\$", ls=:dash, 
+#    legend=:outertopright, size=(350,220))
 
 plot(P1, P2, size=(540,200), layout=grid(1,2,widths=[0.415,0.585]),
     margin=3Plots.mm, titlefont=8)
+
+savefig("doc/img/estwmigration-am2.pdf") |> texfig
 
 P1 = plot()
 for col in eachcol(sims)
@@ -233,9 +278,10 @@ P1 = plot(P1, marker=true, ms=2, zlabel="\$P_4\$", size=(600,600), grid=true,
     ylabel="\$\\overline{T}\$", yscale=:log10, legend=false)
 
 
+
 # larger panel of conditions
 # ==========================
-nrep = 5000
+nrep = 10000
 nmax = 10000
 Nest = 100
 zs   = -1.5
