@@ -5,7 +5,6 @@
 \externaldocument[m-]{paper}
 \renewcommand{\thefigure}{S\arabic{figure}}
 \renewcommand{\thesection}{S\arabic{section}}
-\renewcommand{\thealgorithm}{S\arabic{algorithm}}
 
 \begin{document}
 \title{Supplement: Autopolyploid establishment through polygenic adaptation}
@@ -19,7 +18,7 @@
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=\textwidth]{/home/arthur_z/dev/InfGenetics/doc/img/finsvsinf-polyploids-validation.pdf}
+\includegraphics[width=\textwidth]{/home/arzwa/dev/InfGenetics/doc/img/finsvsinf-polyploids-validation.pdf}
 \caption{
 Validation of the autotetraploid and triploid infinitesimal model by a
 comparison against the discrete locus model with $L=500$ additive loci, showing
@@ -35,7 +34,7 @@ mean $0$ and variance $1/2L$.
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=\textwidth]{/home/arthur_z/vimwiki/build/img/2023-10-23/mixedploidy-Vz.pdf}
+\includegraphics[width=\textwidth]{/home/arzwa/vimwiki/build/img/2023-10-23/mixedploidy-Vz.pdf}
 \caption{Comparison of the mixed-ploidy infinitesimal model with the
 \(L\)-locus model, for \(L=500,100,50\) and \(20\). The decline in the
 genetic variance \(V_z\) within each cytotype due to drift is shown. The
@@ -54,13 +53,23 @@ accelerated inbreeding. \label{fig:vz}}
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=\linewidth]{/home/arthur_z/vimwiki/build/img/2023-10-23/mixedploidy-F.pdf}
+\includegraphics[width=\linewidth]{/home/arzwa/vimwiki/build/img/2023-10-23/mixedploidy-F.pdf}
 \caption{Average inbreeding coefficient \(\bar{F}\) in each cytotype in
 a mixed-ploidy population for different values of \(\alpha\) (we assume
 \(\alpha_k=\alpha\), where \(\alpha_k\) is the probability that a
 diploid gamete produced by a \(k\)-ploid cytotype contains two copies of
 the same parental gene at a random locus). We assume \(N=500, u=v=0.08\)
 and no selection.}\label{fig:f1}
+\end{figure}
+
+\begin{figure}
+\includegraphics[width=0.9\linewidth]{/home/arzwa/dev/InfGenetics/doc/img/estwmigration-dr-check.pdf}
+\caption{
+    Nonzero $\alpha_k$ parameters increase the tetraploid establishment
+    probability, but mainly due to $\alpha_2$, which increases the segregation
+    variance associated with the formatoin of diploid gametes by diploids.
+    All other parameters and simulation details are as in \cref{m-fig:estwmig}.
+\label{fig:suppdr}}
 \end{figure}
 
 \clearpage
@@ -116,7 +125,7 @@ A similar model was first analyzed in \cite{felber1997}.
 
 \begin{figure}
 \centering
-\includegraphics[width=\linewidth]{/home/arthur_z/vimwiki/build/img/2023-10-13/g1diff.pdf}
+\includegraphics[width=\linewidth]{/home/arzwa/vimwiki/build/img/2023-10-13/g1diff.pdf}
 \caption{
 Deterministic mixed-ploidy equilibrium. The left plot shows the stable (solid
 lines) and unstable (dashed lines) equilibria for the proportion of haploid
@@ -212,7 +221,7 @@ rather large values for these parameters), we would have
 
 \begin{figure}
 \centering
-\includegraphics[width=0.5\textwidth]{/home/arthur_z/vimwiki/build/img/2023-10-22/timetodiploidancestord.pdf}
+\includegraphics[width=0.5\textwidth]{/home/arzwa/vimwiki/build/img/2023-10-22/timetodiploidancestord.pdf}
 \caption{Expected time to diploid ancestry. The solid lines show
 \(\Ex[T_4]\), i.e.~the expected time since being inherited from a
 diploid ancestor for a random gene in a tetraploid individual at
@@ -227,7 +236,7 @@ establishment. \label{fig:ttdip}}
 
 \begin{figure}
 \centering
-\includegraphics[width=\textwidth]{/home/arthur_z/vimwiki/build/img/2023-10-13/mixedploidy-F-Ne.pdf}
+\includegraphics[width=\textwidth]{/home/arzwa/vimwiki/build/img/2023-10-13/mixedploidy-F-Ne.pdf}
 \caption{The evolution of \(\bar{F}\) in the mixed-ploidy population and
 in the diploid subpopulation are shown for different values of \(u\) and
 associated values of \(N\), keeping \(N_e = (1-2u)N\) constant at 200.
@@ -354,7 +363,8 @@ $P_{ik} \in \{0, \frac1 3, \frac1 2, \frac2 3, 1\}$ is the probability that a
 gene copy in $i$ is derived from parent $k$.
 
 
-\subsection{Segregation variance expressions for the mixed-ploidy infinitesimal model \label{sec:segvar}}
+\subsection{Segregation variance expressions for the mixed-ploidy infinitesimal 
+model \label{sec:segvar}}
 
 Consider a single locus in a population of $k$-ploids, and let $X_1,\dots,X_k$
 denote a random genotype at this locus, where $X_i$ is the additive genetic
@@ -605,7 +615,7 @@ coefficient recording the probability that three genes are IBD at a locus.
 We will hence ignore the possibility of unreduced gamete production in
 triploids.
 We note that, on the supposition that diploid gametes are produced by random
-assortment of chromosomes in a haploid and diploid gametes, $\alpha_3 \le 1/4$.
+assortment of chromosomes in a haploid and diploid gamete, $\alpha_3 \le 1/4$.
 
 When a triploid produces a haploid gamete, we get as segregation variance at a
 single locus
@@ -641,6 +651,93 @@ mixed-ploidy model, adjusted for inbreeding, are summarized in
 \cref{m-tbl:segvar} in the main text.
 
 
+\subsection{Equilibrium trait value distribution for a large mixed-ploidy
+population \label{sec:mixeq}}
+
+In our establishment model, we assume that migrant individuals are drawn
+randomly from a large (effectively infinite) non-inbred mixed-ploidy population
+at HWLE and cytotype equilibrium, with mean trait value zero.
+The equilibrium trait value distribution in a monocytotypic population
+under such conditions is straightforwardly obtained under the infinitesimal
+model as a Gaussian with variance $k \beta_k^2 V$ (see main text).
+However, the equilibrium trait value distributions for the different cytotypes
+in the mixed-ploidy model are more challenging to obtain.
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{/home/arzwa/dev/InfGenetics/doc/img/mixeq.pdf}
+\caption{
+    Equilibrium trait value distribution for diploids, triploids and
+    tetraploids.
+    The simulated equilibrium distribution, the small $u$ approximation and the
+    monocytotypic equilibrium distribution are shown for all three cytotypes.
+    The diploid monocytotypic distribution $\Normal(0,2V)$ is shown everywhere
+    as a reference. Here we assumed $\beta_3 = \beta_4 = 1$ and $\alpha_2 =
+    1/2, \alpha_3 = 1/4$ and $\alpha_4 = 1/6$.
+\label{fig:mixeq}}
+\end{figure}
+
+Indeed, each cytotype produces haploid and diploid gametes with Gaussian
+gametic values, distributed according to \cref{m-eq:gamete} in the main text.
+Conditional on the parental trait values, offspring trait values will be sums
+of independent Gaussians, and hence again Gaussian, distributed according to
+\cref{m-eq:oneline} in the main text.
+Consider now, for instance, a triploid individual, there are six different
+parental cytotype combinations that may yield a triploid offspring, with
+relative frequencies proportional to the terms in the expansion of the
+following polynomial in $\pi$
+  $$2((1-u)\pi_2 + v\pi_3)(u\pi_2 + v\pi_3 + (1-u)\pi_4)$$
+(where the term in $\pi_2^2$ is proportional to the frequency of triploids
+derived from two diploid parents, the term in $\pi_2\pi_3$ proportional to the
+frequency of triploids derived from a diploid and a triploid parent,
+\textit{etc.}).
+Each of these combinations of parental cytotypes potentially yields a different
+Gaussian distribution over offspring trait values.
+As a result, the triploid trait distribution in the next generation will be a
+\textit{mixture} of Gaussians, with mixture proportions given by the relative
+frequencies in the expansion of the above polynomial.
+A similar reasoning applies to the diploid and tetraploid subpopulation.
+Proceeding to the next generation, the trait distributions will be mixtures
+mixtures of Gaussians, and so on for further generations.
+
+We have not identified whether this process yields a tractable equilibrium
+distribution. However, for a predominantly diploid population with $u$
+sufficiently small, an accurate approximation is readily obtained by assuming
+that effectively all individuals in the population have diploid parents.
+In this case, still assuming the mean trait value to be zero, diploid trait
+values will be Gaussian with variance $2V$.
+Using \cref{m-eq:oneline}, the trait value distribution of newly formed triploids
+will be Gaussian with mean zero and variance
+\begin{align*}
+  \Var[Z_{ij}^{12}] 
+    &= \Ex[\Var[Z_{ij}^{12}|Z_i,Z_j]] + \Var[\Ex[Z_{ij}^{12}|Z_i,Z_j]] \\
+    &= \beta_3^2\left(\frac{V}{2} + 2\alpha_2 V\right) +
+    \Var\left[\beta_3\left(\frac{Z_i}{2} + Z_j\right)\right] \\
+    &= 3\beta_3^2V\left(1 + \frac{2}{3}\alpha_2\right)
+\end{align*}
+(where $Z_{ij}^{12}$ denotes the trait value of a random offspring from
+individuals $i$ and $j$, and where the superscript indicates that $i$
+contributes a haploid gamete, and $j$ a diploid gamete -- as in
+\cref{m-eq:oneline}).
+Under the small $u$ assumption, $Z_i$ and $Z_j$ are random draws from a
+Gaussian with mean zero and variance $2V$.
+The trait value distribution for tetraploids will be Gaussian with mean zero
+and variance
+  $$\Var[Z_{ij}^{22}] = 4\beta_4^2V\left(1 + \alpha_2\right)$$
+This approximation is illustrated in \cref{fig:mixeq}, where, the fit to
+simulations is shown to be very accurate.
+Note that when the $\alpha_k$ parameters are set to zero (as in most of our
+results), the equilibrium variance for each cytotype in the mixed-ploidy
+population is just the equilibrium variance in an isolated monocytotypic
+population.
+
+
+
+
+
 \bibliographystyle{abbrvnat}
-\bibliography{/home/arthur_z/vimwiki/bib.bib}
+\bibliography{/home/arzwa/vimwiki/bib.bib}
 \end{document}
+
+
+

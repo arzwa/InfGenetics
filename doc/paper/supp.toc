@@ -8,6 +8,7 @@
 \contentsline {subsubsection}{\numberline {S2.5.1}Effect of inbreeding on segregation variance in autotetraploids }{9}{subsubsection.2.5.1}%
 \contentsline {subsubsection}{\numberline {S2.5.2}Recursions for inbreeding coefficients in the mixed-ploidy model}{10}{subsubsection.2.5.2}%
 \contentsline {subsection}{\numberline {S2.6}Segregation variance expressions for the mixed-ploidy infinitesimal model }{11}{subsection.2.6}%
-\contentsline {paragraph}{Meiosis in autotetraploids.}{12}{section*.9}%
-\contentsline {paragraph}{Unreduced gamete formation in diploids.}{12}{figure.caption.12}%
-\contentsline {paragraph}{Meiosis in triploids.}{13}{section*.13}%
+\contentsline {paragraph}{Meiosis in autotetraploids.}{11}{section*.10}%
+\contentsline {paragraph}{Unreduced gamete formation in diploids.}{12}{figure.caption.13}%
+\contentsline {paragraph}{Meiosis in triploids.}{13}{section*.14}%
+\contentsline {subsection}{\numberline {S2.7}Equilibrium trait value distribution for a large mixed-ploidy population }{15}{subsection.2.7}%

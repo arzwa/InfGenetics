@@ -2,45 +2,45 @@ This is BibTeX, Version 0.99d (TeX Live 2022/dev/Debian)
 Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: paper.aux
 The style file: abbrvnat.bst
-Database file #1: /home/arthur_z/vimwiki/bib.bib
-You've used 37 entries,
+Database file #1: /home/arzwa/vimwiki/bib.bib
+You've used 42 entries,
             2773 wiz_defined-function locations,
-            833 strings with 11414 characters,
-and the built_in function-call counts, 17971 in all, are:
-= -- 1626
-> -- 1027
-< -- 21
-+ -- 351
-- -- 312
-* -- 1568
-:= -- 2763
-add.period$ -- 113
-call.type$ -- 37
-change.case$ -- 213
-chr.to.int$ -- 35
-cite$ -- 74
-duplicate$ -- 771
-empty$ -- 1464
-format.name$ -- 367
-if$ -- 3707
+            863 strings with 12209 characters,
+and the built_in function-call counts, 20464 in all, are:
+= -- 1848
+> -- 1175
+< -- 23
++ -- 401
+- -- 357
+* -- 1792
+:= -- 3147
+add.period$ -- 128
+call.type$ -- 42
+change.case$ -- 243
+chr.to.int$ -- 40
+cite$ -- 84
+duplicate$ -- 874
+empty$ -- 1667
+format.name$ -- 419
+if$ -- 4221
 int.to.chr$ -- 3
 int.to.str$ -- 1
-missing$ -- 39
-newline$ -- 195
-num.names$ -- 148
-pop$ -- 376
+missing$ -- 44
+newline$ -- 220
+num.names$ -- 168
+pop$ -- 427
 preamble$ -- 1
-purify$ -- 178
+purify$ -- 203
 quote$ -- 0
-skip$ -- 577
+skip$ -- 654
 stack$ -- 0
-substring$ -- 882
-swap$ -- 55
+substring$ -- 1012
+swap$ -- 60
 text.length$ -- 2
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 397
+type$ -- 452
 warning$ -- 0
-while$ -- 177
+while$ -- 200
 width$ -- 0
-write$ -- 491
+write$ -- 556
