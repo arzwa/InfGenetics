@@ -12,18 +12,22 @@
 \maketitle
 \begin{abstract}
 We define the infinitesimal model of quantitative genetics (\textit{sensu}
-\cite{barton2017}) for the inheritance of an additive quantitative trait in a
-mixed-ploidy population consisting of diploid, triploid and autotetraploid
-individuals producing haploid and diploid gametes.
-We implement efficient simulation methods and use these to study the
-quantitative genetics of mixed-ploidy populations and the establishment of
-autotetraploids in a new habitat.
-We show that for rare migration from the source population, autotetraploids are
-more likely to found a successful population than diploids under a very
-broad range of conditions, but that this is unlikely to sufficiently
-counter the scarcity of tetraploid founders when the source is
-predominantly diploid.
-
+    \cite{barton2017}) for the inheritance of an additive quantitative trait in
+    a mixed-ploidy population consisting of diploid, triploid and
+    autotetraploid individuals producing haploid and diploid gametes.  We
+    implement efficient simulation methods and use these to study the
+    quantitative genetics of mixed-ploidy populations and the establishment of
+    autotetraploids in a new habitat.  We show that for rare migration from the
+    source population, autotetraploids are more likely to found a successful
+    population than diploids under a very broad range of conditions, but that
+    this is unlikely to sufficiently counter the scarcity of tetraploid
+    founders when the source is predominantly diploid.  We assess in more
+    detail how minority cytotype exclusion interacts with migration load in the
+    establishment process and evaluate the impact of additional sources of
+    prezygotic isolation, specifically selfing and assortative mating, on the
+    relative establishment probabilities of the different cytotypes.
+    In the discussion we consider how inbreeding depression may impact our
+    findings.
 \end{abstract}
 
 \section*{Introduction}
@@ -916,6 +920,11 @@ establishment of polyploid subpopulations in peripheral habitats.
 
 In this study, we worked out the infinitesimal model for an additive polygenic
 trait in autotetraploids and mixed-ploidy populations.
+It would be very interesting to experimentally assess whether typical
+quantitative traits in mixed-ploidy populations follow approximately the
+mixed-ploidy infinitesimal model we outlined in this paper, and to estimate the
+relevant model parameters (in particular the $\beta_3$ and $\beta_4$ values).
+
 We used the mixed-ploidy infinitesimal model to study the establishment of
 tetraploids in a marginal habitat by means of individual-based simulations. 
 Assuming the trait to be under directional selection in the marginal habitat,
@@ -980,6 +989,18 @@ tetraploid establishment.
 In addition, inbreeding itself occurs at a slower rate in polyploids, further
 decreasing inbreeding depression during establishment.
 
+In the long term, polyploids are expected to accumulate a larger
+mutation load when deleterious variation is recessive due to less efficient
+purging, and this may yield \textit{increased} inbreeding depression.
+These effects have been studied in the context of range expansions
+\citep{booker2024}.
+However, this applies only to polyploids that have been established for a long
+time.
+In our case, polyploids are always recently descended from diploid ancestors,
+so they will not have accumulated more deleterious recessives than their
+diploid counterparts, in which case polyploidy would lead to reduced rather
+than increased inbreeding depression (as discussed above).
+
 Dominance and inbreeding depression may strongly affect the complicated
 relationship between selfing, migration load and tetraploid establishment
 probability.
@@ -1004,22 +1025,6 @@ realistic model whether the combination of maladaptive migration and
 differential inbreeding depression could explain the prevalence of polyploid
 subpopulations at range edges.
 
-In the long term, polyploids are expected to accumulate a larger
-mutation load when deleterious variation is recessive due to less efficient
-purging, and this may yield \textit{increased} inbreeding depression.
-These effects have been studied in the context of range expansions
-\citep{booker2024}.
-However, this applies only to polyploids that have been established for a long
-time.
-In our case, polyploids are always recently descended from diploid ancestors,
-so they will not have accumulated more deleterious recessives than their
-diploid counterparts, in which case polyploidy would lead to reduced rather
-than increased inbreeding depression (as discussed above).
-
-It would be very interesting to experimentally assess whether typical
-quantitative traits in mixed-ploidy populations follow approximately the
-mixed-ploidy infinitesimal model we outlined in this paper, and to estimate the
-relevant model parameters (in particular the $\beta_3$ and $\beta_4$ values).
 
 
 \section*{Acknowledgements}
