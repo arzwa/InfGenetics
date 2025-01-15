@@ -1,4 +1,4 @@
-\begin{thebibliography}{42}
+\begin{thebibliography}{43}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -269,6 +269,17 @@ M.~Turelli.
 Y.~Van~de Peer, T.-L. Ashman, P.~S. Soltis, and D.~E. Soltis.
 \newblock Polyploidy: an evolutionary and ecological force in stressful times.
 \newblock \emph{The Plant Cell}, 33\penalty0 (1):\penalty0 11--26, 2021.
+
+\bibitem[Vlček et~al.(2025)Vlček, Hämälä, Cobo, Curran, Šrámková,
+  Slotte, Schmickl, Yant, and Kolář]{vlcek2025biorxiv}
+J.~Vlček, T.~Hämälä, C.~V. Cobo, E.~Curran, G.~Šrámková, T.~Slotte,
+  R.~Schmickl, L.~Yant, and F.~Kolář.
+\newblock Whole-genome duplication increases genetic diversity and load in
+  outcrossing arabidopsis.
+\newblock \emph{bioRxiv}, 2025.
+\newblock \doi{10.1101/2025.01.12.632621}.
+\newblock URL
+  \url{https://www.biorxiv.org/content/early/2025/01/15/2025.01.12.632621}.
 
 \bibitem[Zenil-Ferguson et~al.(2019)Zenil-Ferguson, Burleigh, Freyman,
   Igi{\'c}, Mayrose, and Goldberg]{zenil2019}
