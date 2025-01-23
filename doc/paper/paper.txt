@@ -10,12 +10,13 @@ highly unlikely to establish a stable tetraploid subpopulation, as most of its g
 end up in unfit hybrids of odd ploidy level (a phenomenon referred to as ‘triploid block’,
 see Ramsey and Schemske (1998); Köhler et al. (2010); Brown et al. (2024)). This negative frequency dependence effect is commonly referred to as minority cytotype exclusion
 (MCE), after Levin (1975). It is well-appreciated that, as a consequence of MCE, the
-rate of unreduced gamete formation needs to be extraordinarily high for tetraploids to
+
+rate of unreduced gamete formation needs to be extraordinarily high for tetraploids to
 establish in a large random mating initially diploid population (Felber and Bever (1997),
 see also section S2.1).
 Hence, to explain the widespread occurrence of mixed-ploidy populations, additional
 factors besides the continuous formation of polyploids through the union of unreduced
-gametes need to be considered. Firstly, chance establishment of tetraploids through drift
+gametes need to be considered. Firstly, chance establishment of tetraploids through drift
 could occur. Indeed, the problem is somewhat analogous to the spread of underdominant chromosomal rearrangements, where local establishment through genetic drift and
 subsequent spreading in a subdivided population through local extinction and recolonization dynamics has been suggested as a plausible model (Lande, 1985). However, MCE
 is quite strong in randomly mating mixed-ploidy populations, and the population size
@@ -40,40 +41,41 @@ are able to colonize such habitats at an appreciable rate, they must somehow be 
 adapted to local conditions, or more able to adapt to those conditions despite inbreeding
 and maladaptive migration, compared to diploids. Indeed, when the source population
 is dominated by diploids, the probability that a migrant individual is tetraploid will be
-very small (O(u2 ) if u is the probability that a diploid in the source population produces
-an unreduced gamete in meiosis), so that tetraploids need a substantial advantage during
-colonization if they are to establish before diploids do.
+very small (∼ u2 , where u is the probability that a diploid produces an unreduced gamete
+in meiosis), so that tetraploids need a substantial advantage during colonization if they
+are to establish before diploids do.
 While there have been substantial modeling efforts aimed at understanding autotetraploid establishment within diploid populations (Levin, 1975; Felber, 1991; Felber and
 Bever, 1997; Rausch and Morgan, 2005; Oswald and Nuismer, 2011; Clo et al., 2022), the
 problem of polyploid establishment in peripheral habitats remains largely unaddressed
 (but see Griswold (2021)), despite its centrality to verbal arguments about the establishment of polyploids in natural populations (Kolář et al., 2017; Van de Peer et al., 2021;
 Clo, 2022b).
-Here we develop a rather general model for the establishment of a mixed-ploidy population in a novel, unoccupied habitat based on Barton and Etheridge (2018). In order to
-establish in the novel habitat, the population has to adapt to local environmental conditions. We assume fitness is determined by directional selection on a single polygenic trait
-which can be interpreted as log fitness at low density in the new habitat. As in Barton
-and Etheridge (2018), we assume the trait follows the infinitesimal model (sensu Barton
-et al. (2017), i.e. the ‘Gaussian descendants’ infinitesimal model (Turelli, 2017)). We
-extend the infinitesimal model, and the approach for exact simulation of trait evolution
-under the infinitesimal model, to mixed-ploidy populations. This is a first contribution
-of the present paper. We then use simulations to study tetraploid establishment, both
+Here we develop a model for the establishment of a mixed-ploidy population in a
+novel, unoccupied habitat based on Barton and Etheridge (2018). In order to establish
+in the novel habitat, the population has to adapt to local environmental conditions. We
+assume fitness is determined by directional selection on a single polygenic trait, which
+can be interpreted as log fitness at low density in the new habitat. As in Barton and
 2
 
-from single migrants and under continuous migration from a predominantly diploid source
+Etheridge (2018), we assume the trait follows the infinitesimal model (sensu Barton et al.
+(2017), i.e. the ‘Gaussian descendants’ infinitesimal model (Turelli, 2017)). We extend
+the infinitesimal model, and the approach for exact simulation of trait evolution under
+the infinitesimal model, to mixed-ploidy populations. This is a first contribution of the
+present paper. We then use simulations to study tetraploid establishment, both from
+single migrants and under continuous migration from a predominantly diploid source
 population, examining the effects of autopolyploid genetics, maladaptive migration, selfing and assortative mating on the probability that autotetraploids establish in the novel
 habitat.
 
 Model and Methods
 Mixed-ploidy population model
-We consider a mixed-ploidy population of size N consisting of N2 diploid, N3 triploid
-and N4 = N − N2 − N3 tetraploid individuals. We assume an individual of ploidy level k
-forms haploid and diploid gametes with proportions uk1 and uk2 , as well as a proportion
-1 − uk1 − uk2 inviable (e.g. aneuploid or polyploid) gametes. The (relative) fecundity of
-a k-ploid individual is hence uk1 + uk2 . Unless stated otherwise, we will assume
+Our notation is summarized in table 1. We consider a mixed-ploidy population of size N
+consisting of N2 diploid, N3 triploid and N4 = N − N2 − N3 tetraploid individuals. We
+assume an individual of ploidy level k forms haploid and diploid gametes with proportions
+uk1 and uk2 , as well as a proportion 1 − uk1 − uk2 inviable (e.g. aneuploid or polyploid)
+gametes. The (relative) fecundity of a k-ploid individual is hence uk1 + uk2 . Unless stated
+
 where u is referred to as the proportion of unreduced gametes, and 2v is the proportion
 of euploid gametes produced by a triploid individual.
-3
-
-When two individuals mate, we assume they produce gametes according to their ploidy
+When two individuals mate, we assume they produce gametes according to their ploidy
 level (eq. (1)), which randomly combine to produce offspring (which may be inviable if one
 of the contributing gametes is inviable). Intrinsic fitness disadvantages associated with
 particular zygotic ploidy levels or cross types (e.g. modeling phenomena such as ‘triploid
@@ -94,36 +96,30 @@ generated among offspring from the same parental pair due to random Mendelian se
 the number of loci determining the trait tends to infinity (Barton et al., 2017).
 An alternative, and for our purposes useful, way to characterize the model is to write
 Zij = Yi +Yj , where Yi and Yj are independent Gaussian random variables Yi ∼ N z2i , Vi
-(and similarly for Yj ). We refer to Yi as the (random) gametic value of individual i, and
-to Vi as the gametic segregation variance of individual i. This formulation is helpful in
-that it highlights that Mendelian segregation occurs independently in both parents when
-gametes are produced, which then combine additively to determine the offspring trait
-value. This model applies readily to an autopolyploid population expressing a trait with
-infinitesimal genetics. For instance, when an autotetraploid produces a diploid gamete,
-it will pass on half its trait value to the gamete on average, with a variance determined
-by the details of tetraploid meiosis (which are not, in general, identical to those of diploid
-meiosis, see below).
+(and similarly for Yj ). We refer to Yi as the (random) gametic value of individual i, and to
+Vi as the gametic segregation variance of individual i. This formulation is helpful in that
+it highlights that Mendelian segregation occurs independently in both parents to produce
+gametes, which then combine additively to determine the offspring trait value. This
+model applies readily to an autopolyploid population expressing a trait with infinitesimal
+genetics. However, the segregation variance will be determined by the details of tetraploid
+meiosis, which differ from those of diploid meiosis (see below).
 In a finite population, the segregation variance will decay over time as the population
-becomes more inbred. Indeed, Mendelian segregation generates less variation among the
-gametes produced by individual i when that individual is more inbred, as segregation at
-homozygous loci does not generate any variation. When Fi is the inbreeding coefficient
-relative to some ancestral reference population with gametic segregation variance V (i.e.
-the probability that two genes at a locus in individual i sampled without replacement
-are identical by descent), the gametic segregation variance of individual i will be Vi =
-(1 − Fi )V . This holds for both diploids and tetraploids (section S2.5.1, also Moody et al.
-(1993)).
-Scaling of traits across ploidy levels. If we would somewhat naively assume that the
-allelic effects underlying an additive quantitative trait are identical across ploidy levels,
-a tetraploid offspring from a cross between two diploids would yield, on average, a trait
+becomes more inbred (Mendelian segregation at homozygous loci does not generate any
+variation). When Fi is the inbreeding coefficient relative to some ancestral reference
+population with gametic segregation variance V (i.e. the probability that two genes at a
+locus in individual i sampled without replacement are identical by descent), the gametic
+segregation variance of individual i will be Vi = (1 − Fi )V . This holds for both diploids
+and tetraploids (section S2.5.1, also Moody et al. (1993)).
 4
 
-value which is the sum of the parental trait values, with a distribution that depends on
-the variance generated by the process producing unreduced gametes. This is not likely
-to reflect biological reality: tetraploids do not tend to have, for instance, twice the size of
-their diploid progenitors on average. Similarly, the genetic variance at Hardy-Weinberg
-and linkage equilibrium (HWLE) in a large non-inbred tetraploid population will be twice
-that of their diploid counterparts under such assumptions, which is similarly unrealistic
-(Clo, 2022a).
+Scaling of traits across ploidy levels. If we would naively assume that the allelic
+effects underlying an additive trait are identical across ploidy levels, a tetraploid offspring
+from a cross between two diploids would have, on average, a trait value which is the sum
+of the parental trait values. This is not likely to reflect biological reality: tetraploids
+do not tend to have, for instance, twice the size of their diploid progenitors on average.
+Furthermore, the genetic variance at Hardy-Weinberg and linkage equilibrium (HWLE)
+in a large non-inbred tetraploid population will be twice that of their diploid counterparts
+under such assumptions, which is similarly unrealistic (Clo, 2022a).
 In order to account for this, we introduce a scaling factor βk , accounting for the effects
 of polyploidization per se on trait expression in k-ploids. To introduce and interpret this
 parameter, we consider an L-locus additive model, with two alleles (0 and 1) at each
@@ -131,10 +127,10 @@ locus. For a k-ploid individual, let Xi,j be the allele at homolog j of locus i.
 the trait value is determined by
 Where ai,k is the allelic effect of the 1 allele at locus i in k-ploids. The genetic variance
 at HWLE in k-ploids (Ṽz,k ) will then be
-where we refer to Vk as the variance associated with a haploid genome in k-ploids at
 HWLE. If we now assume ai,k = βk ai,2 , i.e. allelic effects in k-ploids are as in diploids,
-but scaled by a factor βk , and assume equal allele frequencies in the different cytotypes,
-we find that
+but scaled homogeneously by a factor βk , and assume equal allele frequencies in the
+different cytotypes, we will have
+
 Note that by definition β2 = 1. Under the infinitesimal model (where ai,2 → 0 as L → ∞),
 we have Ṽz,2 = 2V2 = 2V (Barton et al., 2017), where V is the segregation variance in
 the diploid population. Hence, in the infinitesimal limit we have Vk = βk2 V2 = βk2 V .
@@ -146,25 +142,24 @@ where Vi,k is the gametic segregation variance associated with the production of
 gamete by individual i (see below). The trait value of an individual originating from the
 union of a k-ploid gamete of individual i and an l-ploid gamete from individual j is then
 Zijkl = βk+l (Yi,k + Yj,l )
-i.e., Zijkl is a Gaussian random variate with distribution
+5
+
 Table 2: Gametic segregation variance for haploid and diploid gametes produced by the three cytotypes
 in the mixed-ploidy model. Fi is the inbreeding coefficient of individual i (producing the gamete), whereas
 αk is the probability that a diploid gamete from a k-ploid individual receives two copies of the same
 parental gene. We assume α3 ≤ 1/4 and α4 ≤ 1/6 (see section S2.6).
 
-cytotype
-diploid
-triploid
-tetraploid
 
-For the production of diploid gametes by a k-ploid individual, the segregation variance
-depends not only on the segregation variance in the base population (V ) and the inbreeding coefficient (F ), but also on the detailed assumptions on how these aberrant meiotic
-processes occur. Importantly however, these details only affect the gametic segregation
-variance through the quantity αk , which is the probability that a k-ploid transmits two
-copies of the same homolog to a diploid gamete. Note that α4 , the probability that a
-diploid gamete of a tetraploid individual carries two copies of the same homolog, is the
-probability of double reduction (e.g. Lynch and Walsh (1998) p.57), and is upper bounded
-by 1/6 (Stift et al., 2008). The value of α2 depends on the relative frequency of unreduced
+i.e., Zijkl is a Gaussian random variate with distribution
+Zijkl ∼ N
+
+The gametic segregation variance associated with the production of diploid gametes
+depends not only on the segregation variance in the base population (V ) and the inbreeding coefficient (F ), but also on the detailed assumptions of how the meiotic process
+takes place. Importantly however, the latter only affect the gametic segregation variance
+through the quantity αk , which is the probability that a k-ploid transmits two copies
+of the same homolog to a diploid gamete. Note that α4 , the probability that a diploid
+gamete of a tetraploid individual carries two copies of the same homolog, is the probability of double reduction (e.g. Lynch and Walsh (1998) p.57), and is upper bounded by
+1/6 (Stift et al., 2008). The value of α2 depends on the relative frequency of unreduced
 gamete formation through so-called first and second division restitution (Bretagnolle and
 Thompson, 1995; De Storme and Geelen, 2013). We summarize the expressions for the
 gametic segregation variance in table 2. Detailed derivations can be found in section S2.6.
@@ -182,17 +177,17 @@ equilibrium between mutation, drift and stabilizing selection, segregating genet
 that affect the trait will be equally likely to have positive or negative allelic effects (Hayward and Sella, 2022). At equilibrium, any diploid individual with trait value z − z̄2 > 0
 then carries an excess of variants with positive allelic effects on the trait, and this excess
 should be exaggerated in its polyploid offspring, which carry twice the excess of their
-parent on average, unless allelic effects are scaled exactly by one half (i.e. β4 = 1/2).
-In other words, the mixed-ploidy model is not ‘coordinate free’ as the basic infinitesimal
-model is: eq. (7) only makes sense when the trait values that are modeled correspond to
-deviations from the mean values associated with an underlying equilibrium state.
+parent on average. In other words, the mixed-ploidy model is not ‘coordinate free’ as
+the basic infinitesimal model is: eq. (7) only makes sense when the trait values that are
+modeled correspond to deviations from the mean values associated with an underlying
+equilibrium state.
 Recursions for inbreeding coefficients We can simulate the mixed-ploidy infinitesimal model for a finite population through a straightforward extension of the approach
-outlined in Barton et al. (2017), provided we can efficiently track inbreeding and coancestry coefficients across the different ploidy levels. Denoting the parents of individual i by
-
 6
 
-k and l, the recursion for the inbreeding coefficients in the mixed-ploidy case becomes
-
+outlined in Barton et al. (2017), provided we can efficiently track inbreeding and coancestry coefficients across the different ploidy levels. Denoting the parents of individual i by
+k and l, the recursion for the inbreeding coefficients in the mixed-ploidy case becomes
+where Fk∗ = αck +(1−αck )Fk (section S2.5.1). The recursion for the coancestry coefficients
+is given by
 where the sums are over individuals in the parental population, and where Pik ∈ {0, 31 , 12 , 23 , 1}
 is the probability that a gene copy in i is derived from parent k.
 
@@ -211,21 +206,25 @@ thus produced survives until the next generation with a probability determined b
 trait value. In the basic model, random selfing is allowed (but see below for a model
 with self-incompatibility). We assume the trait is under directional selection, with fitness
 w(z) = eγ(z−θ) , where γ is the intensity of directional selection and θ is the trait value
-for which the growth rate of the population becomes positive. Throughout the paper, we
-define establishment as reaching a population of size 100.
+for which the growth rate of the island population becomes positive. As the population
+becomes better adapted, eventually, some form of density regulation must limit its growth.
+We ignore density regulation throughout and focus on the initial establishment phase,
+defining establishment as reaching a population of size 100.
 Again following Barton and Etheridge (2018), we simulate the model by first calculating the fitness of each parental pair (i, j), which is the expected fitness of offspring of
 this pair
+The expectation on the right hand side can be calculated from eq. (7) using the momentgenerating function of the Gaussian. Having calculated the wij , the number of offspring
+7
 
-The expectation on the right hand side can be calculated from eq. (7) using the momentgenerating function of the Gaussian. Having calculated the wij , thePnumber of offspring
+P
 surviving into the next generation is calculated as N ∗ (t + 1) =
 i,j wij /N (t). Next,
-N ∗ (t + 1) offspring individuals are sampled by sampling parental pairs and gametes
+∗
+N (t + 1) offspring individuals are sampled by sampling parental pairs and gametes
 kl
 proportional to wij
 , and sampling a trait value in accordance with eq. (7).
-7
 
-Self-fertilization and assortative mating
+Self-fertilization and assortative mating
 We model partial self-fertilization by assuming that a proportion σci of the ovules of
 individual i with ploidy level ci are fertilized by self-pollen, while the remaining proportion 1 − σci are fertilized by randomly sampled pollen (which may be self-pollen with
 probability 1/N ). That is, the expected number of offspring from individual i as mother
@@ -234,10 +233,12 @@ surviving after selection is
 We hence assume no pollen limitation (all outcrossing ovules are fertilized), and no pollen
 discounting (the probability of being a father is unaffected by an individual’s selfing rate).
 When modeling self-incompatibility, we assume there is no intrinsic disadvantage to selfincompatibility, except when there is only a single individual in the population, i.e.
+if N = 1
 We model assortative mating by ploidy level in a similar way, assuming that a fraction
 ρci of the ovules of individual i are fertilized by pollen sampled from the ci -ploid portion
 of the population, while a fraction 1 − ρci is fertilized by pollen randomly sampled from
 the entire population.
+
 Implementation and availability
 Individual-based simulations for the mixed-ploidy infinitesimal model were implemented
 in Julia (Bezanson et al., 2017). Documented code and simulation notebooks are available
@@ -251,14 +252,6 @@ assumptions on the genetic variance of neotetraploids affect the probability of 
 establishment in a marginal habitat relative to diploid establishment, starting from a
 single maladapted migrant individual. We then study how continuous migration from a
 predominantly diploid maladapted source population affects the relative establishment
-probability, assessing the impact of migration load and MCE. Finally, we consider the
-impact of prezygotic isolation mechanisms
-establishment in the marginal
-p on tetraploid
-p
-habitat. Throughout, we assume β3 = 2/3, β4 = 1/2 and α2 = α3 = α4 = 0, unless
-stated otherwise.
-
 8
 
 Figure 1: The infinitesimal model in autotetraploids. Comparisons are shown for the decay of the
@@ -268,29 +261,34 @@ Simulations of a model with maximal double reduction (α4 = 1/6) (for all loci i
 windows of 20 generations every 10 generations. The black line marks e−t/4N . We assume N = 250 and
 Vz (0) = 1.
 
+probability, assessing the impact of migration load and MCE. Finally, we consider the
+impact of prezygotic isolation mechanisms
+establishment in the marginal
+p
+p on tetraploid
+habitat. Throughout, we assume β3 = 2/3, β4 = 1/2 and α2 = α3 = α4 = 0, unless
+stated otherwise. Note that while the former assumption is a natural default, the latter
+is not easy to motivate, and we do investigate the impact of the α parameters in some
+detail below.
+
 Autotetraploid and mixed-ploidy infinitesimal model
 We evaluate the accuracy of the autotetraploid infinitesimal model as an approximation
 to the evolution of a quantitative trait determined by L additive loci. We find that the
 infinitesimal model with inbreeding generally yields accurate predictions for the evolution
 of the genetic variance when the number of loci is sufficiently large (L ≥ 100, say, figs. 1
-and S1). Furthermore, we confirm that, in the absence of double reduction, the decay in
-genetic variance due to inbreeding after a time t is well-predicted by e−t/4N (fig. 1A), as
-expected from the results of Arnold et al. (2012). As predicted, double reduction leads to
-an immediate increase in genetic variance (as it increases the segregation variance), but
-leads to accelerated inbreeding, causing faster loss of genetic variance in the long-term
-(figs. 1 and S1). As noted by Arnold et al. (2012), the loss of genetic variation in the
-presence of double reduction cannot, however, be described by a single long-term effective
-population size.
-Simulations for the mixed-ploidy model further confirm the correctness of our infinitesimal approximation (fig. S2), yielding accurate predictions for the evolution of the
-phenotypic variance across ploidy levels and for different assumptions regarding the scaling of allelic effects (β parameters) and unreduced gamete formation (α parameters).
+and S1). Furthermore, we confirm that, in the absence of double reduction, the decay
+in genetic variance due to inbreeding after a time t is well-predicted by e−t/4N (fig. 1A),
+as expected from the results of Arnold et al. (2012). As predicted, double reduction (i.e.
+α4 > 0) leads to an immediate increase in genetic variance (as it increases the segregation
+variance), but leads to accelerated inbreeding, causing faster loss of genetic variance in
+the long term (figs. 1 and S1). Simulations for the mixed-ploidy model further confirm
+the correctness of our infinitesimal approximation (fig. S2).
 It is worth noting that, although inbreeding is slower in autotetraploids than in
 diploids for the same population size, the tetraploid fraction of a diploid-dominated
 mixed-ploidy population will have an equal or higher average inbreeding coefficient (fig. S3).
 This is because in such a population, triploid and tetraploid individuals mostly arise from
 gametes formed by diploid individuals, or by polyploid individuals with very recent diploid
-ancestry (on average 1 + u + 2v generations ago for tetraploids, and 1 + 32 (u + 2v) generations ago for triploids, see section S2.3). As a result, the polyploid subpopulations will
-show an average relatedness similar to that of the diploid population and not evolve as an
-isolated higher-ploidy population would. A nonzero probability of producing IBD diploid
+ancestry (on average 1 + u + 2v generations ago for tetraploids, and 1 + 23 (u + 2v) generations ago for triploids, see section S2.3). A nonzero probability of producing IBD diploid
 gametes (αk > 0) will then further increase the inbreeding coefficient in the tetraploid and
 triploid fraction of the population relative to their diploid progenitors (fig. S3). Therefore, as long as diploids dominate, harboring some fraction of the gene pool in polyploid
 9
@@ -334,7 +332,7 @@ of maladaptation, respectively. We shall scale our results accordingly, assuming
 throughout, and shall assume θ = 2, so that the average trait value has to increase by
 two standard deviations to achieve a positive growth rate. The relative establishment
 probability for different cytotypes will of course also depend on how allelic effects scale
-across ploidy levels (β).
+across ploidy levels (β4 ).
 We find that reduced inbreeding in tetraploids substantially increases the establishment probability of tetraploids relative to diploids across a large part of the parameter
 space (fig. 2). Indeed, in the case where allelic effects
 p are scaled across ploidy levels to
@@ -345,18 +343,19 @@ gradient (fig. 2A). As the segregation variance and initial trait value are the 
 10
 
 Figure 3: Establishment with recurrent migration. (A) Expected time until a population is established
-in the novel habitat for increasing rates of migration and different degrees of maladaptation (z̄s , the
-mean trait value in the source population). Results are shown for the case with αk = 0 for k = 2, 3, 4.
-(B) Proportion of simulation replicates in which tetraploids established. The dots connected by solid
-lines show simulation results with αk = 0, whereas the dots connected by dashed lines show simulation
-results with α2 = 1/2, α3 = 1/4 and α4 = 1/6 (i.e. maximum α). The solid horizontal lines mark
-p4 π 4
-(p4 π4 +p2 π2 ) , where p2 and p4 are the establishment probabilities for a single diploid and a single tetraploid
-individual in the absence of migration (as in fig. 2, but with unreduced gamete formation included). The
-dashed horizontal line marks the proportion of tetraploid migrants (i.e. the proportion of tetraploids at
-equilibrium in the source population, ≈ 0.3%). The baseline predictions (horizontal lines) are based on
-5 × 106 simulation replicates. All other results are based on 50.000 replicate simulations. We assume
-γ = 0.25 and u = v = 0.05.
+in the marginal habitat for increasing rates of migration and different degrees of maladaptation (θ).
+Results are shown for the case with αk = 0 for k = 2, 3, 4. (B) Proportion of simulation replicates in
+which tetraploids established. The dots connected by solid lines show simulation results with αk = 0,
+whereas the dots connected by dashed lines show simulation results with α2 = 1/2, α3 = 1/4 and α4 = 1/6
+π4
+, where p2 and p4 are the establishment
+(i.e. maximum α). The solid horizontal lines mark (p4 πp44+p
+2 π2 )
+probabilities for a single diploid and a single tetraploid individual in the absence of migration (as in fig. 2,
+but with unreduced gamete formation included). The dashed horizontal line marks the proportion of
+tetraploid migrants (i.e. the proportion of tetraploids at equilibrium in the source population, ≈ 0.3%).
+The baseline predictions (horizontal lines) are based on 5 × 106 simulation replicates. All other results
+are based on 50.000 replicate simulations. We assume γ = 0.25 and u = v = 0.05.
 
 these simulations, this is a consequence only of the reduced rate of inbreeding, which slows
 down the exhaustion of the genetic variance carried by the initial migrant individual.
@@ -375,94 +374,94 @@ on the establishment probability, but only when β4 is close to 0.5 (i.e. indivi
 have almost half the effect size in tetraploids compared to diploids) is the benefit of the
 slower rate of inbreeding in tetraploids canceled (fig. 2B,C).
 
-Establishment under recurrent migration
+Establishment with recurrent migration
 We next consider establishment in the new habitat when there is a continuous influx
 of migrants (m migrants per generation on average) coming from a large, noninbred
 and predominantly diploid source population at cytotype equilibrium. In this setting,
 establishment is certain to happen eventually, and we are interested in the probability
-that a tetraploid population establishes before a diploid one does. More specifically, we
-are interested in how maladaptive gene flow and MCE (which both increase with m)
-affect the relative establishment probability and the time until establishment.
+that a tetraploid population establishes before a diploid one does.
+We hypothesized that two counteracting processes affect the probability of autotetraploid establishment in this scenario. On the one hand, increased migration will increase the probability that an otherwise likely successful tetraploid migrant suffers from
 11
 
-Figure 4: Evolution of the mean inbreeding coefficient and trait value across establishment replicates,
-averaged by population size, for increasing rates of migration (m) from the predominantly diploid source
-population. All results are based on 1000 succesful establishment replicates. We assume equal equilibrium
-variance across ploidy levels and γ = 0.25, θ = 2, 2V = 1 and u = v = 0.05. The m = 0 simulations are
-seeded with a single diploid or tetraploid individual with trait value 0, and assume u = v = 0.
+Figure 4: Evolution of the mean inbreeding coefficient and trait value across simulation replicates
+where diploids (blue) or tetraploids (orange) established eventually. Average F and z by population
+size are shown for increasing rates of migration (m) from the predominantly diploid source population.
+All results are based on 1000 succesful establishment replicates. We assume equal equilibrium variance
+across ploidy levels and γ = 0.25, θ = 2, 2V = 1 and u = v = 0.05. The m = 0 simulations are seeded
+with a single diploid or tetraploid individual with trait value 0, and assume u = v = 0.
 
-We hypothesized that two counteracting processes affect the probability of autotetraploid establishment in this scenario. On the one hand, increased migration will increase the probability that an otherwise likely successful tetraploid migrant suffers from
 MCE in the early generations while the population size is low, because migrants are likely
 to be diploid. On the other hand, tetraploids are more strongly reproductively isolated
 from a typical migrant, so that a tetraploid subpopulation should be less prone to maladaptive gene flow. Hence, conditional on evading MCE, they should be able to adapt
 to the new habitat at a rate which is not strongly affected by the migration rate. This
 contrasts with diploids, which interbreed freely with maladapted migrants, resulting in a
-pulling back of the trait mean towards that of the source population. However, MCE is
-expected to be stronger than the latter effect, precluding the establishment of tetraploids
-as m increases. Lastly, as the mean trait value on the island increases in diploids during
-adaptation, newly formed tetraploids on the island will, on average, have more extreme
-phenotypes than diploid offspring when β4 > 1/2, which may also aid their establishment
-(irrespective of m).
+pulling back of the trait mean towards that of the source population. Lastly, as the mean
+trait value on the island increases in diploids during adaptation, tetraploid offspring will
+have more extreme phenotypes on average than diploid offspring when β4 > 1/2, which
+may also aid their establishment (irrespective of m).
 As expected, we find that the time to establishment (of a population of either ploidy
 level) first decreases with increasing migration as a result of a larger influx of potentially
-succesful migrants, but later increases with increasing migration as a result of swamping
-by gene flow (fig. 3A). Importantly, the tetraploid establishment probability is considerably larger than the expected proportion of tetraploid migrants over a large part of
-the parameter range (fig. 3B, black dashed line). Furthermore, we find that for small
-migration rates, the probability that tetraploids establish rather than diploids can be
-larger than expected based on the establishment probabilities in the absence of migration
-(colored lines in fig. 3), depending on how maladapted migrant individuals are. This
-suggests that maladaptive gene flow in diploids can increase the probability of tetraploid
-establishment. However, at the same time we find that the tetraploid establishment
-probability declines monotonically with m, which highlights the negative effects of MCE.
-Together, these results confirm the view that, while cytotype differences are an effective
-barrier to maladaptive gene flow, this advantage to establishment is outweighed by the
-
-12
-
-negative effects of MCE.
+succesful migrants, but later increases with increasing migration due to swamping by
+gene flow (fig. 3A). Importantly, the tetraploid establishment probability is considerably
+larger than the expected proportion of tetraploid migrants over a large part of the parameter range (fig. 3B, black dashed line). Furthermore, we find that for small migration
+rates, the probability that tetraploids establish rather than diploids can be larger than
+expected based on the establishment probabilities in the absence of migration (colored
+lines in fig. 3), depending on how maladapted migrant individuals are. This suggests that
+maladaptive gene flow in diploids can increase the probability of tetraploid establishment.
+However, at the same time we find that the tetraploid establishment probability declines
+monotonically with m, which highlights the negative effects of MCE. Together, these
+results confirm the view that, while cytotype differences are an effective barrier to maladaptive gene flow, this advantage to establishment is outweighed by the negative effects
+of MCE.
 Our simulations further show that the mechanism of unreduced gamete formation (as
 determined by the α2 parameter) can affect the establishment probability (fig. 3B, dashed
 lines). This is mainly because the phenotypic variance of a newly formed tetraploid is
-increased by a factor (1+α2 ), thereby increasing the chance that a newly formed tetraploid
-is well-adapted to the marginal habitat.
+
+12
+
+increased by a factor (1 + α2 ), thereby increasing the chance that a tetraploid migrant
+is well-adapted to the marginal habitat. The rate of double reduction (α4 ) has a more
+limited effect (fig. S4).
 Established diploid populations are more inbred on average than established tetraploids
 when migration is weak, but the difference is slight except when there is no migration
 at all (fig. 4, top row). For stronger migration (m > 0.1), the opposite holds. This is a
 result of two interacting processes. On the one hand, inbreeding is slower in tetraploids,
-so that during adaptation and establishment from a single or limited number of barely
-inbred individuals, the inbreeding coefficient is expected to increase less rapidly conditional on the event of tetraploid establishment. On the other hand, migration mostly
-introduces unrelated diploids, which cross more readily with diploids than tetraploids, so
-that migration reduces the average relatedness in established diploid populations much
-more than in established tetraploid populations.
-Conditional on establishment, tetraploids have a higher trait mean both in the absence of migration and for moderate to strong migration, but not when migration is
-weak (fig. 4, bottom row). In the absence of migration, this is a consequence of the
-reduced rate of inbreeding and the resulting increased adaptive potential of tetraploids.
-Another consequence of this is that, in the absence of migration, the average trait value
-in tetraploids at low population size (conditional on eventual establishment) is lower than
-that in diploids. This is because, in order to adapt before genetic variation is exhausted,
-tetraploids need not increase the trait mean as much as diploids do in the first couple of
-generation.
-It is clear from fig. 4 that migration is not only maladaptive, but also introduces
-genetic variation upon which selection can act, thereby increasing the mean trait value at
-the time of establishment for both tetraploids and diploids. Interestingly, when migration
-is strong, tetraploids have markedly larger phenotypic values than diploids (m = 1 in
-fig. 4). Diploids suffer strongly from maladaptive gene flow when the population size is
-low, while tetraploids enjoy some reproductive isolation. Furthermore, in these replicates,
-tetraploids tend to emerge and rise in frequency at larger population sizes on the island,
-and hence tend to derive from diploids that already experienced several generations of
-selection. Neotetraploids deriving from parents with z > 0 will have more extreme
-phenotypes on average (see methods) and hence be better adapted.
+so that during adaptation and establishment from a single or limited number of outbred
+individuals, the inbreeding coefficient is expected to increase less rapidly conditional on
+the event of tetraploid establishment. On the other hand, migration mostly introduces
+unrelated diploids, which cross more readily with diploids than tetraploids, reducing the
+average relatedness more strongly in established diploid than in tetraploid populations.
+Conditional on establishment, tetraploids have a higher trait mean both in the absence
+of migration and for moderate to strong migration, but not when migration is weak
+(fig. 4, bottom row). In the absence of migration, this is a consequence of the reduced
+rate of inbreeding and the resulting increased adaptive potential of tetraploids. Another
+consequence of this is that the average trait value in tetraploids at low population size
+(conditional on eventual establishment) is lower than that in diploids. This is because,
+in order to adapt before genetic variation is exhausted, tetraploids need not increase the
+trait mean as much as diploids do in the first couple of generations. The similar trait
+means for weak migration suggest that establishment depends mostly on the chance pick
+of a well-adapted migrant (note that the m = 0 simulations in fig. 4 assume the initial
+migrant has z = 0, whereas the m = 0.01 simulations assume the initial trait value to be
+Gaussian). When migration is strong, tetraploids have markedly larger trait values than
+diploids (m = 1 in fig. 4), showing that diploids suffer strongly from maladaptive gene
+flow when the population size is low, while tetraploids enjoy some reproductive isolation.
+Furthermore, in these replicates, tetraploids tend to emerge and rise in frequency at
+larger population sizes on the island, and hence tend to derive from diploids that already
+experienced several generations of selection. These neotetraploids, deriving from diploid
+parents with z > 0, will have more extreme phenotypes on average (see methods) and
+hence be better adapted.
 
-Loss of self-incompatibility and assortative mating
-We now briefly examine the effects of prezygotic isolation mechanisms that may be associated with polyploidization and that could alleviate MCE. Plausible sources of prezygotic
-isolation include assortative mating by cytotype and self-fertilization.
+Loss of self-incompatibility, selfing and assortative mating
 When polyploidization disrupts an existing SI system (see e.g. Robertson et al. (2011);
-Zenil-Ferguson et al. (2019); Novikova et al. (2023)), we expect that tetraploids suffer less
-from MCE, as an appreciable portion of their ovules are now assured to be fertilized by
-diploid gametes, irrespective of the composition of the population. At the same time, we
-expect that accelerated inbreeding in selfing tetraploids diminishes the adaptive advantage
-of tetraploids that we found above. As shown in fig. 5, we find that when polyploidization
-is associated with the loss of a SI system (i.e. when diploids are self-incompatible, but
+Zenil-Ferguson et al. (2019); Novikova et al. (2023)), we expect that tetraploids suffer
+less from MCE, as some portion of their ovules are now assured to be fertilized by diploid
+gametes, irrespective of the composition of the population. At the same time, we expect
+that accelerated inbreeding in selfing tetraploids diminishes the adaptive advantage of
+tetraploids. We find that when polyploidization is associated with the loss of a SI system (i.e. when diploids are self-incompatible, but tetraploids are not), tetraploids have a
+strongly increased establishment probability (fig. 5). This is the case even when the selfing rate σ in tetraploids is zero (in which case, under our modeling assumptions, there is
+only random selfing, i.e. the realized selfing rate in tetraploids is 1/N ). Furthermore, we
+find that when the selfing rate is sufficiently high (≥ 0.4 in fig. 5A), the relative establishment probability of tetraploids increases with increasing migration rate. In this regime,
+the increased strength of MCE due to increased migration and increased reproductive
+assurance in diploids is compensated by the stronger maladaptive gene flow experienced
 13
 
 Figure 5: (A) Establishment with recurrent migration selfing in polyploids. The solid lines show the
@@ -473,28 +472,16 @@ migration and assortative mating by cytotype. The rate of assortative mating is 
 for k = 2, 3, 4, where ρk is the probability that an ovule from a k-ploid mother is pollinated by a kploid father. All results are based on 25.000 replicate simulations. We assume γ = 0.25, θ = 1.5 and
 u = v = 0.05.
 
-tetraploids are not), tetraploids have a strongly increases establishment probability. This
-is the case even when the selfing rate σ in tetraploids is zero (in which case, under
-our modeling assumptions, there is only random selfing, i.e. the realized selfing rate in
-tetraploids is 1/N ).
-Besides reducing MCE, selfing is also expected to simultaneously reduce the effects of
-maladaptive gene flow, so we would expect that tetraploid establishment is promoted with
-increasing migration rates. However, increased migration would at the same time alleviate
-the issue of reproductive assurance in diploids, as a diploid migrant is more likely to find a
-compatible mate. We find that when the selfing rate is sufficiently high (≥ 0.4 in fig. 5A),
-the relative establishment probability of tetraploids increases with increasing migration
-rate. In this regime, the increased strength of MCE due to increased migration and
-increased reproductive assurance in diploids is compensated by the stronger maladaptive
-gene flow experienced by diploids.
+by diploids.
 Self-incompatibility is clearly a strong disadvantage when colonizing a novel habitat,
 as a self-incompatible population of size one can never reproduce. However, even when
 diploids are self-compatible, polyploids may still have increased rates of self-fertilization
-(for instance due to altered flower morphology). As an illustration, fig. 5A also shows
-results where diploids are assumed to be self-compatible with σ = 0 in diploids (i.e.
-random selfing, dashed transparent lines). The tetraploid establishment probability is
-still markedly increased when σ ≥ 0.4, and as for the simulations with self-incompatibility,
+(for instance due to altered flower morphology). For the sake of comparison, fig. 5A
+also shows results where diploids are assumed to be self-compatible with σ2 = 0 (i.e.
+random selfing, dashed transparent lines). The tetraploid establishment probability is still
+markedly increased when σ4 ≥ 0.4, and as for the simulations with self-incompatibility,
 migration still promotes the probability of tetraploid establishment when the selfing rate
-in polyploids is sufficiently large.
+in polyploids is sufficiently large compared to the diploid selfing rate.
 Another prezygotic isolating mechanism that has often been considered relevant for
 explaining tetraploid establishment is assortative mating by ploidy level, where ovules
 from a tetraploid are more likely to be fertilized by pollen coming from a tetraploid –
@@ -502,30 +489,43 @@ irrespective of the trait values of these individuals. Clearly, assortative mati
 the probability of tetraploid establishment (fig. 5B), although not as strongly as the
 loss of an SI system does. Again, we find that for some parameter values (roughly
 ρ ≥ 0.4), assortative mating may be strong enough so that tetraploid establishment
-14
-
-increases with increasing migration rates, suggesting that tetraploids evade maladapive
-gene flow sufficiently to overcome MCE.
+increases with increasing migration rates, suggesting that tetraploids evade maladapive
+gene flow sufficiently to overcome MCE. Note that the case ρ = 1 amounts to complete
+prezygotic isolation.
 
 Discussion
 The observation that polyploid populations tend to inhabit more extreme habitats or
 occur at the edge of the range of their conspecific diploids has spurred considerable
-interest among botanists and evolutionary biologists (Rice et al., 2015; Kolář et al.,
-2017; Van de Peer et al., 2021; Griswold, 2021; Mortier et al., 2024). An important
-question is whether such patterns emerge because polyploids are somehow more tolerant
-to extreme environmental conditions (i.e. they somehow are intrinsically more fit than
-diploids at the range margin), or whether other aspects of the population dynamics of
-mixed-ploidy populations may favor the establishment of polyploid subpopulations in
-peripheral habitats.
+interest among botanists and evolutionary biologists (Rice et al., 2015; Kolář et al., 2017;
+Van de Peer et al., 2021; Griswold, 2021; Mortier et al., 2024). An important question is
+whether such patterns emerge because polyploids are somehow more tolerant to extreme
+environmental conditions (i.e. they somehow are intrinsically more fit than diploids in
+
+14
+
+marginal habitats), or whether other aspects of the population dynamics of mixed-ploidy
+populations may favor the establishment of polyploid subpopulations.
 In this study, we worked out the infinitesimal model for an additive polygenic trait
-in autotetraploids and mixed-ploidy populations. We used the mixed-ploidy infinitesimal model to study the establishment of tetraploids in a marginal habitat by means of
-individual-based simulations. Assuming the trait to be under directional selection in the
-marginal habitat, and migration of maladapted individuals from a predominantly diploid
-source, we sought to determine the conditions under which tetraploids are more likely
-to establish a stable population. Importantly, we assume no intrinsic advantage of polyploids in the marginal habitat, i.e. the expected fitness of a migrant individual is the
-same regardless of the ploidy level. Differences in establishment probabilities are hence
-caused solely by aspects of autopolyploid genetics and the barrier to gene flow between
-subpopulations of different ploidy levels.
+in autotetraploids and mixed-ploidy populations and used it to study the establishment
+of tetraploids in a marginal habitat by means of individual-based simulations. Assuming
+the trait to be under directional selection in the marginal habitat, and migration of
+maladapted individuals from a predominantly diploid source, we sought to determine the
+conditions under which tetraploids are more likely to establish a stable population.
+Importantly, we assume no intrinsic advantage or disadvantage of polyploids in the
+marginal habitat, i.e. the expected fitness of a migrant individual is the same regardless
+of the ploidy level. Differences in establishment probabilities are hence caused solely by
+aspects of autopolyploid genetics and the barrier to gene flow between subpopulations
+of different ploidy levels. This is undoubtedly unrealistic. For instance, neopolyploids
+are likely to suffer intrinsic fertility issues due to meiotic irregularities associated with
+multivalent formation (Yant et al., 2013; Novikova et al., 2023). Furthermore, in our simulations, we have focusedpon the case where the equilibrium genetic variance is constant
+across cytotypes (β4 = 1/2 in our model). It would be very interesting to experimentally assess whether typical quantitative traits in mixed-ploidy populations follow
+approximately the mixed-ploidy infinitesimal model we outlined in this paper, and to
+actually estimate how the variance scales across ploidy levels. In addition, we have assumed a relatively high and constant rate of unreduced gamete formation u and triploid
+fertility v in all our simulations (5%), whereas these are known to be variable across the
+population, and at least in part genetically determined (Kreiner et al., 2017a; Clo et al.,
+2022). We ignore such complications, and hence do not take the actual establishment
+probabilities very serious, focusing instead on how migration load and prezygotic isolation
+affect the tetraploid establishment probability.
 When migration is weak, succesful establishment is not affected by maladaptive gene
 flow and we can treat establishment in the marginal habitat as independent trials of
 founding a population from a single individual. In order to avoid extinction, the population has to increase the trait mean by a sufficient amount before the genetic variation
@@ -536,163 +536,61 @@ gives a rare tetraploid migrant a larger adaptive potential than a diploid migra
 if the genetic variance carried by the founding individual is the same.
 In the presence of maladaptive gene flow, a nascent tetraploid subpopulation suffers
 from MCE, and although polyploids are more reproductively isolated from a typical
-migrant (and hence suffer less maladaptive gene flow), MCE will preclude polyploid
-establishment as the rate of migration grows. Nevertheless, it is important to remark
-that, the probability of tetraploid establishment in the marginal habitat can be an order
-of magnitude higher than expected based on the frequency of tetraploid migrants (i.e. is
-roughly O(u) instead of O(u2 )) when migration is sufficiently weak and maladaptation
-sufficiently high.
+migrant (and hence suffer less maladaptive gene flow), MCE will increasingly hamper the
+establishment of tetraploids as the rate of migration grows. Nevertheless, it is important
+to remark that despite MCE, the probability of tetraploid establishment in the marginal
+habitat can be an order of magnitude higher than expected based on the frequency of
+tetraploid migrants (i.e. is roughly O(u) instead of O(u2 )) when migration is sufficiently
+weak and maladaptation sufficiently high.
 Additional sources of prezygotic isolation such as selfing and assortative mating by
 cytotype may further boost the probability of tetraploid establishment. These processes
 interact with the rate of migration, so that when selfing/assortative mating occurs above
 some threshold rate, the tetraploid establishment probability increases with increasing
-migration rates, whereas below the threshold it decreases with increasing migration pres-
-
-15
+migration rates, whereas below the threshold it decreases with increasing migration pres15
 
 sure. In the latter case, the advantage that tetraploids have when it comes to avoiding
 maladaptive gene flow is not strong enough to overcome the effects of MCE, whereas in
 the former case it is.
-A major weakness of the present work is that we have ignored inbreeding depression and dominance throughout. Including dominance in the infinitesimal framework
-is already challenging for diploids (requiring the tracking of 4-way identity coefficients;
-Barton et al. (2023)), and appears intractable for higher ploidy levels. Nevertheless, autopolyploidy has important consequences whenever dominance is relevant, as in the case
-of inbreeding depression. Indeed, when inbreeding depression is due to recessive deleterious variation, it should be less expressed in polyploids simply because, for the same
-allele frequency, homozygous genotypes are much rarer in polyploids than in diploids at
-Hardy-Weinberg equilibrium. When there is indeed deleterious recessive variation, inbreeding during the establishment process should therefore incur a higher fitness cost in
-diploids relative to tetraploids, and hence further increase the probability of tetraploid
-establishment. In addition, inbreeding itself occurs at a slower rate in polyploids, further
-decreasing inbreeding depression during establishment.
-Griswold (2021) performed a study somewhat similar to ours, but did include inbreeding depression. In that work, the author focused on the case where local fitness is
-determined by a single biallelic locus, and investigated the interaction between inbreeding
-depression and migration load (where inbreeding depression is modeled as an immediate
-fitness reduction in offspring produced by selfing). In his model, inbreeding depression
-is different between cytotypes, so that tetraploids are able to produce more offspring
-through selfing relative to diploids, who have to rely more on outcrossing. However, outcrossing incurs maladaptive gene flow, and thereby puts the diploids at a disadvantage.
-The author found that autotetraploids can establish when adaptation in the peripheral
-habitat is conferred by recessive alleles (so that migration load is expressed when migrant
-alleles are rare) and when inbreeding depression in tetraploids is lower than in diploids.
-Note that, at the same time, polyploids are expected to accumulate a larger mutation
-load when deleterious variation is recessive due to less efficient purging, and this may
-yield increased inbreeding depression. These effects have been studied in the context of
-range expansions (Booker and Schrider, 2024). However, this applies only to polyploids
+A major weakness of the present work, and an important caveat, is that we have
+ignored inbreeding depression and dominance throughout. Including dominance in the
+infinitesimal framework is already challenging for diploids (requiring the tracking of fourway identity coefficients; Barton et al. (2023)), and appears intractable for higher ploidy
+levels. However, autopolyploidy has important consequences whenever dominance is relevant, as in the case of inbreeding depression (Ronfort, 1999). Indeed, when inbreeding
+depression is due to recessive deleterious variation, it is expected to be less expressed in
+neotetraploids because homozygous genotypes should be much rarer than in their diploid
+parents. When there is indeed deleterious recessive variation, inbreeding during the establishment process should therefore incur a higher fitness cost in diploids relative to
+tetraploids, and hence further increase the probability of tetraploid establishment. How
+this plays out depends on the rate of inbreeding, which will differ between cytotypes.
+In outcrossing populations, inbreeding occurs at a slower rate in tetraploids, further
+decreasing inbreeding depression and aiding tetraploid establishment. However, when
+polyploidization is associated with increased selfing (as when it disrupts an existing SI
+system), increased inbreeding depression in autotetraploids may prevent their establishment.
+Dominance and inbreeding depression may strongly affect the complicated relationship between selfing, migration load and tetraploid establishment probability. Griswold
+(2021) performed a study somewhat similar to ours, but did include a simple model of
+inbreeding depression. The author focused on the case where local fitness is determined
+by a single biallelic locus, and investigated the interaction between inbreeding depression
+and migration load (where inbreeding depression is modeled as a fixed fitness reduction
+in offspring produced by selfing). In his model, inbreeding depression is different between
+cytotypes (assuming stronger inbreeding depression in diploids), so that tetraploids are
+able to produce more offspring through selfing relative to diploids, who have to rely more
+on outcrossing. However, outcrossing incurs maladaptive gene flow, and thereby puts the
+diploids at a disadvantage. He found that autotetraploids can establish when adaptation
+in the peripheral habitat is conferred by recessive alleles (so that migration load is expressed when migrant alleles are rare) and when inbreeding depression in tetraploids is
+lower than in diploids. It would be very interesting to combine the infinitesimal framework with some form of inbreeding depression to investigate in a somewhat more realistic
+model whether the combination of maladaptive migration and differential inbreeding depression could explain the prevalence of polyploid subpopulations at range edges.
+In the long term, polyploids are expected to accumulate a larger mutation load when
+deleterious variation is recessive due to less efficient purging, and this may yield increased
+inbreeding depression (Vlček et al., 2025). These effects have been studied in the context
+of range expansions (Booker and Schrider, 2024). However, this applies only to polyploids
 that have been established for a long time. In our case, polyploids are always recently
-descended from diploid ancestors, so they will not have accumulated more deleterious
-recessives than their diploid counterparts, in which case polyploidy would lead to reduced
-rather than increased inbreeding depression (as discussed above).
-
-Acknowledgements
-I thank Christelle Fraı̈sse for employment, encouragement and feedback. I acknowledge
-funding from the Research Foundation – Flanders (FWO, Junior Postdoctoral Fellowship
-1272625N).
-
-References
-B. Arnold, K. Bomblies, and J. Wakeley. Extending coalescent theory to autotetraploids.
-Genetics, 192(1):195–204, 2012.
-
+descended from diploid ancestors, and they will not have accumulated more deleterious
+mutations than their diploid counterparts, so that polyploidy leads to reduced rather than
+increased inbreeding depression (as discussed above). An interesting picture emerges
+here however, where the different effects of polyploidy different timescales lead to an
+equilibrium situation that may characterize mixed-ploidy populations in nature: although
+polyploids may enjoy enhanced establishment probabilities in peripheral habitats, the
 16
 
-E. Baack. To succeed globally, disperse locally: effects of local pollen and seed dispersal
-on tetraploid establishment. Heredity, 94(5):538–546, 2005.
-N. H. Barton and A. Etheridge. Establishment in a new habitat by polygenic adaptation.
-Theoretical Population Biology, 122:110–127, 2018.
-N. H. Barton, A. M. Etheridge, and A. Véber. The infinitesimal model: Definition,
-derivation, and implications. Theoretical population biology, 118:50–73, 2017.
-N. H. Barton, A. M. Etheridge, and A. Véber. The infinitesimal model with dominance.
-Genetics, 225(2):iyad133, 2023.
-J. Bezanson, A. Edelman, S. Karpinski, and V. B. Shah. Julia: A fresh approach to
-numerical computing. SIAM review, 59(1):65–98, 2017.
-W. W. Booker and D. R. Schrider. The genetic consequences of range expansion and its
-influence on diploidization in polyploids. The American Naturalist, 0(ja):null, 2024.
-doi: 10.1086/733334. URL https://doi.org/10.1086/733334.
-F. Bretagnolle and J. D. Thompson. Gametes with the somatic chromosome number:
-mechanisms of their formation and role in the evolution of autopolyploid plants. New
-Phytologist, 129(1):1–22, 1995.
-M. R. Brown, R. J. Abbott, and A. D. Twyford. The emerging importance of cross-ploidy
-hybridisation and introgression. Molecular Ecology, 33(8):e17315, 2024.
-J. Clo. The evolution of the additive variance of a trait under stabilizing selection after
-autopolyploidization. Journal of Evolutionary Biology, 35(6):891–897, 2022a.
-J. Clo. Polyploidization: Consequences of genome doubling on the evolutionary potential
-of populations. American Journal of Botany, 109(8):1213–1220, 2022b.
-J. Clo, N. Padilla-Garcı́a, and F. Kolář. Polyploidization as an opportunistic mutation:
-The role of unreduced gametes formation and genetic drift in polyploid establishment.
-Journal of Evolutionary Biology, 35(8):1099–1109, 2022.
-N. De Storme and D. Geelen. Sexual polyploidization in plants–cytological mechanisms
-and molecular regulation. New Phytologist, 198(3):670–684, 2013.
-F. Felber. Establishment of a tetraploid cytotype in a diploid population: effect of relative
-fitness of the cytotypes. Journal of evolutionary biology, 4(2):195–207, 1991.
-F. Felber and J. D. Bever. Effect of triploid fitness on the coexistence of diploids and
-tetraploids. Biological Journal of the Linnean Society, 60(1):95–106, 1997.
-C. K. Griswold. The effects of migration load, selfing, inbreeding depression, and the
-genetics of adaptation on autotetraploid versus diploid establishment in peripheral
-habitats. Evolution, 75(1):39–55, 2021.
-L. K. Hayward and G. Sella. Polygenic adaptation after a sudden change in environment.
-Elife, 11:e66697, 2022.
+accumulation of mutational load may in the long-term preclude further range expansion
+or lead to competitive exclusion by diploids. Further modeling efforts could provide more
+insights into the plausibility of such a model.
 
-17
-
-T. Herben, P. Trávniček, and J. Chrtek. Reduced and unreduced gametes combine
-almost freely in a multiploidy system. Perspectives in Plant Ecology, Evolution and
-Systematics, 18:15–22, 2016.
-F. Kauai, Q. Bafort, F. Mortier, M. Van Montagu, D. Bonte, and Y. Van de Peer.
-Interspecific transfer of genetic information through polyploid bridges. Proceedings of
-the National Academy of Sciences, 121(21):e2400018121, 2024.
-T. J. Kawecki. Adaptation to marginal habitats. Annual review of ecology, evolution,
-and systematics, 39(1):321–342, 2008.
-C. Köhler, O. M. Scheid, and A. Erilova. The impact of the triploid block on the origin
-and evolution of polyploid plants. Trends in Genetics, 26(3):142–148, 2010.
-F. Kolář, M. Čertner, J. Suda, P. Schönswetter, and B. C. Husband. Mixed-ploidy
-species: progress and opportunities in polyploid research. Trends in plant science, 22
-(12):1041–1055, 2017.
-J. M. Kreiner, P. Kron, and B. C. Husband. Frequency and maintenance of unreduced
-gametes in natural plant populations: associations with reproductive mode, life history
-and genome size. New Phytologist, 214(2):879–889, 2017a.
-J. M. Kreiner, P. Kron, and B. C. Husband. Evolutionary dynamics of unreduced gametes.
-Trends in Genetics, 33(9):583–593, 2017b.
-R. Lande. The fixation of chromosomal rearrangements in a subdivided population with
-local extinction and colonization. Heredity, 54(3):323–332, 1985.
-D. A. Levin. Minority cytotype exclusion in local plant populations. Taxon, 24(1):35–43,
-1975.
-D. A. Levin. The role of chromosomal change in plant evolution. Oxford University Press,
-USA, 2002.
-M. Lynch and B. Walsh. Genetics and analysis of quantitative traits, volume 1. Sinauer
-Sunderland, MA, 1998.
-M. E. Moody, L. Mueller, and D. Soltis. Genetic variation and random drift in autotetraploid populations. Genetics, 134(2):649–657, 1993.
-F. Mortier, Q. Bafort, S. Milosavljevic, F. Kauai, L. Prost Boxoen, Y. Van de Peer, and
-D. Bonte. Understanding polyploid establishment: temporary persistence or stable
-coexistence? Oikos, page e09929, 2024.
-P. Y. Novikova, U. K. Kolesnikova, and A. D. Scott. Ancestral self-compatibility facilitates
-the establishment of allopolyploids in brassicaceae. Plant Reproduction, 36(1):125–138,
-2023.
-B. P. Oswald and S. L. Nuismer. A unified model of autopolyploid establishment and
-evolution. The American Naturalist, 178(6):687–700, 2011.
-J. Ramsey and D. W. Schemske. Pathways, mechanisms, and rates of polyploid formation
-in flowering plants. Annual review of ecology and systematics, 29(1):467–501, 1998.
-18
-
-J. H. Rausch and M. T. Morgan. The effect of self-fertilization, inbreeding depression,
-and population size on autopolyploid establishmen. Evolution, 59(9):1867–1875, 2005.
-A. Rice, L. Glick, S. Abadi, M. Einhorn, N. M. Kopelman, A. Salman-Minkov, J. Mayzel,
-O. Chay, and I. Mayrose. The chromosome counts database (ccdb)–a community
-resource of plant chromosome numbers. New Phytologist, 206(1):19–26, 2015.
-K. Robertson, E. E. Goldberg, and B. Igić. Comparative evidence for the correlated
-evolution of polyploidy and self-compatibility in solanaceae. Evolution, 65(1):139–155,
-2011.
-J. Ronfort. The mutation load under tetrasomic inheritance and its consequences for the
-evolution of the selfing rate in autotetraploid species. Genetics Research, 74(1):31–42,
-1999.
-D. E. Soltis, P. S. Soltis, D. W. Schemske, J. F. Hancock, J. N. Thompson, B. C. Husband,
-and W. S. Judd. Autopolyploidy in angiosperms: have we grossly underestimated the
-number of species? Taxon, 56(1):13–30, 2007.
-M. Stift, C. Berenos, P. Kuperus, and P. H. van Tienderen. Segregation models for
-disomic, tetrasomic and intermediate inheritance in tetraploids: a general procedure
-applied to rorippa (yellow cress) microsatellite data. Genetics, 179(4):2113–2123, 2008.
-M. Turelli. Commentary: Fisher’s infinitesimal model: A story for the ages. Theoretical
-population biology, 118:46–49, 2017.
-Y. Van de Peer, T.-L. Ashman, P. S. Soltis, and D. E. Soltis. Polyploidy: an evolutionary
-and ecological force in stressful times. The Plant Cell, 33(1):11–26, 2021.
-R. Zenil-Ferguson, J. G. Burleigh, W. A. Freyman, B. Igić, I. Mayrose, and E. E. Goldberg. Interaction among ploidy, breeding system and lineage diversification. New
-Phytologist, 224(3):1252–1265, 2019.
-
-19
-
-
