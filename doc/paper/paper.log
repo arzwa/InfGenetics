@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.12.18)  23 JAN 2025 22:24
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.12.18)  13 MAR 2025 10:58
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -648,35 +648,53 @@ Package: authblk 2001/02/27 1.3 (PWD)
 \c@authors=\count311
 \c@affil=\count312
 )
-Package xr Info: IMPORTING LABELS FROM supp.aux on input line 5.
+(/usr/share/texlive/texmf-dist/tex/latex/lineno/lineno.sty
+Package: lineno 2005/11/02 line numbers on paragraphs v4.41
+\linenopenalty=\count313
+\output=\toks45
+\linenoprevgraf=\count314
+\linenumbersep=\dimen285
+\linenumberwidth=\dimen286
+\c@linenumber=\count315
+\c@pagewiselinenumber=\count316
+\c@LN@truepage=\count317
+\c@internallinenumber=\count318
+\c@internallinenumbers=\count319
+\quotelinenumbersep=\dimen287
+\bframerule=\dimen288
+\bframesep=\dimen289
+\bframebox=\box67
+LaTeX Info: Redefining \\ on input line 3056.
+)
+Package xr Info: IMPORTING LABELS FROM supp.aux on input line 7.
 
 (/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2022-01-12 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count313
-\l__pdf_internal_box=\box67
+\l__color_backend_stack_int=\count320
+\l__pdf_internal_box=\box68
 )
 (./paper.aux)
 \openout1 = `paper.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 7.
-LaTeX Font Info:    ... okay on input line 7.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 7.
-LaTeX Font Info:    ... okay on input line 7.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 7.
-LaTeX Font Info:    ... okay on input line 7.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 7.
-LaTeX Font Info:    ... okay on input line 7.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 7.
-LaTeX Font Info:    ... okay on input line 7.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 7.
-LaTeX Font Info:    ... okay on input line 7.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 7.
-LaTeX Font Info:    ... okay on input line 7.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 7.
-LaTeX Font Info:    ... okay on input line 7.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 7.
-LaTeX Font Info:    ... okay on input line 7.
-Package hyperref Info: Link coloring OFF on input line 7.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+Package hyperref Info: Link coloring OFF on input line 9.
  (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
 
@@ -686,11 +704,11 @@ Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 (/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
-\c@section@level=\count314
+\c@section@level=\count321
 )
-LaTeX Info: Redefining \ref on input line 7.
-LaTeX Info: Redefining \pageref on input line 7.
-LaTeX Info: Redefining \nameref on input line 7.
+LaTeX Info: Redefining \ref on input line 9.
+LaTeX Info: Redefining \pageref on input line 9.
+LaTeX Info: Redefining \nameref on input line 9.
 
 (./paper.out) (./paper.out)
 \@outlinefile=\write4
@@ -699,17 +717,17 @@ LaTeX Info: Redefining \nameref on input line 7.
 
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count315
-\scratchdimen=\dimen285
-\scratchbox=\box68
-\nofMPsegments=\count316
-\nofMParguments=\count317
-\everyMPshowfont=\toks45
-\MPscratchCnt=\count318
-\MPscratchDim=\dimen286
-\MPnumerator=\count319
-\makeMPintoPDFobject=\count320
-\everyMPtoPDFconversion=\toks46
+\scratchcounter=\count322
+\scratchdimen=\dimen290
+\scratchbox=\box69
+\nofMPsegments=\count323
+\nofMParguments=\count324
+\everyMPshowfont=\toks46
+\MPscratchCnt=\count325
+\MPscratchDim=\dimen291
+\MPnumerator=\count326
+\makeMPintoPDFobject=\count327
+\everyMPtoPDFconversion=\toks47
 ) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
@@ -756,77 +774,80 @@ Package caption Info: End \AtBeginDocument code.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-LaTeX Font Info:    Trying to load font information for U+msa on input line 12.
+[1
+
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+LaTeX Font Info:    Trying to load font information for U+msa on input line 104
+.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 12.
-
+LaTeX Font Info:    Trying to load font information for U+msb on input line 104
+.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) [1
-
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2] [3] [4] [5] [6]
-Overfull \hbox (13.94415pt too wide) in paragraph at lines 421--425
+) [2] [3] [4] [5]
+[6]
+Overfull \hbox (13.94415pt too wide) in paragraph at lines 427--431
 \OT1/cmr/m/n/12 where the sums are over in-di-vid-u-als in the parental pop-u-l
 a-tion, and where $\OML/cmm/m/it/12 P[] \OMS/cmsy/m/n/12 2 f\OT1/cmr/m/n/12 0\O
 ML/cmm/m/it/12 ; []; []; []; \OT1/cmr/m/n/12 1\OMS/cmsy/m/n/12 g$
  []
 
 [7] [8]
-</home/arzwa/dev/InfGenetics/doc/img/tetfininf.pdf, id=274, 542.025pt x 210.787
+</home/arzwa/dev/InfGenetics/doc/img/tetfininf.pdf, id=288, 542.025pt x 210.787
 5pt>
 File: /home/arzwa/dev/InfGenetics/doc/img/tetfininf.pdf Graphic file (type pdf)
 
 <use /home/arzwa/dev/InfGenetics/doc/img/tetfininf.pdf>
 Package pdftex.def Info: /home/arzwa/dev/InfGenetics/doc/img/tetfininf.pdf  use
-d on input line 542.
+d on input line 554.
 (pdftex.def)             Requested size: 362.37569pt x 140.92776pt.
 
-Overfull \hbox (6.2565pt too wide) in paragraph at lines 575--597
+Overfull \hbox (6.2565pt too wide) in paragraph at lines 587--609
 \OT1/cmr/m/n/12 mixed-ploidy pop-u-la-tion will have an equal or higher av-er-a
 ge in-breed-ing co-ef-fi-cient (fig. []S3[]).
  []
 
 [9 </home/arzwa/dev/InfGenetics/doc/img/tetfininf.pdf>]
-</home/arzwa/dev/InfGenetics/doc/img/est1b.pdf, id=301, 803.0pt x 200.75pt>
+</home/arzwa/dev/InfGenetics/doc/img/est1b.pdf, id=314, 803.0pt x 200.75pt>
 File: /home/arzwa/dev/InfGenetics/doc/img/est1b.pdf Graphic file (type pdf)
 <use /home/arzwa/dev/InfGenetics/doc/img/est1b.pdf>
 Package pdftex.def Info: /home/arzwa/dev/InfGenetics/doc/img/est1b.pdf  used on
- input line 603.
+ input line 615.
 (pdftex.def)             Requested size: 452.9679pt x 113.24323pt.
  [10 </home/arzwa/dev/InfGenetics/doc/img/est1b.pdf>]
-</home/arzwa/dev/InfGenetics/doc/img/estwmigration-dr.pdf, id=338, 521.95pt x 2
+</home/arzwa/dev/InfGenetics/doc/img/estwmigration-dr.pdf, id=351, 521.95pt x 2
 10.7875pt>
 File: /home/arzwa/dev/InfGenetics/doc/img/estwmigration-dr.pdf Graphic file (ty
 pe pdf)
 <use /home/arzwa/dev/InfGenetics/doc/img/estwmigration-dr.pdf>
 Package pdftex.def Info: /home/arzwa/dev/InfGenetics/doc/img/estwmigration-dr.p
-df  used on input line 682.
+df  used on input line 694.
 (pdftex.def)             Requested size: 362.37569pt x 146.3441pt.
  [11 </home/arzwa/dev/InfGenetics/doc/img/estwmigration-dr.pdf>]
-</home/arzwa/dev/InfGenetics/doc/img/estwmigration1d.pdf, id=350, 702.625pt x 2
+</home/arzwa/dev/InfGenetics/doc/img/estwmigration1d.pdf, id=362, 702.625pt x 2
 81.05pt>
 File: /home/arzwa/dev/InfGenetics/doc/img/estwmigration1d.pdf Graphic file (typ
 e pdf)
 <use /home/arzwa/dev/InfGenetics/doc/img/estwmigration1d.pdf>
 Package pdftex.def Info: /home/arzwa/dev/InfGenetics/doc/img/estwmigration1d.pd
-f  used on input line 736.
+f  used on input line 748.
 (pdftex.def)             Requested size: 452.9679pt x 181.19223pt.
  [12 </home/arzwa/dev/InfGenetics/doc/img/estwmigration1d.pdf>]
-Overfull \hbox (3.54543pt too wide) in paragraph at lines 779--791
+Overfull \hbox (3.54543pt too wide) in paragraph at lines 791--803
 []\OT1/cmr/m/n/12 Established diploid pop-u-la-tions are more in-bred on av-er-
 age than es-tab-lished tetraploids
  []
 
 [13]
-</home/arzwa/dev/InfGenetics/doc/img/prez.pdf, id=385, 602.25pt x 200.75pt>
+</home/arzwa/dev/InfGenetics/doc/img/prez.pdf, id=397, 602.25pt x 200.75pt>
 File: /home/arzwa/dev/InfGenetics/doc/img/prez.pdf Graphic file (type pdf)
 <use /home/arzwa/dev/InfGenetics/doc/img/prez.pdf>
 Package pdftex.def Info: /home/arzwa/dev/InfGenetics/doc/img/prez.pdf  used on 
-input line 858.
+input line 870.
 (pdftex.def)             Requested size: 407.66833pt x 135.89554pt.
  [14 </home/arzwa/dev/InfGenetics/doc/img/prez.pdf>] [15] [16] (./paper.bbl [17
 ] [18] [19]) [20] (./paper.aux)
@@ -834,13 +855,13 @@ Package rerunfilecheck Info: File `paper.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 24361 strings out of 478287
- 457443 string characters out of 5849288
- 735185 words of memory out of 5000000
- 42059 multiletter control sequences out of 15000+600000
- 482680 words of font info for 79 fonts, out of 8000000 for 9000
+ 24588 strings out of 478287
+ 461137 string characters out of 5849288
+ 741788 words of memory out of 5000000
+ 42280 multiletter control sequences out of 15000+600000
+ 480713 words of font info for 72 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 89i,12n,92p,1389b,526s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 89i,12n,92p,1389b,548s stack positions out of 5000i,500n,10000p,200000b,80000s
 pdfTeX warning (dest): name{figure.caption.5} has been referenced but does no
 t exist, replaced by a fixed one
 
@@ -874,32 +895,31 @@ ist, replaced by a fixed one
 pdfTeX warning (dest): name{subsection.2.1} has been referenced but does not ex
 ist, replaced by a fixed one
 
-{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/share/texlive
-/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf
--dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/
-fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/
-public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
-/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfon
-ts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c
-mmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pf
-b></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr
-/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/
-texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/share/texlive/
-texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-di
-st/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts
-/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1
-/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
-/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfon
-ts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/
-cmti12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12
-.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.
-pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm0700.pfb></usr/share/texm
-f/fonts/type1/public/cm-super/sfrm1000.pfb>
-Output written on paper.pdf (20 pages, 717284 bytes).
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/
+share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/
+texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texliv
+e/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
+ublic/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
+msfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr
+17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb><
+/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/sha
+re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texli
+ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf
+-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/share/texlive/texmf-dist/f
+onts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/t
+ype1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu
+blic/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
+sfonts/cm/cmti12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmtt12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbo
+ls/msbm10.pfb>
+Output written on paper.pdf (20 pages, 713396 bytes).
 PDF statistics:
- 578 PDF objects out of 1000 (max. 8388607)
- 491 compressed objects within 5 object streams
- 116 named destinations out of 1000 (max. 500000)
+ 599 PDF objects out of 1000 (max. 8388607)
+ 513 compressed objects within 6 object streams
+ 120 named destinations out of 1000 (max. 500000)
  38 words of extra memory for PDF output out of 10000 (max. 10000000)
 

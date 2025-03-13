@@ -1,4 +1,4 @@
-\begin{thebibliography}{45}
+\begin{thebibliography}{49}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -77,6 +77,11 @@ J.~Clo.
 \newblock \emph{American Journal of Botany}, 109\penalty0 (8):\penalty0
   1213--1220, 2022{\natexlab{b}}.
 
+\bibitem[Clo and Kol{\'a}{\v{r}}(2022)]{clo2022b}
+J.~Clo and F.~Kol{\'a}{\v{r}}.
+\newblock Inbreeding depression in polyploid species: a meta-analysis.
+\newblock \emph{Biology Letters}, 18\penalty0 (12):\penalty0 20220477, 2022.
+
 \bibitem[Clo et~al.(2022)Clo, Padilla-Garc{\'\i}a, and
   Kol{\'a}{\v{r}}]{clo2022c}
 J.~Clo, N.~Padilla-Garc{\'\i}a, and F.~Kol{\'a}{\v{r}}.
@@ -124,6 +129,13 @@ T.~Herben, P.~Tr{\'a}vni{\v{c}}ek, and J.~Chrtek.
   system.
 \newblock \emph{Perspectives in Plant Ecology, Evolution and Systematics},
   18:\penalty0 15--22, 2016.
+
+\bibitem[Husband et~al.(2008)Husband, Ozimec, Martin, and Pollock]{husband2008}
+B.~C. Husband, B.~Ozimec, S.~L. Martin, and L.~Pollock.
+\newblock Mating consequences of polyploid evolution in flowering plants:
+  current trends and insights from synthetic polyploids.
+\newblock \emph{International journal of plant sciences}, 169\penalty0
+  (1):\penalty0 195--206, 2008.
 
 \bibitem[Kauai et~al.(2024)Kauai, Bafort, Mortier, Van~Montagu, Bonte, and
   Van~de Peer]{kauai2024}
@@ -222,6 +234,15 @@ S.~P. Otto and J.~Whitton.
 \newblock \emph{Annual review of genetics}, 34\penalty0 (1):\penalty0 401--437,
   2000.
 
+\bibitem[Porturas et~al.(2019)Porturas, Anneberg, Cur{\'e}, Wang, Althoff, and
+  Segraves]{porturas2019}
+L.~D. Porturas, T.~J. Anneberg, A.~E. Cur{\'e}, S.~Wang, D.~M. Althoff, and
+  K.~A. Segraves.
+\newblock A meta-analysis of whole genome duplication and the effects on
+  flowering traits in plants.
+\newblock \emph{American Journal of Botany}, 106\penalty0 (3):\penalty0
+  469--476, 2019.
+
 \bibitem[Ramsey and Schemske(1998)]{ramsey1998}
 J.~Ramsey and D.~W. Schemske.
 \newblock Pathways, mechanisms, and rates of polyploid formation in flowering
@@ -282,6 +303,12 @@ M.~Turelli.
 Y.~Van~de Peer, T.-L. Ashman, P.~S. Soltis, and D.~E. Soltis.
 \newblock Polyploidy: an evolutionary and ecological force in stressful times.
 \newblock \emph{The Plant Cell}, 33\penalty0 (1):\penalty0 11--26, 2021.
+
+\bibitem[Van~Drunen and Friedman(2022)]{vandrunen2022}
+W.~E. Van~Drunen and J.~Friedman.
+\newblock Autopolyploid establishment depends on life-history strategy and the
+  mating outcomes of clonal architecture.
+\newblock \emph{Evolution}, 76\penalty0 (9):\penalty0 1953--1970, 2022.
 
 \bibitem[Vlček et~al.(2025)Vlček, Hämälä, Cobo, Curran, Šrámková,
   Slotte, Schmickl, Yant, and Kolář]{vlcek2025biorxiv}
