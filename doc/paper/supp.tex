@@ -68,7 +68,7 @@ and no selection.}\label{fig:f1}
 \caption{
     Nonzero $\alpha_k$ parameters increase the tetraploid establishment
     probability, but mainly due to $\alpha_2$, which increases the segregation
-    variance associated with the formatoin of diploid gametes by diploids.
+    variance associated with the formation of diploid gametes by diploids.
     All other parameters and simulation details are as in \cref{m-fig:estwmig}.
 \label{fig:suppdr}}
 \end{figure}
@@ -150,8 +150,8 @@ state space $[0..N] \times [0..N]$.
 where 
 \begin{align}
   p_2 &= \left(\frac{i(1-u) + jv}{N(1-u) + (i+j)u + j(2v-1)}\right)^2 \\
-  p_3 &= \left(\frac{2(i(1-u) + jv)(N(1-u) + i(2u - 1) + j(u + v - 1))}
-    {N(1-u) + (i+j)u + j(2v-1)}\right)^2 
+  p_3 &= \frac{2(i(1-u) + jv)(N(1-u) + i(2u - 1) + j(u + v - 1))}
+    {\left(N(1-u) + (i+j)u + j(2v-1)\right)^2} 
 \end{align}
 Associating a unique index with each pair $(i,j)$ with $0 \le i,j \le N$, we
 can define a transition probability matrix $P$ of dimensions $(N+1)^2 \times
@@ -350,10 +350,11 @@ inbreeding coefficients in the mixed-ploidy case becomes
     F_i &= \frac{1}{3}\left(F_l^\ast + 2\Phi_{kl}\right) & \text{if } 
         & c_i = 3, g_k = 1, g_l = 2 \nonumber \\ 
     F_i &= \frac1 6 (F_k^\ast + F_l^\ast + 4\Phi_{kl}) & \text{if } & c_i = 4
+    \label{eq:coanc}
 \end{align}
 where $F_k^\ast = \alpha_{c_k} + (1-\alpha_{c_k})F_k$, as in the
 autotetraploid model.
-The recursion for the coancestry coefficients in is given by
+The recursion for the coancestry coefficients in \cref{eq:coanc} is given by
 \begin{align}
     \Phi_{ii} &= \frac{1}{c_{i}} \left(1 + (c_i-1)F_i\right) \nonumber \\
     \Phi_{ij} &= \sum_k \sum_l P_{ik}P_{jl} \Phi_{kl} & i \ne j 
@@ -378,8 +379,17 @@ decomposed as
 variation}}
 \label{eq:eve}
 \end{equation}
-We use this relationship to derive the segregation variance for a given meiotic
-process.
+We use this relationship to derive the segregation variance associated with
+haploid and diploid gamete production in the three cytotypes of the
+mixed-ploidy population.
+
+We write $V_{S(k,l)}$ for the segregation variance associated with a
+$k$-ploid individual producing an $l$-ploid gamete, and we express this in
+terms of the variance $\Vx_{k}$ associated with a haploid genome in a
+(hypothetical) $k$-ploid reference population at HWLE.
+Using the scaling assumptions outlined in the main text, i.e. $\Vx_{k} =
+\beta_k^2 V$, we can then express all segregation variances in terms of the
+diploid segregation variance in the reference population $V$.
 
 As an example, consider ordinary diploid meiosis at a single locus, where a
 diploid produces a haploid gamete. $Y$ is a random haploid gamete sampled from the
@@ -391,22 +401,14 @@ We have
 Using \cref{eq:eve}, we can then find the segregation variance
   $$\Ex[\Var[Y|X_1,X_2]] = v_x - \frac{v_x}{2} = \frac{v_x}{2}$$
 Summing over $L$ independent loci, we find the gametic segregation variance in
-diploids (which is halve the zygotic segregation variance $V$, by definition) as
+diploids producing haploid gametes (which is halve the zygotic segregation
+variance $V$, by definition) as
   $$V_{S(2,1)} = \frac{V}{2} = \sum_{i=1}^L \frac{v_{x,i}}{2} = \frac{\Vx_{2}}{2}$$
 and hence $V=\Vx_{2}$, where $\Vx_{2}$ is the genetic variance associated with
 a haploid genome in the diploid cytotype, as defined in the main text.
 This will hold in the infinitsimal limit, where $L$ becomes very large and
 $v_x$ smaller and smaller.
 
-Below, we derive the segregation variance associated with haploid and diploid
-gamete production in the three cytotypes of the mixed-ploidy population.
-We use \cref{eq:eve} to do this, and express the segregation variance for a
-$k$-ploid individual producing an $l$-ploid $V_{S(k,l)}$ in terms of the
-variance $\Vx_{k}$ associated with a haploid genome in a (hypothetical)
-$k$-ploid reference population at HWLE. Using the scaling assumptions outlined
-in the main text, i.e. $\Vx_{k} = \beta_k^2 V$, we can then express all
-segregation variances in terms of the diploid segregation variance in the
-reference population $V$.
 
 \paragraph{Meiosis in autotetraploids.}
 
@@ -559,9 +561,9 @@ Unreduced gametes are formed in two ways, depending on the meiotic abberation
 that leads to their origin: (1) first division restitution (FDR) of (2) second
 division restitution (SDR) \citep{bretagnolle1995,storme2013}.
 Consider a locus in a diploid with two distinct genes $A$ and $a$. Assume
-recombination happens with probability $c$ and that conditional on unreduced
-gamete formation, formation is due to FDR with probability $f$ while it is due
-to SDR with probability $1-f$.
+recombination between the centromere and the locus happens with probability $c$
+and that conditional on unreduced gamete formation, formation is due to FDR
+with probability $f$ while it is due to SDR with probability $1-f$.
 The different unreduced gametes that are formed are represented schematically
 in \cref{fig:udip}.
 Writing the genotype at a locus in the diploid parent as $X_1X_2$, with allelic

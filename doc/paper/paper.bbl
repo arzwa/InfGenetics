@@ -1,4 +1,4 @@
-\begin{thebibliography}{49}
+\begin{thebibliography}{51}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -264,6 +264,14 @@ A.~Rice, L.~Glick, S.~Abadi, M.~Einhorn, N.~M. Kopelman, A.~Salman-Minkov,
   chromosome numbers.
 \newblock \emph{New Phytologist}, 206\penalty0 (1):\penalty0 19--26, 2015.
 
+\bibitem[Rice et~al.(2019)Rice, {\v{S}}marda, Novosolov, Drori, Glick, Sabath,
+  Meiri, Belmaker, and Mayrose]{rice2019}
+A.~Rice, P.~{\v{S}}marda, M.~Novosolov, M.~Drori, L.~Glick, N.~Sabath,
+  S.~Meiri, J.~Belmaker, and I.~Mayrose.
+\newblock The global biogeography of polyploid plants.
+\newblock \emph{Nature ecology \& evolution}, 3\penalty0 (2):\penalty0
+  265--273, 2019.
+
 \bibitem[Robertson et~al.(2011)Robertson, Goldberg, and
   Igi{\'c}]{robertson2011comparative}
 K.~Robertson, E.~E. Goldberg, and B.~Igi{\'c}.
@@ -276,6 +284,13 @@ J.~Ronfort.
 \newblock The mutation load under tetrasomic inheritance and its consequences
   for the evolution of the selfing rate in autotetraploid species.
 \newblock \emph{Genetics Research}, 74\penalty0 (1):\penalty0 31--42, 1999.
+
+\bibitem[Sachdeva et~al.(2022)Sachdeva, Olusanya, and Barton]{sachdeva2022b}
+H.~Sachdeva, O.~Olusanya, and N.~Barton.
+\newblock Genetic load and extinction in peripheral populations: the roles of
+  migration, drift and demographic stochasticity.
+\newblock \emph{Philosophical Transactions of the Royal Society B},
+  377\penalty0 (1846):\penalty0 20210010, 2022.
 
 \bibitem[Soltis et~al.(2007)Soltis, Soltis, Schemske, Hancock, Thompson,
   Husband, and Judd]{soltis2007}

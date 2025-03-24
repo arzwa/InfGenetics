@@ -21,11 +21,11 @@ We define the infinitesimal model of quantitative genetics for the inheritance
     We implement efficient simulation methods and use these to study the
     quantitative genetics of mixed-ploidy populations and the establishment of
     autotetraploids in a new habitat.
-    We show that for rare migration from the source population, autotetraploids
-    are more likely to found a successful population than diploids under a very
-    broad range of conditions, but that this is unlikely to sufficiently
-    counter the scarcity of tetraploid founders when the source is
-    predominantly diploid.
+    We show that, when migration from the source population is rare,
+    autotetraploids are more likely to establish in the new habitat 
+    than diploids under a very broad range of conditions, but that this
+    is unlikely to sufficiently counter the scarcity of tetraploid founders
+    when the source is predominantly diploid.
     We assess in more detail how minority cytotype exclusion interacts with
     migration load in the establishment process and evaluate the impact of
     additional sources of prezygotic isolation, specifically selfing and
@@ -56,7 +56,7 @@ occurring at an appreciable rate; \cite{kreiner2017}) is highly unlikely to
 establish a stable tetraploid subpopulation, as most of its gametes will end up
 in unfit hybrids of odd ploidy level (a phenomenon referred to as `triploid
 block', see \cite{ramsey1998,kohler2010,brown2024}).
-This negative frequency dependence effect is commonly referred to as
+This positive frequency dependence effect is commonly referred to as
 \textit{minority cytotype exclusion} (MCE), after \cite{levin1975}.
 It is well-appreciated that, as a consequence of MCE, the rate of unreduced
 gamete formation needs to be extraordinarily high for tetraploids to establish
@@ -92,11 +92,15 @@ None of these factors is likely to explain by itself the establishment of
 polyploids, and the consensus in the field appears to be that some mix of the
 above is required to explain the occurrence of mixed-ploidy populations in
 nature \citep{kolar2017,mortier2024}.
-In particular, polyploids are thought to establish mainly in novel, unoccupied
-habitats where they evade MCE (for instance at range edges, or after local
-extinction due to environmental change) \citep{griswold2021}.
-However, such peripheral habitats are likely to present adaptive challenges to
-establishment \citep{kawecki2008adaptation}, and if polyploids are able to
+Many empirical studies show a pattern where polyploids established in
+peripheral habitats at the edge of a species' range (reviewed in
+\cite{griswold2021}), in accordance with large-scale biogeographical patterns
+\citep{rice2019}.
+In a peripheral habitat, a new polyploid population may be more likely to reach
+an appreciable size as it may evade to some extent the negative effects of MCE.
+However, at the same time, such peripheral habitats are likely to present
+adaptive challenges to establishment
+\citep{kawecki2008adaptation,sachdeva2022b}, and if polyploids are able to
 colonize such habitats at an appreciable rate, they must somehow be better
 adapted to local conditions, or more able to adapt to those conditions despite
 inbreeding and maladaptive migration, compared to diploids.
@@ -427,7 +431,7 @@ The recursion for the coancestry coefficients is given by
 \end{align}
 where the sums are over individuals in the parental population, and where
 $P_{ik} \in \{0, \frac1 3, \frac1 2, \frac2 3, 1\}$ is the probability that a
-gene copy in $i$ is derived from parent $k$.
+gene copy in individual $i$ is derived from parent $k$.
 
 \subsection*{Establishment model}
 
@@ -442,12 +446,14 @@ use throughout) is readily obtained for the case where $u$ is small (see
 
 In generation $t$, $M(t)$ migrant individuals arrive on an island (the new
 habitat) joining $N^\ast(t)$ resident individuals, where $M(t)$ is Poisson
-distributed with mean $m$. 
+distributed with mean $m$, and $N^\ast(0)=0$ unless stated otherwise. 
 The migrant individuals are assumed to be unrelated to the resident
 individuals.
-After migration in generation $t$, the $N(t) = N^\ast(t) + M(t)$ individuals
-reproduce sexually, and the offspring thus produced survives until the next
-generation with a probability determined by their trait value.
+After migration there are $N(t) = N^\ast(t) + M(t)$ individuals on the island
+which reproduce sexually, and the offspring thus produced survives until the
+next generation with a probability determined by their trait value.
+Note that this corresponds to a life cycle where selection occurs before
+migration within a generation.
 In the basic model, random selfing is allowed (but see below for a model with
 self-incompatibility).
 We assume the trait is under directional selection, with fitness $w(z) =
@@ -691,7 +697,7 @@ inbreeding in tetraploids canceled (\cref{fig:est1}B,C).
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=0.8\linewidth]{/home/arzwa/dev/InfGenetics/doc/img/estwmigration-dr.pdf}
+\includegraphics[width=0.8\linewidth]{/home/arzwa/dev/InfGenetics/doc/paper/figs/estwmig.pdf}
 \caption{
     Establishment with recurrent migration.
     (A) Expected time until a population is established in the marginal habitat
@@ -777,7 +783,7 @@ However, at the same time we find that the tetraploid establishment probability
 declines monotonically with $m$, which highlights the negative effects of MCE.
 Together, these results confirm the view that, while cytotype differences are an
 effective barrier to maladaptive gene flow, this advantage to establishment is
-outweighed by the negative effects of MCE.
+outweighed by the negative effects of MCE as $m$ increases.
 
 Our simulations further show that the mechanism of unreduced gamete formation
 (as determined by the $\alpha_2$ parameter) can affect the establishment
@@ -867,9 +873,9 @@ selfing rate.
 
 \begin{figure}
 \centering
-\includegraphics[width=0.9\linewidth]{/home/arzwa/dev/InfGenetics/doc/img/prez.pdf} 
+\includegraphics[width=0.9\linewidth]{/home/arzwa/dev/InfGenetics/doc/paper/figs/prez.pdf} 
     \caption{
-    (A) Establishment with recurrent migration selfing in polyploids. 
+    (A) Establishment with recurrent migration and selfing in polyploids. 
     The solid lines show the case where diploids are self-incompatible 
     The dashed transparent lines show the case where diploids do random
     self-fertilization (i.e. self-fertilization occurs with probability $1/N$),
