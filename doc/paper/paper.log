@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.12.18)  24 MAR 2025 20:01
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.12.18)  26 MAR 2025 11:03
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -777,20 +777,20 @@ Package caption Info: End \AtBeginDocument code.
 [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-LaTeX Font Info:    Trying to load font information for U+msa on input line 108
+LaTeX Font Info:    Trying to load font information for U+msa on input line 110
 .
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 108
+LaTeX Font Info:    Trying to load font information for U+msb on input line 110
 .
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [2] [3] [4] [5]
 [6]
-Overfull \hbox (13.94415pt too wide) in paragraph at lines 431--435
+Overfull \hbox (13.94415pt too wide) in paragraph at lines 434--438
 \OT1/cmr/m/n/12 where the sums are over in-di-vid-u-als in the parental pop-u-l
 a-tion, and where $\OML/cmm/m/it/12 P[] \OMS/cmsy/m/n/12 2 f\OT1/cmr/m/n/12 0\O
 ML/cmm/m/it/12 ; []; []; []; \OT1/cmr/m/n/12 1\OMS/cmsy/m/n/12 g$
@@ -803,10 +803,10 @@ File: /home/arzwa/dev/InfGenetics/doc/img/tetfininf.pdf Graphic file (type pdf)
 
 <use /home/arzwa/dev/InfGenetics/doc/img/tetfininf.pdf>
 Package pdftex.def Info: /home/arzwa/dev/InfGenetics/doc/img/tetfininf.pdf  use
-d on input line 560.
+d on input line 563.
 (pdftex.def)             Requested size: 362.37569pt x 140.92776pt.
 
-Overfull \hbox (6.2565pt too wide) in paragraph at lines 593--615
+Overfull \hbox (6.2565pt too wide) in paragraph at lines 596--618
 \OT1/cmr/m/n/12 mixed-ploidy pop-u-la-tion will have an equal or higher av-er-a
 ge in-breed-ing co-ef-fi-cient (fig. []S3[]).
  []
@@ -816,7 +816,7 @@ ge in-breed-ing co-ef-fi-cient (fig. []S3[]).
 File: /home/arzwa/dev/InfGenetics/doc/img/est1b.pdf Graphic file (type pdf)
 <use /home/arzwa/dev/InfGenetics/doc/img/est1b.pdf>
 Package pdftex.def Info: /home/arzwa/dev/InfGenetics/doc/img/est1b.pdf  used on
- input line 621.
+ input line 624.
 (pdftex.def)             Requested size: 452.9679pt x 113.24323pt.
  [10 </home/arzwa/dev/InfGenetics/doc/img/est1b.pdf>]
 </home/arzwa/dev/InfGenetics/doc/paper/figs/estwmig.pdf, id=357, 531.9875pt x 2
@@ -825,7 +825,7 @@ File: /home/arzwa/dev/InfGenetics/doc/paper/figs/estwmig.pdf Graphic file (type
  pdf)
 <use /home/arzwa/dev/InfGenetics/doc/paper/figs/estwmig.pdf>
 Package pdftex.def Info: /home/arzwa/dev/InfGenetics/doc/paper/figs/estwmig.pdf
-  used on input line 700.
+  used on input line 703.
 (pdftex.def)             Requested size: 362.37569pt x 143.58447pt.
 </home/arzwa/dev/InfGenetics/doc/img/estwmigration1d.pdf, id=360, 702.625pt x 2
 81.05pt>
@@ -833,10 +833,10 @@ File: /home/arzwa/dev/InfGenetics/doc/img/estwmigration1d.pdf Graphic file (typ
 e pdf)
 <use /home/arzwa/dev/InfGenetics/doc/img/estwmigration1d.pdf>
 Package pdftex.def Info: /home/arzwa/dev/InfGenetics/doc/img/estwmigration1d.pd
-f  used on input line 754.
+f  used on input line 757.
 (pdftex.def)             Requested size: 452.9679pt x 181.19223pt.
  [11]
-Overfull \hbox (3.54543pt too wide) in paragraph at lines 797--809
+Overfull \hbox (3.54543pt too wide) in paragraph at lines 800--812
 []\OT1/cmr/m/n/12 Established diploid pop-u-la-tions are more in-bred on av-er-
 age than es-tab-lished tetraploids
  []
@@ -849,7 +849,7 @@ File: /home/arzwa/dev/InfGenetics/doc/paper/figs/prez.pdf Graphic file (type pd
 f)
 <use /home/arzwa/dev/InfGenetics/doc/paper/figs/prez.pdf>
 Package pdftex.def Info: /home/arzwa/dev/InfGenetics/doc/paper/figs/prez.pdf  u
-sed on input line 876.
+sed on input line 879.
 (pdftex.def)             Requested size: 407.66833pt x 142.69032pt.
  [14 </home/arzwa/dev/InfGenetics/doc/paper/figs/prez.pdf>] [15] [16] (./paper.
 bbl [17] [18] [19]) [20]
@@ -860,11 +860,11 @@ Package rerunfilecheck Info: File `paper.out' has not changed.
 Here is how much of TeX's memory you used:
  24599 strings out of 478287
  461372 string characters out of 5849288
- 741096 words of memory out of 5000000
+ 742096 words of memory out of 5000000
  42288 multiletter control sequences out of 15000+600000
  480713 words of font info for 72 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 89i,12n,92p,1389b,540s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 89i,12n,92p,1389b,538s stack positions out of 5000i,500n,10000p,200000b,80000s
 pdfTeX warning (dest): name{figure.caption.5} has been referenced but does no
 t exist, replaced by a fixed one
 
@@ -919,10 +919,10 @@ blic/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
 sfonts/cm/cmti12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
 /cm/cmtt12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbo
 ls/msbm10.pfb>
-Output written on paper.pdf (20 pages, 722157 bytes).
+Output written on paper.pdf (20 pages, 723018 bytes).
 PDF statistics:
- 606 PDF objects out of 1000 (max. 8388607)
- 520 compressed objects within 6 object streams
+ 610 PDF objects out of 1000 (max. 8388607)
+ 524 compressed objects within 6 object streams
  122 named destinations out of 1000 (max. 500000)
  38 words of extra memory for PDF output out of 10000 (max. 10000000)
 

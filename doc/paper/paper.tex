@@ -56,12 +56,13 @@ occurring at an appreciable rate; \cite{kreiner2017}) is highly unlikely to
 establish a stable tetraploid subpopulation, as most of its gametes will end up
 in unfit hybrids of odd ploidy level (a phenomenon referred to as `triploid
 block', see \cite{ramsey1998,kohler2010,brown2024}).
-This positive frequency dependence effect is commonly referred to as
-\textit{minority cytotype exclusion} (MCE), after \cite{levin1975}.
+This positive frequency dependence effect in mixed-ploidy populations is
+commonly referred to as \textit{minority cytotype exclusion} (MCE), after
+\cite{levin1975}.
 It is well-appreciated that, as a consequence of MCE, the rate of unreduced
 gamete formation needs to be extraordinarily high for tetraploids to establish
-in a large random mating initially diploid population (\cite{felber1997}, see
-also \cref{s-sec:det}).
+a stable subpopulation in a large random mating population initially dominated
+by diploids (\cite{felber1997}, see also \cref{s-sec:det}).
 
 Hence, to explain the widespread occurrence of mixed-ploidy populations,
 additional factors besides the continuous formation of polyploids through the
@@ -69,12 +70,11 @@ union of unreduced gametes need to be considered.
 Firstly, chance establishment of tetraploids through drift could occur.
 Indeed, the problem is somewhat analogous to the spread of underdominant
 chromosomal rearrangements, where local establishment through genetic drift and
-subsequent spreading in a subdivided population through local extinction and 
-recolonization dynamics has been suggested as a plausible model
-\citep{lande1985}.
-However, MCE is quite strong in randomly mating mixed-ploidy populations, and
-the population size has to be very small for local tetraploid establishment to
-occur at an appreciable rate (\cite{rausch2005}, see also \cref{s-sec:mchain}).
+subsequent spreading in a subdivided population by means of local extinction
+and recolonization has been suggested as a plausible model \citep{lande1985}.
+However, MCE is quite strong under random mating, and the population size has
+to be very small for local tetraploid establishment to occur at an appreciable
+rate (\cite{rausch2005}, see also \cref{s-sec:mchain}).
 Secondly, any form of \textit{prezygotic isolation} between cytotypes could
 promote establishment of polyploid cytotypes by alleviating MCE.
 Particularly relevant are assortative mating by cytotype  (for instance through
@@ -87,17 +87,19 @@ Tetraploids may have higher relative fitness than their diploid counterparts
 due to reduced inbreeding depression
 \citep{ronfort1999,otto2000,husband2008,clo2022b}, or due to being
 better adapted to (changing) environmental conditions \citep{vandepeer2021}. 
-
-None of these factors is likely to explain by itself the establishment of
-polyploids, and the consensus in the field appears to be that some mix of the
-above is required to explain the occurrence of mixed-ploidy populations in
+However, none of these factors is likely to explain by itself the establishment
+of polyploids, and the consensus in the field appears to be that some mix of
+the above is required to explain the occurrence of mixed-ploidy populations in
 nature \citep{kolar2017,mortier2024}.
-Many empirical studies show a pattern where polyploids established in
-peripheral habitats at the edge of a species' range (reviewed in
-\cite{griswold2021}), in accordance with large-scale biogeographical patterns
-\citep{rice2019}.
+
+Many empirical studies of mixed-ploidy populations find that polyploids
+established in peripheral habitats at the edge of a species' range (reviewed in
+\cite{griswold2021}), and this is in accord with large scale biogeographical
+patterns \citep{rice2019}.
+This raises the question: which aspects of the process of adaptation to marginal
+habitats could promote the establishment of polyploid populations?
 In a peripheral habitat, a new polyploid population may be more likely to reach
-an appreciable size as it may evade to some extent the negative effects of MCE.
+an appreciable size as it evades to some extent the negative effects of MCE.
 However, at the same time, such peripheral habitats are likely to present
 adaptive challenges to establishment
 \citep{kawecki2008adaptation,sachdeva2022b}, and if polyploids are able to
@@ -109,7 +111,6 @@ that a migrant individual is tetraploid will be very small ($\sim u^2$, where
 $u$ is the probability that a diploid produces an unreduced gamete in meiosis),
 so that tetraploids need a substantial advantage during colonization if they
 are to establish before diploids do.
-
 While there have been substantial modeling efforts aimed at understanding
 autotetraploid establishment within diploid populations \citep{levin1975,
 felber1991, felber1997, rausch2005, oswald2011, clo2022c}, the problem of
@@ -170,8 +171,10 @@ $\alpha_k$ & probability that the two genes at a locus in a diploid gamete
   formed by a $k$-ploid individual descend from the same parental gene copy\\
 $\gamma$ & strength of directional selection in the new habitat\\
 $\theta$ & trait value beyond which the growth rate becomes positive in the new
-habitat \\ $w_{ij}$ & fitness of parental pair $(i,j)$ \\
-$w_{ij}^{kl}$ & expected fitness of offspring from parental pair $(i,j)$ when
+    habitat \\ 
+$w_{ij}$ & fitness of parental pair $(i,j)$ (expected fitness of
+    offspring of pair $(i,j)$)\\
+$w_{ij}^{kl}$ & expected fitness of offspring of parental pair $(i,j)$ when
 $i$ contributes a $k$-ploid gamete and $j$ contributes a $l$-ploid gamete \\
 $\sigma_k$ & rate of self-fertilization in $k$-ploids \\
 $\rho_k$ & probability of assortative mating in $k$-ploids \\
@@ -908,7 +911,7 @@ Note that the case $\rho = 1$ amounts to complete prezygotic isolation.
 The observation that polyploid populations tend to inhabit more extreme
 habitats or occur at the edge of the range of their conspecific diploids
 has spurred considerable interest among botanists and evolutionary biologists
-\citep{rice2015,kolar2017,vandepeer2021,griswold2021,mortier2024}.
+\citep{kolar2017,rice2019,vandepeer2021,griswold2021,mortier2024}.
 An important question is whether such patterns emerge because polyploids are
 somehow more tolerant to extreme environmental conditions (i.e. they somehow
 are intrinsically more fit than diploids in marginal habitats), or whether other
@@ -935,12 +938,21 @@ For instance, neopolyploids are likely to suffer intrinsic fertility issues due
 to meiotic irregularities associated with multivalent formation
 \citep{bomblies2016,novikova2023}, and triploids may be inviable due to
 issues with endosperm development \citep{bretagnolle1995}.
+
 Similarly implausible is the assumption of a constant equilibrium genetic
 variance across cytotypes ($\beta_4=\sqrt{1/2}$ in our model), which we used in
-most of our results.
-It would be very interesting to experimentally assess whether typical
-quantitative traits in mixed-ploidy populations follow approximately the
-mixed-ploidy infinitesimal model we outlined in this paper, and to actually
+most of our results (but see \cref{fig:est1}).
+The meta-analysis performed by \cite{porturas2019} suggests that phenotypic
+variation across ploidy levels is indeed fairly constant, so this assumption
+may not yield too bad an approximation.
+It should be noted however that other authors have made different assumptions
+on how allelic effects (and hence genetic variance) scale across ploidy levels
+(in particular \cite{griswold2021}, who made an assumption equivalent to
+$\beta_4 = 1/2$ in our model), and such assumptions evidently impact the
+establishment probability (\cref{fig:est1}).
+Clearly, it would be very interesting to experimentally assess whether
+typical quantitative traits in mixed-ploidy populations follow approximately
+the mixed-ploidy infinitesimal model we outlined in this paper, and to actually
 estimate how the variance scales across ploidy levels.
 In addition, we have assumed a relatively high and constant rate of unreduced
 gamete formation $u$ and triploid fertility $v$ in all our simulations (5\%),
