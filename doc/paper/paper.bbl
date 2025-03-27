@@ -1,4 +1,4 @@
-\begin{thebibliography}{51}
+\begin{thebibliography}{61}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -15,6 +15,13 @@ E.~Baack.
 \newblock To succeed globally, disperse locally: effects of local pollen and
   seed dispersal on tetraploid establishment.
 \newblock \emph{Heredity}, 94\penalty0 (5):\penalty0 538--546, 2005.
+
+\bibitem[Barghi et~al.(2020)Barghi, Hermisson, and Schl{\"o}tterer]{barghi2020}
+N.~Barghi, J.~Hermisson, and C.~Schl{\"o}tterer.
+\newblock Polygenic adaptation: a unifying framework to understand positive
+  selection.
+\newblock \emph{Nature Reviews Genetics}, 21\penalty0 (12):\penalty0 769--781,
+  2020.
 
 \bibitem[Barton and Etheridge(2018)]{barton2018}
 N.~H. Barton and A.~Etheridge.
@@ -35,6 +42,22 @@ N.~H. Barton, A.~M. Etheridge, and A.~V{\'e}ber.
 J.~Bezanson, A.~Edelman, S.~Karpinski, and V.~B. Shah.
 \newblock Julia: A fresh approach to numerical computing.
 \newblock \emph{SIAM review}, 59\penalty0 (1):\penalty0 65--98, 2017.
+
+\bibitem[Bohut{\'\i}nsk{\'a} et~al.(2021)Bohut{\'\i}nsk{\'a}, Vl{\v{c}}ek,
+  Yair, Laenen, Kone{\v{c}}n{\'a}, Fracassetti, Slotte, and
+  Kol{\'a}{\v{r}}]{bohutinska2021}
+M.~Bohut{\'\i}nsk{\'a}, J.~Vl{\v{c}}ek, S.~Yair, B.~Laenen,
+  V.~Kone{\v{c}}n{\'a}, M.~Fracassetti, T.~Slotte, and F.~Kol{\'a}{\v{r}}.
+\newblock Genomic basis of parallel adaptation varies with divergence in
+  arabidopsis and its relatives.
+\newblock \emph{Proceedings of the National Academy of Sciences}, 118\penalty0
+  (21):\penalty0 e2022713118, 2021.
+
+\bibitem[Bomblies and Peichel(2022)]{bomblies2022}
+K.~Bomblies and C.~L. Peichel.
+\newblock Genetics of adaptation.
+\newblock \emph{Proceedings of the National Academy of Sciences}, 119\penalty0
+  (30):\penalty0 e2122152119, 2022.
 
 \bibitem[Bomblies et~al.(2016)Bomblies, Jones, Franklin, Zickler, and
   Kleckner]{bomblies2016}
@@ -110,6 +133,11 @@ F.~Felber and J.~D. Bever.
 \newblock \emph{Biological Journal of the Linnean Society}, 60\penalty0
   (1):\penalty0 95--106, 1997.
 
+\bibitem[Gallais(2003)]{gallais2003}
+A.~Gallais.
+\newblock Quantitative genetics and breeding methods in autopolyploid plants.
+\newblock 2003.
+
 \bibitem[Griswold(2021)]{griswold2021}
 C.~K. Griswold.
 \newblock The effects of migration load, selfing, inbreeding depression, and
@@ -129,6 +157,19 @@ T.~Herben, P.~Tr{\'a}vni{\v{c}}ek, and J.~Chrtek.
   system.
 \newblock \emph{Perspectives in Plant Ecology, Evolution and Systematics},
   18:\penalty0 15--22, 2016.
+
+\bibitem[Husband and Sabara(2004)]{husband2004}
+B.~C. Husband and H.~A. Sabara.
+\newblock Reproductive isolation between autotetraploids and their diploid
+  progenitors in fireweed, chamerion angustifolium (onagraceae).
+\newblock \emph{New Phytologist}, 161\penalty0 (3):\penalty0 703--713, 2004.
+
+\bibitem[Husband and Schemske(1997)]{husband1997}
+B.~C. Husband and D.~W. Schemske.
+\newblock The effect of inbreeding in diploid and tetraploid populations of
+  epilobium angustifolium (onagraceae): implications for the genetic basis of
+  inbreeding depression.
+\newblock \emph{Evolution}, 51\penalty0 (3):\penalty0 737--746, 1997.
 
 \bibitem[Husband et~al.(2008)Husband, Ozimec, Martin, and Pollock]{husband2008}
 B.~C. Husband, B.~Ozimec, S.~L. Martin, and L.~Pollock.
@@ -165,6 +206,26 @@ F.~Kol{\'a}{\v{r}}, M.~{\v{C}}ertner, J.~Suda, P.~Sch{\"o}nswetter, and B.~C.
   research.
 \newblock \emph{Trends in plant science}, 22\penalty0 (12):\penalty0
   1041--1055, 2017.
+
+\bibitem[Kone{\v{c}}n{\'a} et~al.(2021)Kone{\v{c}}n{\'a}, Bray, Vl{\v{c}}ek,
+  Bohut{\'\i}nsk{\'a}, Po{\v{z}}{\'a}rov{\'a}, Choudhury, Bollmann-Giolai,
+  Flis, Salt, Parisod, et~al.]{konevcna2021}
+V.~Kone{\v{c}}n{\'a}, S.~Bray, J.~Vl{\v{c}}ek, M.~Bohut{\'\i}nsk{\'a},
+  D.~Po{\v{z}}{\'a}rov{\'a}, R.~R. Choudhury, A.~Bollmann-Giolai, P.~Flis,
+  D.~E. Salt, C.~Parisod, et~al.
+\newblock Parallel adaptation in autopolyploid arabidopsis arenosa is dominated
+  by repeated recruitment of shared alleles.
+\newblock \emph{Nature Communications}, 12\penalty0 (1):\penalty0 4979, 2021.
+
+\bibitem[Kone{\v{c}}n{\'a} et~al.(2022)Kone{\v{c}}n{\'a}, {\v{S}}ustr,
+  Po{\v{z}}{\'a}rov{\'a}, {\v{C}}ertner, Krej{\v{c}}ov{\'a}, Tylov{\'a}, and
+  Kol{\'a}{\v{r}}]{konevcna2022}
+V.~Kone{\v{c}}n{\'a}, M.~{\v{S}}ustr, D.~Po{\v{z}}{\'a}rov{\'a},
+  M.~{\v{C}}ertner, A.~Krej{\v{c}}ov{\'a}, E.~Tylov{\'a}, and
+  F.~Kol{\'a}{\v{r}}.
+\newblock Genomic basis and phenotypic manifestation of (non-) parallel
+  serpentine adaptation in arabidopsis arenosa.
+\newblock \emph{Evolution}, 76\penalty0 (10):\penalty0 2315--2331, 2022.
 
 \bibitem[Kreiner et~al.(2017{\natexlab{a}})Kreiner, Kron, and
   Husband]{kreiner2017}
@@ -234,6 +295,12 @@ S.~P. Otto and J.~Whitton.
 \newblock \emph{Annual review of genetics}, 34\penalty0 (1):\penalty0 401--437,
   2000.
 
+\bibitem[Polechov{\'a} and Barton(2015)]{polechova2015}
+J.~Polechov{\'a} and N.~H. Barton.
+\newblock Limits to adaptation along environmental gradients.
+\newblock \emph{Proceedings of the National Academy of Sciences}, 112\penalty0
+  (20):\penalty0 6401--6406, 2015.
+
 \bibitem[Porturas et~al.(2019)Porturas, Anneberg, Cur{\'e}, Wang, Althoff, and
   Segraves]{porturas2019}
 L.~D. Porturas, T.~J. Anneberg, A.~E. Cur{\'e}, S.~Wang, D.~M. Althoff, and
@@ -242,6 +309,12 @@ L.~D. Porturas, T.~J. Anneberg, A.~E. Cur{\'e}, S.~Wang, D.~M. Althoff, and
   flowering traits in plants.
 \newblock \emph{American Journal of Botany}, 106\penalty0 (3):\penalty0
   469--476, 2019.
+
+\bibitem[Pritchard and Di~Rienzo(2010)]{pritchard2010}
+J.~K. Pritchard and A.~Di~Rienzo.
+\newblock Adaptation--not by sweeps alone.
+\newblock \emph{Nature Reviews Genetics}, 11\penalty0 (10):\penalty0 665--667,
+  2010.
 
 \bibitem[Ramsey and Schemske(1998)]{ramsey1998}
 J.~Ramsey and D.~W. Schemske.

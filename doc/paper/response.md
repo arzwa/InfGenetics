@@ -72,7 +72,12 @@ study with their model will be useful in my opinion. The author proposed to
 complexify the current model of adaptation with dominance or to relax some
 hypotheses, but I think other biological scenarios could be studied too.
 
-**TODO**
+Whereas I don't think listing potential biological scenario's that can be
+investigated using my modeling approach is very useful, I think the reviewer is
+right in that it may be useful to highlight that the modeling approach can be
+employed to address other questions related to the ecology and evolution of
+mixed-ploidy populations. I have now added a small paragraph at the end that
+does so.
 
 >Defining establishment when N=100: Is it a classic way to define establishment
 in such models?  Or does it come from your experience with the model and you
@@ -137,6 +142,7 @@ which a tetraploid population will establish in a peripheral region connected to
 a central core by dispersal. In terms of the infinitesimal model, several aspects
 are very helpful
 
+>
 - Demonstrating how genetic effects are scaled across triploids and tetraploids
 such that segregating variance is equivalent across ploidies, including with diploids
 - How to combine the genetic effects in an individual with mixed-ploidy ancestry
@@ -144,9 +150,9 @@ such that segregating variance is equivalent across ploidies, including with dip
 - Calculating the effect of unreduced gamete formation on segregation variance
 across diploids, triploids and tetraploids
 
-Other informative analyses include recursive or Markov models of null expecta-
-tions for frequencies of ploidies, times to diploid ancestry and effective popula-
-tion size across a population of mixed-ploidy.
+>Other informative analyses include recursive or Markov models of null
+expectations for frequencies of ploidies, times to diploid ancestry and
+effective population size across a population of mixed-ploidy.
 Besides this set of results, the paper then examines conditions under which a
 tetraploid population is established in a peripheral population connected to a
 central core population that is predominantly composed of diploids. Given the
@@ -197,6 +203,8 @@ so that, unless the mutational variance is exactly halved in tetraploids, the
 contribution of mutation to genetic variance ($\mu V_m$) in tetraploids is
 larger than in diploids.
 
+I have added a note in the discussion regarding mutation and why I have ignored it.
+
 >In the intro providing empirical examples of polyploid establishment in
 peripheral habitats would broaden readership and connections to the
 literature. Also, reviewing empirical work on the genetics of adaptation to
@@ -209,22 +217,25 @@ think that to present an actual review of empirical studies here is a bit out
 of scope. Griswold presents a brief review in his 2021 paper, and I prefer to
 refer to his paper instead of paraphrasing his paragraph. Specifically, I now
 write:
-"Many empirical studies of mixed-ploidy populations show a pattern where
-polyploids established in peripheral habitats at the edge of a species’ range
-(reviewed in Griswold (2021)), and these observations for specific study
-systems are in accord with large scale biogeographical patterns (Rice et al.,
-2019)."
+"Many empirical studies of mixed-ploidy populations find that polyploids
+established in peripheral habitats at the edge of a species’ range (reviewed in
+Griswold (2021)), and this is in accord with large scale biogeographical
+patterns (Rice et al., 2019)".
 
-With regard to adaptation to peripheral habitats: I refer to an important (if
-somewhat old) review article of Kawecki (2008) and recent theoretical work by
-Sachdeva et al. I think this gives a good sample of where to look for more
-references.
-When it comes to empirical work on the *genetics of adaptation to peripheral
-environments in polyploids*, I am quite frankly not aware of relevant studies...
-Reviewing empirical work on adaptation to peripheral habitats in general is
-somewhat out of scope, as this is a vast field on its own with which I myself
-am not that well acquainted, and the paper is already at the word limit for
-Evolution research articles.
+While I think it is out of scope to review in any depth the empirical
+literature on adaptation and polyploidy, I agree that the paper lacked a clear
+connection to such work, and in particular I noticed that it lacked a clear
+motivation for the interest in *polygenic* adaptation.
+I have now tried to better motivate the likely polygenic nature of local
+adaptation and have added a couple of references to recent work on the genetics
+of adaptation in autopolyploids: 
+"More often than not, local adaptation is polygenic in nature (Pritchard and Di
+Rienzo, 2010; Barghi et al., 2020; Bomblies and Peichel, 2022), involving many
+weakly selected variants across the genome, and adaptation during polyploid
+establishment is unlikely to be an exception. Recent studies on local
+adaptation in autopolyploids indicate a polygenic basis of adaptation
+(Bohutinska et al., 2021; Konecna et al., 2021, 2022), however it is not clear
+how this adaptation relates to their initial establishment."
 
 >The discussion could relate findings to other theoretical works more. For ex-
 ample, it does not go back and place the results in the context of Oswald and
@@ -232,7 +243,20 @@ Nuismer (2011), which assumed a two-locus model and varied dosage effects, as
 well as competition between diploids and tetraploids, including no competition.
 In addition it allowed for assortative mating.
 
-**TODO** (Discussion)
+I agree that @oswald2011 could be a relevant paper to relate my work to,
+however it should be noted that this paper does not deal with migration, nor
+establishment in a new environment (they do study establishment after
+environmental change, but as far as I can tell they assumed a constant
+population size, so this is quite different from establishment in a new
+habitat).
+While the study is clearly related, it is not straightforward to explicitly
+relate the results beyond noting that they also found that assortative mating
+and selfing may promote establishment...
+
+However, I have now added a more explicit reference to @oswald2011 in the concluding
+note, to highlight that it would be possible to do a study that is comparable
+to theirs but assuming infinitesimal quantitative genetics instead of a model
+with a small number of loci.
 
 >It would be informative to expand on the the consequences of different scalings
 of genetic effects. This paper made the sensible choice to scale such that segre-
