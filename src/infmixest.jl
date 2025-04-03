@@ -16,6 +16,21 @@
     c::Vector{T} = cytotype_equilibrium(U)
 end
 
+function parameters(M::InfDemeMixEst)
+    @unpack U, β, α, σ, ρ, γ, m, V, θ, c, w = M 
+    w2, w3, w4 = w
+    b2, b3, b4 = β
+    s2, s3, s4 = σ
+    a2, a3, a4 = α
+    r2, r3, r4 = ρ
+    z2, z3, z4 = θ
+    c2, c3, c4 = c
+    (u21=U[1,1], u22=U[1,2], u31=U[2,1], u32=U[2,2], u41=U[3,1], u42=U[3,2],
+     w2=w2, w3=w3, w4=w4, b2=b2, b3=b3, b4=b4, s2=s2, s3=s3, s4=s4, r2=r2,
+     r3=r3, r4=r4, z2=z2, z3=z3, z4=z4, c2=c2, c3=c3, c4=c4, V=V, g=γ, 
+     a2=a2, a3=a3, a4=a4, m=m)
+end
+
 function cytotype_equilibrium(U)
     u21, u22 = U[1,:]
     u31, u32 = U[2,:]
@@ -140,17 +155,27 @@ function assortative_mating!(W, ρ, c)
 end
 
 function migration(M::InfDemeMixEst, pop::InfPop)
-    @unpack m, θ, V, c, β = M
+    @unpack m, θ, V, c, β, α = M
     @unpack z, c, F, Φ = pop
     nr = popsize(pop)
     nm = rand(Poisson(m))
     cm = rand(Multinomial(nm, M.c))
     cm = vcat([fill(i+1, k) for (i, k) in enumerate(cm)]...)
     # Vzₖ/Vz₂ = (k/2)βₖ² => Vzₖ = kβₖ²V
-    zm = [rand(Normal(0.0, √(m*β[m-1]^2*V))) for m in cm]
+    # But, this is not really the case: this is an equilibrium result for an
+    # isolated monocytotypic population. It does hold for α = 0...
+    # Here we use the small u approximation
+    Vs = (β .^ 2) .* [2,3,4] .* V .* [1, 1+2α[1]/3, 1+α[1]]  
+    zm = [rand(Normal(0.0, √Vs[m-1])) for m in cm]
+    add_unrelated_individuals(pop, zm, cm, zeros(nm))
+end
+
+function add_unrelated_individuals(pop, zm, cm, Fm)
+    nr = popsize(pop)
+    nm = length(zm)
     z  = [pop.z ; zm]
     c  = [pop.c ; cm]
-    F  = [pop.F ; zeros(nm)]
+    F  = [pop.F ; Fm]
     Φ  = [pop.Φ zeros(nr, nm); zeros(nm, nr) zeros(nm, nm)]
     InfPop(z=z, c=c, F=F, Φ=Φ)
 end
@@ -160,19 +185,16 @@ end
 #    [(U[k-1,1] + U[k-1,2])*w[k-1]*exp(γ*zk) for (zk,k) in zip(pop.z,pop.c)]  
 #end
 
-function generation(M::InfDemeMixEst, pop::InfPop{T}) where T
+function generation(M::InfDemeMixEst, pop::InfPop{T}; Nmax=100000) where T
     @unpack θ, α, β, γ, σ, ρ, U, m, V = M
     # pop_ is after migration
     # _pop is next generation
     pop_ = migration(M, pop)
     N_   = popsize(pop_)
-    W, Z, V = families(M, pop_)
-    W = selfing!(W, σ, pop_.c)
-    W = assortative_mating!(W, ρ, pop_.c)
-    #ws = _otherfitness(M, pop_)
+    W, Z, V = fitnesses(M, pop_)
     𝔼N = isempty(W) ? 0.0 : sum(W) 
     # number of individuals in the next generation
-    N = rand(Poisson(𝔼N))   
+    N = min(rand(Poisson(𝔼N)), Nmax)
     # sample parental pairs x offspring ploidy combinations
     P = zeros(N, N_)
     C = CartesianIndices((1:N_, 1:N_, 1:4))
@@ -186,7 +208,8 @@ function generation(M::InfDemeMixEst, pop::InfPop{T}) where T
         cij = x == 1 || x == 2 ? x + 1 : x   # offspring ploidy
         z̄ij = Z[ij]
         Vij = V[ij]
-        zij = rand(Normal(z̄ij, √Vij))
+#        zij = rand(Normal(z̄ij, √Vij))
+        zij = rand(Normal(z̄ij + γ*Vij, √Vij))  # XXX 2025-03-28, need trait value after selection...
         _pop.z[k] = zij
         _pop.c[k] = cij
         if x == 1
@@ -219,3 +242,13 @@ function generation(M::InfDemeMixEst, pop::InfPop{T}) where T
     _pop.Φ .= Φ_
     return _pop
 end
+
+function fitnesses(M, pop)
+    @unpack σ, ρ = M 
+    N = popsize(pop)
+    W, Z, V = families(M, pop)
+    W = selfing!(W, σ, pop.c)
+    W = assortative_mating!(W, ρ, pop.c)
+    return W, Z, V
+end
+

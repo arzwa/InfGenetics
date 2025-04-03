@@ -130,3 +130,30 @@ function diploidgamete(M, z, F, c)
     end
 end
 
+function neutral_noinbreeding_generation(
+        pop::InfPop, M::InfDemeMix)
+    @unpack F, Φ = pop
+    @unpack α, β, w, U = M
+    N = popsize(pop)
+    ws = fitnesses(pop, U, w, z->1.0)
+    ws ./= mean(ws)
+    idx = sample(1:N, Weights(ws), 2N, replace=true) 
+    pop_ = similar(pop)
+    for k=1:N
+        i = idx[k]; j = idx[N+k]
+        zi, Fi, ci = pop[i]
+        zj, Fj, cj = pop[j]
+        gi, yi, Vi = gamete(M, zi, Fi, ci)
+        gj, yj, Vj = gamete(M, zj, Fj, cj)
+        cij = gi + gj
+        βij = β[cij-1]
+        βi  = β[ci-1]
+        βj  = β[cj-1]
+        Yi  = rand(Normal(yi*βij/βi, √(βij^2*Vi))) 
+        Yj  = rand(Normal(yj*βij/βj, √(βij^2*Vj))) 
+        pop_.z[k] = Yi + Yj
+        pop_.c[k] = cij
+    end
+    return pop_
+end
+

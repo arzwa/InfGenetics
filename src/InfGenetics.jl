@@ -2,13 +2,14 @@ module InfGenetics
 
 using LinearAlgebra, Distributions, StatsBase, Random, Parameters
 
-export jeffreys_interval, Umat, simest, simest2, simuntil, fiterate
+export jeffreys_interval, Umat, simest, simest2, simuntil, fiterate, maxα, strs
 export InfDemeMixEstPair, InfDemeMixEstSelf, InfDemeMixEst, InfDemeMix, InfDemeHS, InfPop, FinPop, generation
 
 include("infmix.jl")
 include("finmix.jl")
 include("infmixest.jl")
 include("simulation.jl")
+include("rv.jl")
 #include("infmixhs.jl")
 #include("infmixestpair.jl")
 #include("infmixestself.jl")
@@ -33,5 +34,7 @@ end
 
 mpeq(u, v) = (3 - 3u - 6v + √((u + 2v - 1)*(5u + 2v - 1)))/(4 - 2u -8v)
 Umat(u, v) = [1-u u ; v v ; 0.0 1-u]
+const maxα = [1/2, 1/4, 1/6]
+const strs = ["", "diploid", "triploid", "tetraploid"]
 
 end # module

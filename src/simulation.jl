@@ -10,7 +10,7 @@ function simest(M; x0=InfPop(z=Float64[]), nmax=Inf, Nest=100)
     xs = [(1, generation(M, x0))]
     while !condition(last(xs)..., M, nmax, Nest)
         (n, x) = last(xs) 
-        x_ = generation(M, x)
+        x_ = generation(M, x, Nmax=Nest) # no need to simulate > Nest
         if popsize(x_) == 0 
             # extinction -- prune the stored generations
             xs = [(n + 1, x_)]
@@ -25,7 +25,7 @@ end
 function simest2(M; x0=InfPop(z=Float64[]), nmax=Inf, Nest=100)
     x = generation(M, x0); n = 1
     while !condition(n, x, M, nmax, Nest)
-        x = generation(M, x); n += 1
+        x = generation(M, x, Nmax=Nest); n += 1
 	end
     N = popsize(x)
     c = N > 0 ? counts(x.c, 2:4) : [0, 0, 0]

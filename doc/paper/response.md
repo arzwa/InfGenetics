@@ -17,28 +17,97 @@ empirical work**, and the **Discussion section could relate the results more to
 other theoretical findings** in the literature. Overall, think that revision will
 be relatively straightforward, but I would ask that you consider all the
 suggestions made by the reviewers and, if you disagree with them, that you
-justify and explain your reasons in a response letter.
+justify and explain your reasons in a response letter. (emphasis mine)
 
-I have now revised the Introduction slightly to include more discussion of
-empirical work, although, in the interest of brevity (the manuscript is already
-near the Evolution word limit), I mostly resorted to explicitly referring the
-reader to the article by @griswold2021. In the latter, the author provides a
-nice overview of relevant recent studies.
+Thanks a lot for your positive appraisal.
+
+First of all, I wish to note that there was an important error in my original
+submission, which I outline below. Evidently, I have redone all simulations and
+revised the manuscript accordingly. The error affects both diploid and
+tetraploid establishment similarly, so does not affect the results
+qualitatively (since these are concerned, mostly, with relative establishment
+probabilities), but does affect all results with nonzero selection intensity
+($\gamma > 0$). I outline the details of the error in the next section.
+
+I have now revised the Introduction to refer more to empirical work.
+I have included the references suggested by Reviewer 1.
+Following the suggestions of Reviewer 2, I have tried to refer better to
+empirical work on (1) polyploid establishment at range margins and (2) the
+genetics of adaptation to peripheral environments (in polyploids).
+In the interest of brevity, I do not present an in-depth review of these
+topics. For (1), I refer mostly to @griswold2021, who presented a
+nice overview. For (2), I mainly tried to better motivate my interest in
+*polygenic* adaptation, referring to recent work and reviews that suggest that
+local adaptation is typically polygenic, and work that shows that
+autopolyploids present no exception to this.
 
 Regarding the Results and the Discussion sections: I do not want to do away
-with Discussion section altogether (as suggested by Reviewer 1), given that I
+with Discussion section altogether (as suggested by Reviewer 1), as I
 wish to discuss factors relevant to the problem which are not studied in my
-article (dominance, inbreeding depression, *etc.*) and want to relate my work
-to other recent theoretical work.
-I believe it is better to separate the latter topics from the description *and*
-interpretation of the actual results. 
+article (dominance, inbreeding depression, *etc.*) and hence do not feature in
+the results section. Furthermore, I want to relate my work to other recent
+theoretical work (in particular that of @griswold2021). I believe this warrants
+a dedicated Didcussion section.
 I have sought to move 'more discussive text' to the Discussion section,
 although I found there was fairly limited scope to do so when I seek to keep
-the interpretation of the results more or less self-contained. **TODO!**
+the interpretation of the results more or less self-contained.
 
-I have expanded the discussion slightly to include more of the previous
-theoretical literature on the subject, in particular following the suggestions
-of Reviewer 2. **TODO!**
+I have expanded the discussion slightly to address some of the remarks of
+Reviewer 2 concerning the issues of mutation and the scaling of genetic variance. 
+I have added a concluding paragraph following the suggestion of Reviewer 1 to
+highlight that other eco-evolutionary questions about mixed-ploidy populations
+might be fruitfully addresed using the infinitesimal framework. I took the
+opportunity to allude to the work of @oswald2011 in that section, following up
+on a suggestion of Reviewer 2.
+
+Overall, I think these revisions have contributed considerably to a
+better-motivated article that engages more with relevant empirical work. I
+hence thank the reviewers and the editors for their suggestions. Below I
+include a detailed reply to both reviewers.
+
+## Error in the first submission 
+
+In the simulations included in the first submission of my article, I did not
+sample the trait values of the next generation correctly when there was nonzero
+selection $\gamma > 0$ (as in figs. 2-5).
+As outlined in my paper, I sample the number of offspring of a particular
+combination of gametes from a particular parental pair after selection in
+proportion with the expected fitness using eq. 11 (number in new version).
+In the previous version, I then sampled, incorrectly, offspring trait values
+from the Gaussian distribution of offspring implied by the mixed-ploidy
+infinitesimal model (eq. 7). This however fails to account for selection on the
+trait value within each parental pair.
+
+The density of trait values after selection is found easily.
+Writing $f(z)$ for the Gaussian density of trait values with mean $\bar{z}$ and
+variance $V$, and $w(z)$ for the fitness function, the density after selection
+$f^\ast(z)$ is
+\begin{align*}
+f^\ast(z) &= \frac{w(z)f(z)}{\int w(z)f(z)dz} \\
+&\propto \exp\left(\gamma(z - \theta) - \frac{(z - \bar{z})^2}{2V}\right) \\
+&\propto \exp\left(-\frac{1}{2V}(z^2 - 2z\bar{z} - 2V\gamma z)\right) \\
+&= \exp\left(-\frac{1}{2V}\left[z^2 - 2z(\bar{z} + \gamma V) + (\bar{z} + \gamma V)^2 - (\bar{z} + \gamma V)^2\right]\right) \\
+&\propto \exp\left(-\frac{1}{2V}\left[z - (\bar{z} + \gamma V)\right]^2\right)
+\end{align*}
+i.e. $f^\ast(z)$ is a Gaussian density with mean $\bar{z} + \gamma V$ and
+variance $V$. 
+The correct trait value distribution for the offspring in parental pair $(i,j)$
+with gametes of ploidy $k$ and $l$ *after selection* is hence a Gaussian with
+mean $\overline{z_{ij}^{kl}} + \gamma V_{ij}^{kl}$ and variance $V_{ij}^{kl}$.
+
+The incorrect results from the previous submission can be seen as a kind of
+zeroth order approximation to the correct results: i.e. they implement
+selection on the mean trait value across families, but not selection on the
+variance. The main consequence of this error is that adaptation is more
+efficient than in my previous results, and hence establishment is easier. This
+is however the case for both diploids and tetraploids. 
+The effect on establishment is however nonlinear, so although the main qualitative
+results of the paper remain the same, the new results do not simply amount to a
+rescaling of the old ones.
+
+I apologize for this oversight.
+
+
 
 ## Reviewer 1
 
@@ -63,7 +132,7 @@ because it reads well as presented, or remove any explanations/discussion from
 the results to put them in the discussion section. The first option sounds
 better to me.
 
-I appreciate the comment and have reworked the text with this in mind.
+I appreciate the comment and have tried to rework the text with this in mind.
 However, following the suggestion of the associate editor, I went with the
 second option. I refer to my answer to the associated editor above.
 
@@ -79,17 +148,21 @@ employed to address other questions related to the ecology and evolution of
 mixed-ploidy populations. I have now added a small paragraph at the end that
 does so.
 
->Defining establishment when N=100: Is it a classic way to define establishment
-in such models?  Or does it come from your experience with the model and you
-see that Under N=100 extinction remains likely? More details would be needed
-here.
+>Defining establishment when $N=100$: Is it a classic way to define
+establishment in such models?  Or does it come from your experience with the
+model and you see that Under N=100 extinction remains likely? More details
+would be needed here.
 
-$N=100$ is indeed an arbitrary choice. This threshold was also adopted in
+$N=100$ is indeed a fairly arbitrary choice. This threshold was also adopted in
 @barton2018, so it makes comparisons of establishment probabilities *etc.* with
 their paper somewhat more straightforward.
 $N=100$ seems to be a reasonable threshold in that extinction becomes
 sufficiently unlikely, while we do not have to simulate large populations (our
 approach requires tracking the $N \times N$ matrix of identity coefficients). 
+Also, for the migration rates considered, $N=100$ is sufficiently large that
+migration alone (without population growth due to adaptation) can not lead to
+$N=100$, i.e. the population does have to increase the mean trait value in
+order to reach establishment.
 I did a check by putting the threshold at $N=150$, and the establishment
 probabilities do not change appreciably.
 
@@ -175,7 +248,7 @@ identity by descent from identity in state and likely slows the rate of loss of
 segregation variance. It would be helpful to address how scaled mutation may
 affect dynamics of segregating variance between diploids and autotetraploids
 and whether mutation may affect results. Is there a relationship between $\mu V_m$
-(Barton et al. 2017) and m and V on establishment?
+(Barton et al. 2017) and $m$ and $V$ on establishment?
 Recognizing the point seems to be important, but its analysis can be for later.
 
 I have not considered mutation at all so far because I assumed it would not be
@@ -184,13 +257,17 @@ Specifically, any individual at the time of establishment derives from a
 completely outbred migrant individual a relatively short time in the past (10
 to 100 generations, say), so the contribution of new mutation to differences in
 establishment probability between diploids and tetraploids should be
-negligible.
-This is definitely the case when there is ongoing migration: as long as $m$ is
-sufficiently greater than $\mu$ and $V_m$ is sufficiently smaller than the
-genetic variance in the mainland population, we will have that for every
-mutation contributing a very slight decrease in the loss of segregation
+negligible. In more quantitative terms: we assume $1/\mu \gg \tilde{T}$ where
+$\tilde{T}$ is the time between establishment and the arrival of the migrant
+from which the established population derived. 
+In the presence of migration the variance contributed by mutation is even more
+certainly negligible.
+As long as $m V$ is sufficiently larger than $\mu V_m$, we will have that, for
+every mutation contributing a very slight decrease in the loss of segregation
 variance on the island, there will be many more migrant arrivals, which each
 introduce a completely unrelated genotype.
+In all our simulations with migration we assume $mV$ considerably larger than
+conceivable values of $\mu V_m$.
 
 Of course, when considering the mixed-ploidy infinitesimal model independently
 of the establishment question, mutation does become a relevant topic. I mention
@@ -233,40 +310,46 @@ of adaptation in autopolyploids:
 Rienzo, 2010; Barghi et al., 2020; Bomblies and Peichel, 2022), involving many
 weakly selected variants across the genome, and adaptation during polyploid
 establishment is unlikely to be an exception. Recent studies on local
-adaptation in autopolyploids indicate a polygenic basis of adaptation
-(Bohutinska et al., 2021; Konecna et al., 2021, 2022), however it is not clear
-how this adaptation relates to their initial establishment."
+adaptation in autopolyploids indeed tend to find a polygenic basis of
+adaptation (Bohutı́nská et al., 2021; Konečná et al., 2021, 2022), however it is
+not clear how observed adaptive differentiation in established tetraploid
+populations relates to adaptation that occurred during initial establishment".
 
->The discussion could relate findings to other theoretical works more. For ex-
-ample, it does not go back and place the results in the context of Oswald and
+>The discussion could relate findings to other theoretical works more. For
+example, it does not go back and place the results in the context of Oswald and
 Nuismer (2011), which assumed a two-locus model and varied dosage effects, as
 well as competition between diploids and tetraploids, including no competition.
 In addition it allowed for assortative mating.
 
 I agree that @oswald2011 could be a relevant paper to relate my work to,
-however it should be noted that this paper does not deal with migration, nor
-establishment in a new environment (they do study establishment after
-environmental change, but as far as I can tell they assumed a constant
-population size, so this is quite different from establishment in a new
-habitat).
-While the study is clearly related, it is not straightforward to explicitly
-relate the results beyond noting that they also found that assortative mating
-and selfing may promote establishment...
+however it should be noted that this paper focuses on establishment in
+sympatry, and does not deal with migration, nor establishment in a new
+environment (they do study establishment after environmental change, but as far
+as I can tell they assumed a constant population size, so this is quite
+different from establishment in a new habitat).
+While my study is clearly related to theirs in that it is concerned with
+establishment of autotetraploids in mixed-ploidy populations, it is not
+straightforward to explicitly relate the results beyond noting that (1) they
+investigated more processes (assortative mating by trait value, competition,
+stabilizing selection and inbreeding depression) and (2) also found that
+assortative mating and selfing may promote establishment.  The latter was of
+course already found by many authors before @oswald2011...
 
 However, I have now added a more explicit reference to @oswald2011 in the concluding
-note, to highlight that it would be possible to do a study that is comparable
-to theirs but assuming infinitesimal quantitative genetics instead of a model
-with a small number of loci.
+note (see the associated remark of Reviewer 1), to highlight that it would be
+possible to do a study that is comparable to theirs but assuming infinitesimal
+quantitative genetics instead of a model with a small number of loci.
 
->It would be informative to expand on the the consequences of different scalings
-of genetic effects. This paper made the sensible choice to scale such that segre-
-gation variance is equal between ploidies as a baseline. Griswold (2021) scaled
-genetic effects such that autotetraploid and diploid individuals have equal fit-
-ness as a function of proportional allele count in an individual. A consequence
-of Griswold’s scaling is autotetraploids have lower additive genetic variance at
-HWE (Gallais 2003, p. 185), so are expected to respond more slowly in the
-absence of another process. Gallais (2003, p. 186) mentions some studies that
-compared additive genetic variance between diploids and autotetraploids.
+>It would be informative to expand on the the consequences of different
+scalings of genetic effects. This paper made the sensible choice to scale such
+that segregation variance is equal between ploidies as a baseline. Griswold
+(2021) scaled genetic effects such that autotetraploid and diploid individuals
+have equal fitness as a function of proportional allele count in an individual.
+A consequence of Griswold’s scaling is autotetraploids have lower additive
+genetic variance at HWE (Gallais 2003, p. 185), so are expected to respond more
+slowly in the absence of another process. Gallais (2003, p. 186) mentions some
+studies that compared additive genetic variance between diploids and
+autotetraploids.
 
 The consequences of different scalings is taken up in the results and
 discussion throughout the paper where I believe this is relevant.
@@ -278,8 +361,7 @@ In the section on establishment with recurrent migration, the phenomenon that
 polyploid offspring is more extreme on average when allelic effects are not
 exactly scaled by one half (as in Griswold) is taken up. 
 I now added some further discussion, referring explicitly to Griswold's scaling
-in the Discussion section. I now also refer to @porturas2019. Sadly, I
-currently do not have access to Gallais' book.
+in the Discussion section. I now also refer to @porturas2019 and @gallais2003. 
 
 >Neither the intro nor the discussion revisit what seems to be an important point
 in Barton & Etheridge (2018, p. 111) about local adaptation via infinitely small
@@ -288,22 +370,26 @@ effects.
 I assume the reviewer is referring to the following issue: classical single
 locus population genetics predicts that one needs $m < s$ for selection to
 maintain a locally beneficial allele when migrants introduce the deleterious
-allele, and that when adaptation is due to alleles of very small effect this
-may seem to imply that there is little scope for local adaptation.
+allele. So, when adaptation is due to alleles of very small effect, this seems
+to imply that there is little scope for local adaptation, since locally
+beneficail variants will be swamped by gene flow.
 
-There are multiple reasons why this is not the case. The argument outlined in
-@barton2018 is simply that the classical theory assumes complete divergence
-between mainland and island, but that when adaptation is from standing
-variation instead this doe snot hold, since allele frequency differences
-between mainland and island are only slight. In the latter case, many alleles
-of small effect can be divergently maintained by selection. Another reason why
-this does not hold is linkage disequilibrium between locally beneficial
-alleles, this is explored in detail in @sachdeva2022 and @zwaenepoel2024.
+There are multiple reasons why this is not the case in nature. The argument
+outlined in @barton2018 is simply that the classical theory usually assumes
+complete divergence between mainland and island, but that when adaptation is
+from standing variation instead, this does not hold, since allele frequency
+differences between mainland and island are only slight. In the latter case,
+many alleles of small effect can be divergently maintained by selection.
+Another reason why this does not hold is that selected alleles will 
+be in linkage disequilibrium, so that entire sets of deleterious alleles
+introduced by migrants are eliminated jointly. The latter phenomenon is
+explored in detail in @sachdeva2022 and @zwaenepoel2024.
 
 I do not think, however, that it is pertinent to discuss these issues in the
 present paper -- they are somewhat technical and require quite some space to
 explain and do not have much to do with the problem studied, i.e. polyploid
-establishment. 
+establishment, so in the interest of brevity I decided not to revisit this
+point.
 
 
 ### Other comments:
@@ -329,9 +415,9 @@ If the reference is suggested by the reviewer in order to cite a more
 'original' reference, I don't think there is a reason to single out Bulmer
 (1971), one could refer to Fisher (1918) or work by Alan Robertson in the
 1960's.
-I think the reference to Turelli (2017) which reviews the history of the
-infinitesimal model suffices, and prevents confusion as to what we mean when we
-refer to 'the infinitesimal model'.
+I think the reference to Turelli (2017), which reviews the history of the
+infinitesimal model, is quite adequate, and prevents confusion as to what we
+mean when we refer to 'the infinitesimal model'.
 
 >p.7: Suggest adding “, across gene copy arrangements and ploidies” at the end
 of the last sentence before the “Establishment” section.
@@ -343,7 +429,7 @@ sentence more confusing, as I never talk of gene copy arrangements.
 this section is a bit confusing. N is used before it is formally defined. In my
 first reading I thought there was migration and then selection, whereas there is
 selection and then migration. It would also help support a self-contained paper
-to give the expression for $E[e\gamma(...) ]$.
+to give the expression for $E\left[e^{\gamma(\dots)}\right]$.
 
 As far as I can tell, $N$ is defined when first mentioned. I slightly altered
 the sentence to make this more clear.
@@ -367,13 +453,18 @@ process amounts more or less to independent establishment trials (there is no
 swamping).
 
 I do not think, however, that fig 4 suggests such a transition point though. As
-noted in the main text (**line numbers**), the difference between the $m=0$ and
-$m=0.01$ results in fig. 4 are mostly due to the fact that the latter assumes a
-Gaussian distribution of migrant trait values, whereas the former assumes a
-fixed initial migrant trait value.
+noted in the main text the difference between the $m=0$ and $m=0.01$ results in
+fig. 4 are mostly due to the fact that the latter assumes a Gaussian
+distribution of migrant trait values, whereas the former assumes a fixed
+initial migrant trait value.
+(*"The similar trait means for weak migration suggest
+that establishment depends mostly on the chance pick of a well-adapted migrant
+(note that the $m = 0$ simulations in fig. 4 assume the initial migrant has $z =
+0$, whereas the $m = 0.01$ simulations assume the initial trait value to be
+Gaussian)."*) 
 
->p. 12: Add qualifier “as m increases” at end of last sentence in last full para-
-graph.
+>p. 12: Add qualifier “as $m$ increases” at end of last sentence in last full
+paragraph.
 
 Done.
 
@@ -393,8 +484,8 @@ That's right, thank you!
 
 Fixed, thank you!
 
->p. 12, suppl.: add “between centromere and locus” after “. . . recombination
-happens with probability c”
+>p. 12, suppl.: add “between centromere and locus” after “... recombination
+happens with probability $c$”
 
 Done.
 
