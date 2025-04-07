@@ -29,7 +29,26 @@ function simest2(M; x0=InfPop(z=Float64[]), nmax=Inf, Nest=100)
 	end
     N = popsize(x)
     c = N > 0 ? counts(x.c, 2:4) : [0, 0, 0]
-    return (popsize(x) > 0, n, c)
+    return (N > 0, n, c)
+end
+
+# weak migration
+function _simest3(M; x=InfPop(z=Float64[]), nmax=Inf, Nest=100)
+    p0 = pdf(Poisson(M.m), 0)
+    M0 = reconstruct(M, m=0)
+    n = 0
+    while !condition(n, x, M, nmax, Nest)
+        if popsize(x) == 0
+            n += rand(Geometric(1-p0))
+            x = add_n_migrants(M, 1, x)  
+            # XXX this should be the distribution conditional on being nonzero,
+            # for small m this is very likely 1
+        end
+        x = generation(M0, x, Nmax=Nest); n+= 1
+	end
+    N = popsize(x)
+    c = N > 0 ? counts(x.c, 2:4) : [0, 0, 0]
+    return (N > 0, n, c)
 end
 
 function simuntil(f) 
@@ -38,3 +57,4 @@ function simuntil(f)
 		x && return xs
 	end
 end
+

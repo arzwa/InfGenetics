@@ -66,3 +66,6 @@ v = v0(x)
 @info "" v v0(x, 0.3) v*1.3
 
 
+model = InfDemeMixEst(m=0.1, θ=fill(2.5, 3), U=Umat(0.05,0.05))
+pop = InfPop(z=randn(20), c=fill(2, 20))
+@btime InfGenetics.generation(model, pop)

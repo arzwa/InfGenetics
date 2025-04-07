@@ -31,7 +31,7 @@ A mixed-ploidy population with trait values `z`, inbreeding coefficients `F`,
 coancestry coefficients `Φ` and ploidy levels `c`.
 """
 @with_kw struct InfPop{T}
-    z::Vector{T}   # trait values (scalars, for now)
+    z::Vector{T}   = Float64[] # trait values (scalars, for now)
     F::Vector{T}   = zeros(length(z)) # inbreeding
     Φ::Matrix{T}   = diagm(fill(0.5, length(z))) # coancestry
     c::Vector{Int} = fill(2, length(z)) # ploidy levels

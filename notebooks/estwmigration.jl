@@ -2,7 +2,7 @@ using Pkg; Pkg.activate("/home/arzwa/dev/InfGenetics/")
 using Distributed, StatsBase, Plots, Serialization, Distributions, Optim
 using DataFrames, CSV
 addprocs(6)
-@everywhere using InfGenetics
+@everywhere using InfGenetics, Distributions
 
 # estimate parameter of a censored geometric distribution by ML
 function logpdf_censored_geometric(p, c, x)
@@ -29,42 +29,54 @@ function make_a_df(sims, nmax)
     end |> x->vcat(x...) |> DataFrame
 end
 
-# Basic model
-# ===========
-nrep = 50_000
-ms   = 10 .^ range(log10(0.01), stop=log10(3), length=15)
+# Basic model (m -> 0 limit)
+# ==========================
+nrep = 100_000
+Nest = 100
 zs   = [3.0, 2.5, 2.0, 1.5]
 γ    = 0.25
 U    = Umat(0.05, 0.05)
-nmax = 10000
-Nest = 100
-M  = InfDemeMixEst(m=0.0, θ=fill(2.5, 3), U=U, γ=γ)
+M    = InfDemeMixEst(m=0.0, θ=fill(2.5, 3), U=U, γ=γ)
 
 # baseline
 base = pmap(zs) do z
     @info z
     M  = InfDemeMixEst(m=0.0, θ=fill(z, 3), U=U, γ=γ)
-    nr = 2_500_000
-    x2 = map(_->simest2(M, x0=InfPop(z=randn(1), c=[2]), Nest=Nest), 1:nr)
-    x3 = map(_->simest2(M, x0=InfPop(z=randn(1), c=[3]), Nest=Nest), 1:nr)
-    x4 = map(_->simest2(M, x0=InfPop(z=randn(1), c=[4]), Nest=Nest), 1:nr)
-    p22 = sum(first.(x2) .&& map(x->argmax(x[3]) == 1, x2)) / nr
-    p24 = sum(first.(x2) .&& map(x->argmax(x[3]) == 3, x2)) / nr
-    p32 = sum(first.(x2) .&& map(x->argmax(x[3]) == 1, x2)) / nr
-    p34 = sum(first.(x2) .&& map(x->argmax(x[3]) == 3, x2)) / nr
-    p4  = sum(first.(x4) .&& map(x->argmax(x[3]) == 3, x4)) / nr
-    (z=z, p2=p2, p4=p4, p32=p32, p34=p34)
+    zsource = Normal(0,1)
+    x2 = map(_->simest2(M, x0=InfPop(z=rand(zsource, 1), c=[2]), Nest=Nest), 1:nrep)
+    x3 = map(_->simest2(M, x0=InfPop(z=rand(zsource, 1), c=[3]), Nest=Nest), 1:nrep)
+    x4 = map(_->simest2(M, x0=InfPop(z=rand(zsource, 1), c=[4]), Nest=Nest), 1:nrep)
+    (z, x2, x3, x4)
 end
 
-map(base) do (z, p2, p4, p32, p34)
-    Z = sum([p2, p32 + p34, p4] .* M.c)
-    (z, (p4 * M.c[3] + p34 * M.c[2])/Z)
+m0 = map(base) do y
+    p4 = map(y[2:end]) do xs
+        length(filter(x->x[1] && (argmax(x[3]) == 3), xs))/nrep
+    end
+    p2 = map(y[2:end]) do xs
+        length(filter(x->x[1] && (argmax(x[3]) == 1), xs))/nrep
+    end
+    y[1], sum(p4 .* M.c)/(sum(p2 .* M.c) + sum(p4 .* M.c))
 end
-    
-M = InfDemeMixEst(m=0.001, θ=fill(2.5, 3), U=U, γ=0.25)
-x = map(_->simest2(M, x0=InfPop(z=Float64[], c=Int64[]), Nest=100), 1:10000)
-filter(y->argmax(y[3])==3, x) 
 
+# very weak migration, for comparison
+res_ = pmap(zs) do z
+    M = InfDemeMixEst(m=1e-6, θ=fill(z, 3), U=U, γ=0.25)
+    x = map(_->InfGenetics.simest3(M, Nest=100), 1:nrep)
+    x4 = filter(y->argmax(y[3])==3, x) 
+    z, length(x4)/nrep
+end
+
+
+# With recurrent migration
+# ========================
+nrep = 50_000
+ms   = 10 .^ range(log10(0.01), stop=log10(3), length=15)
+zs   = [3.0, 2.5, 2.0, 1.5]
+γ    = 0.25
+U    = Umat(0.05, 0.05)
+nmax = 10_000
+Nest = 100
 
 sims1 = pmap(Iterators.product(ms, zs)) do (m, z)
     @info (m, z)
@@ -75,9 +87,8 @@ sims1 = pmap(Iterators.product(ms, zs)) do (m, z)
     InfGenetics.parameters(model), reps
 end
 
-
 df1 = make_a_df(sims1, nmax)
-CSV.write("data/sims1b-df-z3.csv", df1)
+#CSV.write("data/sims1b-df-z3.csv", df1)
 
 
 # With double reduction etc. (maxα)

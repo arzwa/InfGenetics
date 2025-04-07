@@ -159,6 +159,12 @@ function migration(M::InfDemeMixEst, pop::InfPop)
     @unpack z, c, F, Φ = pop
     nr = popsize(pop)
     nm = rand(Poisson(m))
+    add_n_migrants(M, nm, pop)
+end
+
+function add_n_migrants(M::InfDemeMixEst, nm, pop::InfPop)
+    @unpack m, θ, V, c, β, α = M
+    @unpack z, c, F, Φ = pop
     cm = rand(Multinomial(nm, M.c))
     cm = vcat([fill(i+1, k) for (i, k) in enumerate(cm)]...)
     # Vzₖ/Vz₂ = (k/2)βₖ² => Vzₖ = kβₖ²V
@@ -176,7 +182,8 @@ function add_unrelated_individuals(pop, zm, cm, Fm)
     z  = [pop.z ; zm]
     c  = [pop.c ; cm]
     F  = [pop.F ; Fm]
-    Φ  = [pop.Φ zeros(nr, nm); zeros(nm, nr) zeros(nm, nm)]
+    Φm = diagm(fill(0.5, nm))  # coancestry with self is 0.5!
+    Φ  = [pop.Φ zeros(nr, nm); zeros(nm, nr) Φm]
     InfPop(z=z, c=c, F=F, Φ=Φ)
 end
 
@@ -191,10 +198,13 @@ function generation(M::InfDemeMixEst, pop::InfPop{T}; Nmax=100000) where T
     # _pop is next generation
     pop_ = migration(M, pop)
     N_   = popsize(pop_)
+    N_ == 0 &&  return InfPop()  # XXX popsize after migration = 0 ? Nothing can happen
     W, Z, V = fitnesses(M, pop_)
-    𝔼N = isempty(W) ? 0.0 : sum(W) 
+#   𝔼N = isempty(W) ? 0.0 : sum(W) 
+    𝔼N = sum(W)  
     # number of individuals in the next generation
     N = min(rand(Poisson(𝔼N)), Nmax)
+    N == 0 && return InfPop()    # XXX popsize next generation is zero
     # sample parental pairs x offspring ploidy combinations
     P = zeros(N, N_)
     C = CartesianIndices((1:N_, 1:N_, 1:4))
@@ -234,9 +244,11 @@ function generation(M::InfDemeMixEst, pop::InfPop{T}; Nmax=100000) where T
             _pop.F[k] = (Fi + Fj + 4Φ[i,j])/6
         end
     end
-    # inplace?
+    # inplace? little benefit
     Φ_ = P * Φ * P'
+    #mul!(_pop.Φ, P, Φ_)
     for i=1:N
+        #_pop.Φ[i,i] = (1/_pop.c[i]) * (1 + (_pop.c[i] - 1) * _pop.F[i]) 
         Φ_[i,i] = (1/_pop.c[i]) * (1 + (_pop.c[i] - 1) * _pop.F[i]) 
     end
     _pop.Φ .= Φ_
