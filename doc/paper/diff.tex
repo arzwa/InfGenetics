@@ -1,7 +1,7 @@
     \documentclass[12pt,a4paper]{article}
 %DIF LATEXDIFF DIFFERENCE FILE
 %DIF DEL submission1.tex   Wed Mar 26 11:15:42 2025
-%DIF ADD paper.tex         Thu Apr  3 13:48:30 2025
+%DIF ADD paper.tex         Mon Apr  7 10:09:40 2025
     \input{preamble.tex}
     \usepackage[margin=1in]{geometry}
     \usepackage{authblk}
@@ -807,10 +807,9 @@ of initial maladaptation, but also causes a stronger response in the mean trait
 value.
 If the genetic variance is not constant across cytotypes (i.e. $\beta_4^2 \ne
 1/2$), this response will differ for different ploidy levels.
-Differences across cytotypes in how the genetic variance evolves over time as a
-consequence of inbreeding will then further cause rates of adaptation to
-differ, leading to different establishment probabilities even when
-$\beta_4^2=1/2$.
+Different rates of inbreeding due to differences in ploidy level will then
+further cause rates of adaptation to differ, leading to different establishment
+probabilities, even when $\beta_4^2=1/2$.
 }
 
 \DIFadd{Indeed, we }\DIFaddend find that reduced inbreeding in tetraploids substantially increases the
@@ -853,8 +852,8 @@ probability to reach $N=100$ is $1/100$ \mbox{%DIFAUXCMD
 profound effect on the establishment probability, but only when $\beta_4$ is
 close to 0.5 (i.e. individual alleles have almost half the effect size in
 tetraploids compared to diploids) is the benefit of the slower rate of
-inbreeding in tetraploids canceled \DIFaddbegin \DIFadd{by the reduction in genetic variance 
-}\DIFaddend (\cref{fig:est1}B,C).
+inbreeding in tetraploids canceled \DIFaddbegin \DIFadd{by the reduction in the equilibrium genetic
+variance }\DIFaddend (\cref{fig:est1}B,C).
 
 
 
@@ -876,17 +875,19 @@ inbreeding in tetraploids canceled \DIFaddbegin \DIFadd{by the reduction in gene
     $\alpha_k=0$, whereas the dots connected by dashed lines
     show simulation results with $\alpha_2=1/2, \alpha_3=1/4$ and
     $\alpha_4=1/6$ (i.e. maximum $\alpha$).
-    The solid horizontal lines mark $\frac{p_4\pi_4}{(p_4\pi_4 + p_2\pi_2)}$,
-    where $p_2$ and $p_4$ are the establishment probabilities for a single
-    diploid and a single tetraploid individual in the absence of migration (as
-    in \cref{fig:est1}, but with unreduced gamete formation included). 
-    The \DIFaddbeginFL \DIFaddFL{line for the $\theta=3$ case lies around 0.25 and is not shown.
-    The }\DIFaddendFL dashed horizontal line marks the proportion of tetraploid migrants
+    The \DIFdelbeginFL \DIFdelFL{solid }\DIFdelendFL horizontal lines mark \DIFdelbeginFL \DIFdelFL{$\frac{p_4\pi_4}{(p_4\pi_4 + p_2\pi_2)}$,
+    where $p_2$ and $p_4$ are }\DIFdelendFL the establishment probabilities \DIFdelbeginFL \DIFdelFL{for a single
+    diploid and a single tetraploid individual }\DIFdelendFL in the
+    \DIFdelbeginFL \DIFdelFL{absence of migration (}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{limit }\DIFaddendFL as \DIFdelbeginFL \DIFdelFL{in }%DIFDELCMD < \cref{fig:est1}%%%
+\DIFdelFL{, but with unreduced gamete formation included}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{$m\rightarrow 0$ (solid lines: without double reduction; dashed
+    lines: maximum $\alpha$}\DIFaddendFL ).
+    The \DIFdelbeginFL \DIFdelFL{dashed }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{black }\DIFaddendFL horizontal line marks the proportion of tetraploid migrants
     (i.e. the proportion of tetraploids at equilibrium in the source
     population, $\approx 0.3$\%).
-    The baseline predictions (horizontal lines) are based on $5\times 10^6$
-    simulation replicates.
-    All other results are based on 50.000 replicate simulations.
+    The baseline predictions (horizontal lines) are based on \DIFdelbeginFL \DIFdelFL{$5\times 10^6$
+    }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{500.000 }\DIFaddendFL simulation
+    replicates.
+    All other results are based on \DIFdelbeginFL \DIFdelFL{50.000 }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{100.000 }\DIFaddendFL replicate simulations.
     We assume $\gamma=0.25$ and $u=v=0.05$.
     \label{fig:estwmig}}
 \end{figure}
@@ -942,20 +943,24 @@ ploidy level) first decreases with increasing migration as a result of a larger
 influx of potentially succesful migrants, but later increases with increasing
 migration due to swamping by gene flow (\cref{fig:estwmig}A).
 Importantly, the tetraploid establishment probability is considerably larger
-than the expected proportion of tetraploid migrants over a large part of the
-parameter range (\cref{fig:estwmig}B, black dashed line).
-Furthermore, we find that for small migration rates, the probability that
+than the expected proportion of tetraploid migrants over \DIFdelbegin \DIFdel{a large part of the parameter range }\DIFdelend \DIFaddbegin \DIFadd{almost the entire
+parameter range examined }\DIFaddend (\cref{fig:estwmig}B, black dashed line).
+\DIFdelbegin \DIFdel{Furthermore, we find that for small migration rates}\DIFdelend \DIFaddbegin \DIFadd{However}\DIFaddend , the probability \DIFdelbegin \DIFdel{that
 tetraploids establish rather than diploids can be larger than expected based on
 the establishment probabilities in the absence of migration (colored lines in
-\cref{fig:estwmig}), depending on how maladapted migrant individuals are.
+}%DIFDELCMD < \cref{fig:estwmig}%%%
+\DIFdel{), depending on how maladapted migrant individuals are.
 This suggests that maladaptive gene flow in diploids can increase the
-probability of tetraploid establishment \DIFaddbegin \DIFadd{in some cases}\DIFaddend .
+probability of tetraploid establishment.
 However, at the same time we find that the tetraploid establishment probability
-declines monotonically with $m$, which highlights the negative effects of MCE.
-\DIFdelbegin \DIFdel{Together, these results confirm the view that, while cytotype differences are an
-effective barrier to maladaptive gene flow, this advantage to establishment is
-outweighed by the negative effects of MCE.
-}\DIFdelend 
+declines monotonically
+with $m$, which highlights }\DIFdelend \DIFaddbegin \DIFadd{of tetraploid establishment does decline monotonically
+with the migration rate, showing that }\DIFaddend the negative effects of MCE \DIFdelbegin \DIFdel{.
+Together, these results confirm the view that, while cytotype differences are an
+effective barrier to }\DIFdelend \DIFaddbegin \DIFadd{on tetraploid
+establishment outweigh the positive effects of reduced }\DIFaddend maladaptive gene flow \DIFdelbegin \DIFdel{, this advantage to establishment is
+outweighed by the negative effects of MCE}\DIFdelend \DIFaddbegin \DIFadd{in
+the absence of prezygotic isolation}\DIFaddend .
 
 Our simulations further show that the mechanism of unreduced gamete formation
 (as determined by the $\alpha_2$ parameter) can affect the establishment
@@ -973,8 +978,8 @@ For stronger migration ($m > 0.1$), the opposite holds.
 This is a result of two interacting processes.
 On the one hand, inbreeding is slower in tetraploids, so that during adaptation
 and establishment from a single or limited number of outbred individuals, 
-the inbreeding coefficient is expected to increase less rapidly conditional on
-the event of tetraploid establishment.
+the inbreeding coefficient is expected to increase less rapidly\DIFdelbegin \DIFdel{conditional on
+the event of tetraploid establishment}\DIFdelend .
 On the other hand, migration mostly introduces unrelated diploids, which cross
 more readily with diploids than tetraploids, reducing the average relatedness
 more strongly in established diploid than in tetraploid populations.
@@ -1007,7 +1012,7 @@ tetraploids}\DIFaddend .
 When migration is strong, tetraploids have markedly larger trait values
 than diploids ($m=1$ in \cref{fig:estwmig2}), showing that diploids suffer
 strongly from maladaptive gene flow when the population size is low, while
-tetraploids enjoy some reproductive isolation.
+tetraploids \DIFdelbegin \DIFdel{enjoy some reproductive isolation}\DIFdelend \DIFaddbegin \DIFadd{are much more reproductively isolated from migrants}\DIFaddend .
 Furthermore, in these replicates, tetraploids tend to emerge and rise in
 frequency at larger population sizes on the island, and hence tend to derive
 from diploids that already experienced several generations of selection.
@@ -1146,9 +1151,9 @@ Differences in \DIFdelbegin \DIFdel{establishment probabilities }\DIFdelend \DIF
 solely by aspects of autopolyploid genetics and the barrier to gene flow
 between subpopulations of different ploidy levels.
 This is undoubtedly unrealistic\DIFaddbegin \DIFadd{, as both trait values and fitness will often
-differ systematically across ploidy levels \mbox{%DIFAUXCMD
-\citep{porturas2019}}\hspace{0pt}%DIFAUXCMD
-}\DIFaddend .
+differ systematically across ploidy levels (see e.g. \mbox{%DIFAUXCMD
+\cite{porturas2019}}\hspace{0pt}%DIFAUXCMD
+)}\DIFaddend .
 For instance, neopolyploids are likely to suffer intrinsic fertility issues due
 to meiotic irregularities associated with multivalent formation
 \citep{bomblies2016,novikova2023}\DIFdelbegin \DIFdel{.
@@ -1159,7 +1164,8 @@ issues with endosperm development \mbox{%DIFAUXCMD
 }
 
 \DIFadd{Similarly implausible is the assumption of a constant }\DIFaddend equilibrium genetic
-variance \DIFdelbegin \DIFdel{is constant }\DIFdelend across cytotypes ($\beta_4=\sqrt{1/2}$ in our model)\DIFdelbegin \DIFdel{.
+variance \DIFdelbegin \DIFdel{is constant }\DIFdelend across cytotypes (\DIFdelbegin \DIFdel{$\beta_4=\sqrt{1/2}$
+}\DIFdelend \DIFaddbegin \DIFadd{$\beta_4^2=1/2$ }\DIFaddend in our model)\DIFdelbegin \DIFdel{.
 It would be very interesting to experimentally assess whether typical
 quantitative traits in mixed-ploidy populations follow approximately the
 mixed-ploidy infinitesimal model we outlined in
@@ -1319,7 +1325,9 @@ to study the effects of selfing,
 assortative mating and competition on establishment and coexistence of
 tetraploids within diploid populations, but where the focal trait that
 determines fitness and assortative mating is not controlled by a few
-large-effect loci, but many loci of small effect.
+large-effect loci (as in \mbox{%DIFAUXCMD
+\cite{oswald2011}}\hspace{0pt}%DIFAUXCMD
+), but many loci of small effect.
 Similarly, our model could be straightforwardly extended to include population
 regulation and stabilizing selection, which would allow us to study polyploid
 establishment along an environmental gradient and the potential of

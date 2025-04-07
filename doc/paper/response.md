@@ -72,13 +72,15 @@ sample the trait values of the next generation correctly when there was nonzero
 selection $\gamma > 0$ (as in figs. 2-5).
 As outlined in my paper, I sample the number of offspring of a particular
 combination of gametes from a particular parental pair after selection in
-proportion with the expected fitness using eq. 11 (number in new version).
+proportion with the expected fitness using eq. 11 (equation number in new
+version).
 In the previous version, I then sampled, incorrectly, offspring trait values
 from the Gaussian distribution of offspring implied by the mixed-ploidy
 infinitesimal model (eq. 7). This however fails to account for selection on the
 trait value within each parental pair.
 
-The density of trait values after selection is found easily.
+The density of trait values *after* selection is however also Gaussian and
+found easily.
 Writing $f(z)$ for the Gaussian density of trait values with mean $\bar{z}$ and
 variance $V$, and $w(z)$ for the fitness function, the density after selection
 $f^\ast(z)$ is
@@ -96,7 +98,7 @@ with gametes of ploidy $k$ and $l$ *after selection* is hence a Gaussian with
 mean $\overline{z_{ij}^{kl}} + \gamma V_{ij}^{kl}$ and variance $V_{ij}^{kl}$.
 
 The incorrect results from the previous submission can be seen as a kind of
-zeroth order approximation to the correct results: i.e. they implement
+'zeroth order' approximation to the correct results: i.e. they implement
 selection on the mean trait value across families, but not selection on the
 variance. The main consequence of this error is that adaptation is more
 efficient than in my previous results, and hence establishment is easier. This
@@ -106,7 +108,6 @@ results of the paper remain the same, the new results do not simply amount to a
 rescaling of the old ones.
 
 I apologize for this oversight.
-
 
 
 ## Reviewer 1
@@ -146,11 +147,11 @@ investigated using my modeling approach is very useful, I think the reviewer is
 right in that it may be useful to highlight that the modeling approach can be
 employed to address other questions related to the ecology and evolution of
 mixed-ploidy populations. I have now added a small paragraph at the end that
-does so.
+does so (lines 549-561).
 
 >Defining establishment when $N=100$: Is it a classic way to define
 establishment in such models?  Or does it come from your experience with the
-model and you see that Under N=100 extinction remains likely? More details
+model and you see that Under $N=100$ extinction remains likely? More details
 would be needed here.
 
 $N=100$ is indeed a fairly arbitrary choice. This threshold was also adopted in
@@ -293,7 +294,7 @@ adaptation to marginal habitats for the introduction of the paper. However, I
 think that to present an actual review of empirical studies here is a bit out
 of scope. Griswold presents a brief review in his 2021 paper, and I prefer to
 refer to his paper instead of paraphrasing his paragraph. Specifically, I now
-write:
+write (lines 63-65):
 "Many empirical studies of mixed-ploidy populations find that polyploids
 established in peripheral habitats at the edge of a species’ range (reviewed in
 Griswold (2021)), and this is in accord with large scale biogeographical
@@ -305,7 +306,7 @@ connection to such work, and in particular I noticed that it lacked a clear
 motivation for the interest in *polygenic* adaptation.
 I have now tried to better motivate the likely polygenic nature of local
 adaptation and have added a couple of references to recent work on the genetics
-of adaptation in autopolyploids: 
+of adaptation in autopolyploids (lines 75-82): 
 "More often than not, local adaptation is polygenic in nature (Pritchard and Di
 Rienzo, 2010; Barghi et al., 2020; Bomblies and Peichel, 2022), involving many
 weakly selected variants across the genome, and adaptation during polyploid
@@ -336,9 +337,10 @@ assortative mating and selfing may promote establishment.  The latter was of
 course already found by many authors before @oswald2011...
 
 However, I have now added a more explicit reference to @oswald2011 in the concluding
-note (see the associated remark of Reviewer 1), to highlight that it would be
-possible to do a study that is comparable to theirs but assuming infinitesimal
-quantitative genetics instead of a model with a small number of loci.
+note (lines 549-561, see also the associated remark of Reviewer 1), to
+highlight that it would be possible to do a study that is comparable to theirs
+but assuming infinitesimal quantitative genetics instead of a model with a
+small number of loci.
 
 >It would be informative to expand on the the consequences of different
 scalings of genetic effects. This paper made the sensible choice to scale such
@@ -361,7 +363,8 @@ In the section on establishment with recurrent migration, the phenomenon that
 polyploid offspring is more extreme on average when allelic effects are not
 exactly scaled by one half (as in Griswold) is taken up. 
 I now added some further discussion, referring explicitly to Griswold's scaling
-in the Discussion section. I now also refer to @porturas2019 and @gallais2003. 
+in the Discussion section (lines 462-475). I now also refer to @porturas2019
+and @gallais2003. 
 
 >Neither the intro nor the discussion revisit what seems to be an important point
 in Barton & Etheridge (2018, p. 111) about local adaptation via infinitely small
@@ -431,14 +434,15 @@ first reading I thought there was migration and then selection, whereas there is
 selection and then migration. It would also help support a self-contained paper
 to give the expression for $E\left[e^{\gamma(\dots)}\right]$.
 
-As far as I can tell, $N$ is defined when first mentioned. I slightly altered
-the sentence to make this more clear.
+As far as I can tell, $N$ is defined when first mentioned (line 216). I
+slightly altered the sentence to make this more clear.
 
 I added the expression for the expected fitness (eq. 11).
 
 The life cycle is indeed as follows: migrants arrive, they mate randomly and
 offspring survives with a probability that is determined by its fitness. This
-is indeed 'selection before migration'. I tried to make this more clear.
+is indeed 'selection before migration'. I tried to make this more clear (lines
+218-219).
 
 >p. 11, figure 3 (and later figure 5): The smallest value of m is 0.1 in these
 figures, but based on figure 4, it looks like m = 0.01 is a transition point from
@@ -452,16 +456,26 @@ early generation descendants thereof do not mate with migrants and the whole
 process amounts more or less to independent establishment trials (there is no
 swamping).
 
-I do not think, however, that fig 4 suggests such a transition point though. As
-noted in the main text the difference between the $m=0$ and $m=0.01$ results in
-fig. 4 are mostly due to the fact that the latter assumes a Gaussian
-distribution of migrant trait values, whereas the former assumes a fixed
-initial migrant trait value.
-(*"The similar trait means for weak migration suggest
-that establishment depends mostly on the chance pick of a well-adapted migrant
-(note that the $m = 0$ simulations in fig. 4 assume the initial migrant has $z =
-0$, whereas the $m = 0.01$ simulations assume the initial trait value to be
-Gaussian)."*) 
+Note that I now also included lines showing the results for the limiting
+establishment probabilities as $m \rightarrow 0$, i.e.
+  $$\lim_{m \rightarrow 0}P_{4} = \frac{\sum_k P_{k,4}\pi_k}{\sum_{k}(P_{k,2} + P_{k,4})\pi_k}$$
+where $\pi_k$ is the equilibrium frequency of ploidy level $k$ on the mainland,
+and $P_{k,j}$ is the probability of $j$-ploid establishment when the initial
+migrant is of ploidy level $k$.
+These are more informative than the horizontal lines in the previous version,
+which were a somewhat *ad hoc* extrapolation of the results from figure 2 but
+not really the proper limiting probabilities.
+
+I do not think, however, that the previous version of fig 4 suggests such a
+transition point though. As noted in the main text (previous version) the
+difference between the $m=0$ and $m=0.01$ results in the previous fig. 4 are
+mostly due to the fact that the latter assumes a Gaussian distribution of
+migrant trait values, whereas the former assumes a fixed initial migrant trait
+value.
+As I no longer consider this case very relevant, I replaced the $m=0$ results
+in fig 4. with results from simulations where the initial migrant has a trait
+value drawn from a Gaussian distribution. This makes the results more
+straightforward to interpret.
 
 >p. 12: Add qualifier “as $m$ increases” at end of last sentence in last full
 paragraph.
