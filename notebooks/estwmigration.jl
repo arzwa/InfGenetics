@@ -31,17 +31,16 @@ end
 
 # Basic model (m -> 0 limit)
 # ==========================
-nrep = 100_000
+nrep = 500_000
 Nest = 100
-zs   = [3.0, 2.5, 2.0, 1.5]
+zs   = [2.5, 2.0, 1.5]
 γ    = 0.25
 U    = Umat(0.05, 0.05)
-M    = InfDemeMixEst(m=0.0, θ=fill(2.5, 3), U=U, γ=γ)
 
 # baseline
 base = pmap(zs) do z
     @info z
-    M  = InfDemeMixEst(m=0.0, θ=fill(z, 3), U=U, γ=γ)
+    M  = InfDemeMixEst(m=0.0, θ=fill(z, 3), α=maxα, U=U, γ=γ)
     zsource = Normal(0,1)
     x2 = map(_->simest2(M, x0=InfPop(z=rand(zsource, 1), c=[2]), Nest=Nest), 1:nrep)
     x3 = map(_->simest2(M, x0=InfPop(z=rand(zsource, 1), c=[3]), Nest=Nest), 1:nrep)
@@ -49,6 +48,7 @@ base = pmap(zs) do z
     (z, x2, x3, x4)
 end
 
+M  = InfDemeMixEst(m=0.0, θ=fill(2.0, 3), U=U, γ=γ)
 m0 = map(base) do y
     p4 = map(y[2:end]) do xs
         length(filter(x->x[1] && (argmax(x[3]) == 3), xs))/nrep
@@ -72,7 +72,7 @@ end
 # ========================
 nrep = 50_000
 ms   = 10 .^ range(log10(0.01), stop=log10(3), length=15)
-zs   = [3.0, 2.5, 2.0, 1.5]
+zs   = [2.5, 2.0, 1.5]
 γ    = 0.25
 U    = Umat(0.05, 0.05)
 nmax = 10_000
@@ -88,7 +88,7 @@ sims1 = pmap(Iterators.product(ms, zs)) do (m, z)
 end
 
 df1 = make_a_df(sims1, nmax)
-#CSV.write("data/sims1b-df-z3.csv", df1)
+CSV.write("data/sims1c_.csv", df1)
 
 
 # With double reduction etc. (maxα)
@@ -103,7 +103,7 @@ sims2 = pmap(Iterators.product(ms, zs)) do (m, z)
 end
 
 df2 = make_a_df(sims2, nmax)
-CSV.write("data/sims2b-df-z3.csv", df2)
+CSV.write("data/sims2c_.csv", df2)
 
 
 # With selfing
@@ -111,7 +111,10 @@ CSV.write("data/sims2b-df-z3.csv", df2)
 # This is not just with selfing, but with loss of SI...
 nrep = 25_000
 zs   = 2.0
+ms   = 10 .^ range(log10(0.01), stop=log10(3), length=15)
 σs   = [[NaN, s, s] for s=0:0.2:1.0]
+nmax = 10000
+Nest = 100
 
 sims3 = pmap(Iterators.product(ms, σs)) do (m, σ)
     @info (m, σ)
@@ -125,7 +128,7 @@ end
 #sims3 = deserialize("data/_sims3.jls")
 
 df3 = make_a_df(sims3, nmax)
-CSV.write("data/sims3b-df.csv", df3)
+CSV.write("data/sims3c_.csv", df3)
 
 
 # With increased selfing (but no SI in diploids)
@@ -148,7 +151,7 @@ sims4 = pmap(Iterators.product(ms, σs)) do (m, σ)
 end
 
 df4 = make_a_df(sims4, nmax)
-CSV.write("data/sims4b-df.csv", df4)
+CSV.write("data/sims4c_.csv", df4)
 
 # With assortative mating
 # =======================
@@ -170,4 +173,4 @@ sims5 = pmap(Iterators.product(ms, ρs)) do (m, ρ)
 end
 
 df5 = make_a_df(sims5, nmax)
-CSV.write("data/sims5b-df.csv", df5)
+CSV.write("data/sims5c_.csv", df5)

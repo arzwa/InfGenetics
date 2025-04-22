@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.12.18)  7 APR 2025 10:09
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2024.12.18)  16 APR 2025 13:55
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -774,11 +774,19 @@ Package caption Info: End \AtBeginDocument code.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-[1
+LaTeX Font Info:    Trying to load font information for U+msa on input line 15.
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2]
-(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)
-(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd) [3] [4] [5] [6]
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 15.
+
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+) [1
+
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2] [3] [4] [5] [6]
 Overfull \hbox (13.94415pt too wide) in paragraph at lines 443--447
 \OT1/cmr/m/n/12 where the sums are over in-di-vid-u-als in the parental pop-u-l
 a-tion, and where $\OML/cmm/m/it/12 P[] \OMS/cmsy/m/n/12 2 f\OT1/cmr/m/n/12 0\O
@@ -786,67 +794,67 @@ ML/cmm/m/it/12 ; []; []; []; \OT1/cmr/m/n/12 1\OMS/cmsy/m/n/12 g$
  []
 
 [7] [8]
-</home/arzwa/dev/InfGenetics/doc/img/fig1.pdf, id=316, 542.025pt x 210.7875pt>
+</home/arzwa/dev/InfGenetics/doc/img/fig1.pdf, id=318, 542.025pt x 210.7875pt>
 File: /home/arzwa/dev/InfGenetics/doc/img/fig1.pdf Graphic file (type pdf)
 <use /home/arzwa/dev/InfGenetics/doc/img/fig1.pdf>
 Package pdftex.def Info: /home/arzwa/dev/InfGenetics/doc/img/fig1.pdf  used on 
-input line 573.
+input line 575.
 (pdftex.def)             Requested size: 362.37569pt x 140.92776pt.
 
-Overfull \hbox (6.2565pt too wide) in paragraph at lines 606--627
+Overfull \hbox (6.2565pt too wide) in paragraph at lines 608--629
 \OT1/cmr/m/n/12 mixed-ploidy pop-u-la-tion will have an equal or higher av-er-a
 ge in-breed-ing co-ef-fi-cient (fig. []S3[]).
  []
 
 [9]
-</home/arzwa/dev/InfGenetics/doc/img/fig2.pdf, id=344, 803.0pt x 200.75pt>
+</home/arzwa/dev/InfGenetics/doc/img/fig2.pdf, id=346, 803.0pt x 200.75pt>
 File: /home/arzwa/dev/InfGenetics/doc/img/fig2.pdf Graphic file (type pdf)
 <use /home/arzwa/dev/InfGenetics/doc/img/fig2.pdf>
 Package pdftex.def Info: /home/arzwa/dev/InfGenetics/doc/img/fig2.pdf  used on 
-input line 633.
+input line 635.
 (pdftex.def)             Requested size: 452.9679pt x 113.24323pt.
  [10 </home/arzwa/dev/InfGenetics/doc/img/fig1.pdf>]
-</home/arzwa/dev/InfGenetics/doc/img/fig3.pdf, id=365, 552.0625pt x 230.8625pt>
+</home/arzwa/dev/InfGenetics/doc/img/fig3.pdf, id=367, 552.0625pt x 230.8625pt>
 
 File: /home/arzwa/dev/InfGenetics/doc/img/fig3.pdf Graphic file (type pdf)
 <use /home/arzwa/dev/InfGenetics/doc/img/fig3.pdf>
 Package pdftex.def Info: /home/arzwa/dev/InfGenetics/doc/img/fig3.pdf  used on 
-input line 712.
+input line 714.
 (pdftex.def)             Requested size: 362.37569pt x 151.5454pt.
  [11 </home/arzwa/dev/InfGenetics/doc/img/fig2.pdf>]
-</home/arzwa/dev/InfGenetics/doc/img/fig4.pdf, id=373, 702.625pt x 281.05pt>
+</home/arzwa/dev/InfGenetics/doc/img/fig4.pdf, id=375, 702.625pt x 281.05pt>
 File: /home/arzwa/dev/InfGenetics/doc/img/fig4.pdf Graphic file (type pdf)
 <use /home/arzwa/dev/InfGenetics/doc/img/fig4.pdf>
 Package pdftex.def Info: /home/arzwa/dev/InfGenetics/doc/img/fig4.pdf  used on 
-input line 765.
+input line 767.
 (pdftex.def)             Requested size: 452.9679pt x 181.19223pt.
 
-Overfull \hbox (3.54543pt too wide) in paragraph at lines 801--812
+Overfull \hbox (3.54543pt too wide) in paragraph at lines 803--814
 []\OT1/cmr/m/n/12 Established diploid pop-u-la-tions are more in-bred on av-er-
 age than es-tab-lished tetraploids
  []
 
 [12 </home/arzwa/dev/InfGenetics/doc/img/fig3.pdf>] [13 </home/arzwa/dev/InfGen
 etics/doc/img/fig4.pdf>]
-</home/arzwa/dev/InfGenetics/doc/img/fig5.pdf, id=407, 602.25pt x 210.7875pt>
+</home/arzwa/dev/InfGenetics/doc/img/fig5.pdf, id=409, 602.25pt x 210.7875pt>
 File: /home/arzwa/dev/InfGenetics/doc/img/fig5.pdf Graphic file (type pdf)
 <use /home/arzwa/dev/InfGenetics/doc/img/fig5.pdf>
 Package pdftex.def Info: /home/arzwa/dev/InfGenetics/doc/img/fig5.pdf  used on 
-input line 874.
+input line 876.
 (pdftex.def)             Requested size: 407.66833pt x 142.69032pt.
  [14 </home/arzwa/dev/InfGenetics/doc/img/fig5.pdf>]
-[15] [16] (./paper.bbl [17] [18] [19] [20] [21]) [22] (./paper.aux)
+[15] [16] [17] (./paper.bbl [18] [19] [20] [21]) [22] (./paper.aux)
 Package rerunfilecheck Info: File `paper.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 24642 strings out of 478287
- 461904 string characters out of 5849288
+ 24656 strings out of 478287
+ 462092 string characters out of 5849288
  743978 words of memory out of 5000000
- 42320 multiletter control sequences out of 15000+600000
- 480713 words of font info for 72 fonts, out of 8000000 for 9000
+ 42329 multiletter control sequences out of 15000+600000
+ 482634 words of font info for 79 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 89i,12n,92p,1387b,578s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 89i,12n,92p,1387b,568s stack positions out of 5000i,500n,10000p,200000b,80000s
 pdfTeX warning (dest): name{figure.caption.5} has been referenced but does no
 t exist, replaced by a fixed one
 
@@ -880,31 +888,33 @@ ist, replaced by a fixed one
 pdfTeX warning (dest): name{subsection.2.1} has been referenced but does not ex
 ist, replaced by a fixed one
 
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/
-share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/
-texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texliv
-e/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex8.pfb></usr/share/texlive/
-texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-
-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/f
-onts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/ty
-pe1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
-lic/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
-fonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
-m/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17
-.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></u
-sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share
-/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive
-/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/share/texlive/texmf-
-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/f
-onts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/ty
-pe1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
-lic/amsfonts/cm/cmti12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
-sfonts/cm/cmtt12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
-/symbols/msbm10.pfb>
-Output written on paper.pdf (22 pages, 710174 bytes).
+{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/share/texlive
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf
+-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/
+fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/
+type1/public/amsfonts/cmextra/cmex8.pfb></usr/share/texlive/texmf-dist/fonts/ty
+pe1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu
+blic/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
+msfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmm
+i8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb>
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/s
+hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/te
+xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/te
+xmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist
+/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/t
+ype1/public/amsfonts/cm/cmss8.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu
+blic/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
+msfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmt
+i12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pf
+b></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb
+></usr/share/texmf/fonts/type1/public/cm-super/sfrm0700.pfb></usr/share/texmf/f
+onts/type1/public/cm-super/sfrm1000.pfb>
+Output written on paper.pdf (22 pages, 729093 bytes).
 PDF statistics:
- 649 PDF objects out of 1000 (max. 8388607)
- 567 compressed objects within 6 object streams
- 134 named destinations out of 1000 (max. 500000)
+ 663 PDF objects out of 1000 (max. 8388607)
+ 577 compressed objects within 6 object streams
+ 137 named destinations out of 1000 (max. 500000)
  38 words of extra memory for PDF output out of 10000 (max. 10000000)
 

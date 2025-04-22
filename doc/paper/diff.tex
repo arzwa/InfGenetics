@@ -1,7 +1,7 @@
     \documentclass[12pt,a4paper]{article}
 %DIF LATEXDIFF DIFFERENCE FILE
 %DIF DEL submission1.tex   Wed Mar 26 11:15:42 2025
-%DIF ADD paper.tex         Mon Apr  7 10:09:40 2025
+%DIF ADD paper.tex         Wed Apr 16 13:55:43 2025
     \input{preamble.tex}
     \usepackage[margin=1in]{geometry}
     \usepackage{authblk}
@@ -52,10 +52,13 @@
 
 \begin{document}
     \title{Autopolyploid establishment through polygenic adaptation}
-    %\author[1]{Arthur Zwaenepoel\thanks{arthur.zwaenepoel@uantwerpen.be}}
-    %\affil[1]{\footnotesize Department of Biology, University of Antwerp, 2020 Antwerp, Belgium}
-    \author{}
-    \date{\vspace{-5ex}}
+    %DIF < \author[1]{Arthur Zwaenepoel\thanks{arthur.zwaenepoel@uantwerpen.be}}
+%DIF < \affil[1]{\footnotesize Department of Biology, University of Antwerp, 2020 Antwerp, Belgium}
+\DIFdelbegin %DIFDELCMD < \author{%%%
+\DIFdelend \DIFaddbegin \author[1]{\DIFadd{Arthur Zwaenepoel}\thanks{arthur.zwaenepoel@uantwerpen.be}\DIFaddend }
+    \DIFaddbegin \affil[1]{\footnotesize Department of Biology, University of Antwerp, 2020 Antwerp, Belgium}
+    %DIF > \author{}
+    \DIFaddend \date{\vspace{-5ex}}
     \maketitle
     \begin{abstract}
     We define the infinitesimal model of quantitative genetics \DIFdelbegin \DIFdel{(}\textit{\DIFdel{sensu}}
@@ -651,8 +654,11 @@ are to establish before diploids do}\DIFdelend \DIFaddbegin
 
     Individual-based simulations for the mixed-ploidy infinitesimal model were
     implemented in Julia \citep{julia}.
-    Documented code and simulation notebooks are available at \url{[anonymized]}.
-%DIF > \url{https://github.com/arzwa/InfGenetics}.
+    %DIF > Documented code and simulation notebooks are available at \url{[anonymized]}.
+    Documented code and simulation notebooks are available at
+    \DIFdelbegin %DIFDELCMD < \url{[anonymized]}%%%
+\DIFdelend \DIFaddbegin \url{https://github.com/arzwa/InfGenetics}\DIFaddend .
+
 
 \section*{Results}
 
@@ -945,16 +951,15 @@ migration due to swamping by gene flow (\cref{fig:estwmig}A).
 Importantly, the tetraploid establishment probability is considerably larger
 than the expected proportion of tetraploid migrants over \DIFdelbegin \DIFdel{a large part of the parameter range }\DIFdelend \DIFaddbegin \DIFadd{almost the entire
 parameter range examined }\DIFaddend (\cref{fig:estwmig}B, black dashed line).
-\DIFdelbegin \DIFdel{Furthermore, we find that for small migration rates}\DIFdelend \DIFaddbegin \DIFadd{However}\DIFaddend , the probability \DIFdelbegin \DIFdel{that
+\DIFdelbegin \DIFdel{Furthermore, we find that for small migration rates, the probability that
 tetraploids establish rather than diploids can be larger than expected based on
 the establishment probabilities in the absence of migration (colored lines in
 }%DIFDELCMD < \cref{fig:estwmig}%%%
 \DIFdel{), depending on how maladapted migrant individuals are.
-This suggests that maladaptive gene flow in diploids can increase the
-probability of tetraploid establishment.
+This suggests that maladaptive gene flow in diploids can increase }\DIFdelend \DIFaddbegin \DIFadd{However, }\DIFaddend the probability of tetraploid establishment \DIFdelbegin \DIFdel{.
 However, at the same time we find that the tetraploid establishment probability
 declines monotonically
-with $m$, which highlights }\DIFdelend \DIFaddbegin \DIFadd{of tetraploid establishment does decline monotonically
+with $m$, which highlights }\DIFdelend \DIFaddbegin \DIFadd{does decline monotonically
 with the migration rate, showing that }\DIFaddend the negative effects of MCE \DIFdelbegin \DIFdel{.
 Together, these results confirm the view that, while cytotype differences are an
 effective barrier to }\DIFdelend \DIFaddbegin \DIFadd{on tetraploid
@@ -1311,10 +1316,16 @@ enhanced establishment probabilities in peripheral habitats, the accumulation
 of mutational load may in the long-term limit further range expansion or
 even lead to competitive exclusion by diploids.
 Further modeling efforts could provide more insights into the plausibility of
-such a model\DIFaddbegin \DIFadd{.
-}
+such a model.
 
-\DIFadd{While in this study we focused on polyploid establishment in a peripheral
+%DIF < \section*{Acknowledgements}
+%DIF < 
+%DIF < I thank Christelle Fraïsse for encouragement and feedback. Thanks to Quinten
+%DIF < Bafort, Felipe Kauai and Frederik Mortier for comments on an early draft
+%DIF < version.
+%DIF < I acknowledge funding from the Research Foundation -- Flanders (FWO, Junior
+%DIF < Postdoctoral Fellowship 1272625N).
+\DIFaddbegin \DIFadd{While in this study we focused on polyploid establishment in a peripheral
 habitat and how this is affected by migration from a diploid source, the
 mixed-ploidy infinitesimal framework could be used to address many other
 eco-evolutionary questions that arise in the study of mixed-ploidy populations.
@@ -1333,17 +1344,28 @@ regulation and stabilizing selection, which would allow us to study polyploid
 establishment along an environmental gradient and the potential of
 polyploidization to promote range expansions \mbox{%DIFAUXCMD
 \citep{polechova2015}}\hspace{0pt}%DIFAUXCMD
-}\DIFaddend .
+.
+}
 
+\section*{\DIFadd{Funding}}
 
+\DIFadd{I acknowledge funding from the Research Foundation -- Flanders (FWO, Junior
+Postdoctoral Fellowship 1272625N).
+}
 
-%\section*{Acknowledgements}
-%
-%I thank Christelle Fraïsse for encouragement and feedback. Thanks to Quinten
-%Bafort, Felipe Kauai and Frederik Mortier for comments on an early draft
-%version.
-%I acknowledge funding from the Research Foundation -- Flanders (FWO, Junior
-%Postdoctoral Fellowship 1272625N).
+\section*{\DIFadd{Conflict of interest}}
+
+\DIFadd{I have no conflict of interest to declare.
+}
+
+\section*{\DIFadd{Acknowledgements}}
+
+\DIFadd{I thank two anonymous reviewers and the associate editor for their constructive
+criticism that resulted in substantial improvements of the present article.
+I thank Christelle Fraïsse for encouragement and feedback, as well as Quinten
+Bafort, Felipe Kauai and Frederik Mortier for comments on an early draft
+version.
+}\DIFaddend 
 
 \bibliographystyle{abbrvnat}
 \bibliography{/home/arzwa/vimwiki/bib.bib}
