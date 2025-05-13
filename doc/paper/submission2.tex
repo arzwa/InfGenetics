@@ -179,12 +179,10 @@
     $\gamma$ & strength of directional selection in the new habitat\\
     $\theta$ & trait value beyond which the growth rate becomes positive in the new
         habitat \\ 
-    $w_{ij}$ & fitness of parental pair $(i,j)$ (expected zygotic fitness of
+    $w_{ij}$ & fitness of parental pair $(i,j)$ (expected fitness of
         offspring of pair $(i,j)$)\\
-    $w_{ij}^{kl}$ & expected fitness of zygote from parental pair $(i,j)$ when
-        $i$ contributes a $k$-ploid gamete and $j$ contributes a $l$-ploid gamete \\
-    $w_i$ & expected number of offspring from individual $i$ surviving to
-        reproductive age \\
+    $w_{ij}^{kl}$ & expected fitness of offspring of parental pair $(i,j)$ when
+    $i$ contributes a $k$-ploid gamete and $j$ contributes a $l$-ploid gamete \\
     $\sigma_k$ & rate of self-fertilization in $k$-ploids \\
     $\rho_k$ & probability of assortative mating in $k$-ploids \\
     \cline{1-2}
@@ -458,47 +456,38 @@
     use throughout) is readily obtained for the case where $u$ is small (see
     \cref{s-sec:mixeq}).
 
-    In generation $t$, $M(t) \sim \mathrm{Poisson}(m)$ migrant individuals
-    arrive on an island (the new habitat) joining $N^\ast(t)$ resident
-    individuals.
-    We assume $N^\ast(0)=0$ unless stated otherwise. 
+    In generation $t$, $M(t)$ migrant individuals arrive on an island (the new
+    habitat) joining $N^\ast(t)$ resident individuals, where $M(t)$ is Poisson
+    distributed with mean $m$, and $N^\ast(0)=0$ unless stated otherwise. 
     The migrant individuals are assumed to be unrelated to the resident
     individuals.
-    After migration there are $N(t) = N^\ast(t) + M(t)$ individuals on the
-    island.
-    These individuals reproduce sexually by random mating (allowing random
-    selfing, see below for modifications involving partial selfing and
-    assortative mating) to produce a large (effectively infinite) number of
-    zygotes, of which $N^\ast(t+1)$ survive to reproductive age with a
-    probability proportional to individual fitness, where $N^\ast(t+1)$ is
-    Poisson distributed with mean $N(t)\overline{W}$ and $\overline{W}$ is the
-    mean fitness among zygotes.
-    We assume the trait to be under directional selection, with the fitness of a
-    zygote with trait value $z$ given by $w(z) = e^{\gamma(z - \theta)}$, where
-    $\gamma$ is the intensity of directional selection and $\theta$ is the
-    trait value for which the growth rate of the island population becomes
-    positive.
+    After migration there are $N(t) = N^\ast(t) + M(t)$ individuals on the island
+    which reproduce sexually, and the offspring thus produced survives until the
+    next generation with a probability determined by their trait value.
+    Note that this corresponds to a life cycle where selection occurs before
+    migration within a generation.
+    In the basic model, random selfing is allowed (but see below for a model with
+    self-incompatibility).
+    We assume the trait is under directional selection, with fitness $w(z) =
+    e^{\gamma(z - \theta)}$, where $\gamma$ is the intensity of directional
+    selection and $\theta$ is the trait value for which the growth rate of the
+    island population becomes positive.
     As the population becomes better adapted, eventually, some form of density
     regulation must limit its growth.
     We ignore density regulation throughout and focus on the initial establishment
     phase, defining establishment as reaching a population of size 100.
-    Note that this model corresponds to a life cycle where selection occurs
-    before migration within a generation.
 
     Again following \cite{barton2018}, we simulate the model by first calculating
-    the fitness of each parental pair $(i,j)$, which is defined as the expected
-    fitness of a random zygote derived from this pair
+    the fitness of each parental pair $(i,j)$, which is the expected fitness of
+    offspring of this pair
     \begin{equation}
       w_{ij}
         = \sum_{k=1}^2\sum_{l=1}^2 w_{ij}^{kl}
         = \sum_{k=1}^2\sum_{l=1}^2 u_{c_{i},k}u_{c_{j},l}
-            \Ex\left[e^{\gamma(Z_{ij}^{kl} - \theta)}\right] \label{eq:wij}
+            \Ex\left[e^{\gamma(Z_{ij}^{kl} - \theta)}\right]
     \end{equation}
-    The expected number of offspring individuals of an individual $i$
-    surviving to reproductive age is then $w_i = \frac{1}{N(t)}\sum_j w_{ij}$.
-    The expectation on the right hand side of \cref{eq:wij} can be calculated
-    from \cref{eq:oneline} using the moment-generating function of the
-    Gaussian, i.e.
+    The expectation on the right hand side can be calculated from \cref{eq:oneline}
+    using the moment-generating function of the Gaussian, i.e.
     \begin{equation}
         \Ex\left[e^{\gamma(Z_{ij}^{kl} - \theta)}\right] 
         = e^{\gamma \left(\overline{z_{ij}^{kl}} -\theta\right) +
@@ -507,13 +496,11 @@
         \label{eq:Ew}
     \end{equation}
     Having calculated the $w_{ij}$, the number of offspring surviving into the next
-    generation $N^\ast(t+1)$ is sampled from a Poisson distribution with mean
-    $N(t)\overline{W} = \sum_i w_i = \sum_{i,j}w_{ij}/N(t)$.
-    Offspring cytotypes and trait values are then determined by sampling
-    parental pairs and gametes proportional to $w_{ij}^{kl}$, and sampling a
-    trait value from the offspring trait value distribution conditional on
-    survival to reproductive age, which is Gaussian with mean
-    $\overline{z_{ij}^{kl}} + \gamma V_{ij}^{kl}$ and variance $V_{ij}^{kl}$ . 
+    generation is calculated as $N^\ast(t+1) = \sum_{i,j}w_{ij}/N(t)$.
+    Next, $N^\ast(t+1)$ offspring individuals are obtained by sampling parental
+    pairs and gametes proportional to $w_{ij}^{kl}$, and sampling a trait value
+    from a Gaussian distribution with mean $\overline{z_{ij}^{kl}} + \gamma
+    V_{ij}^{kl}$ and variance $V_{ij}^{kl}$. 
 
     \subsection*{Self-fertilization and assortative mating}
 
@@ -525,7 +512,7 @@
     That is, the expected number of offspring from individual $i$ as mother
     surviving after selection is
     \begin{equation}
-    w_i = \sigma_{c_i} w_{ii} +
+    \Ex[w_i] = \sigma_{c_i} w_{ii} +
       (1-\sigma_{c_i})\left[\frac{1}{N}\sum_{j=1}^N w_{ij}\right]
     \end{equation}
     We hence assume no pollen limitation (all outcrossing ovules are fertilized),
@@ -535,7 +522,7 @@
     disadvantage to self-incompatibility, except when there is only a single
     individual in the population, i.e.
     \begin{equation}
-    w_i = \begin{cases}
+    \Ex[w_i] = \begin{cases}
         \frac{1}{N-1}\sum_{j \ne i }w_{ij} & \text{if } N > 1\\ 
         0 & \text{if } N=1 \end{cases}
     \end{equation}
@@ -546,7 +533,7 @@
     $1-\rho_{c_i}$ is fertilized by pollen randomly sampled from the entire
     population.
     \begin{equation}
-    w_i = \rho_{c_i} \frac{1}{N_{c_{i}}} \sum_{j=1}^N \delta_{c_i,c_j}w_{ij}
+    \Ex[w_i] = \rho_{c_i} \frac{1}{N_{c_{i}}} \sum_{j=1}^N \delta_{c_i,c_j}w_{ij}
      + (1-\rho_{c_i})
     \left[\frac{1}{N}\sum_{j=1}^N w_{ij}\right]
     \end{equation}
@@ -1096,11 +1083,11 @@ While in this study we focused on polyploid establishment in a peripheral
 habitat and how this is affected by migration from a diploid source, the
 mixed-ploidy infinitesimal framework could be used to address many other
 eco-evolutionary questions that arise in the study of mixed-ploidy populations.
-For instance, it could be of interest to develop an individual-based
-model along the lines of \cite{oswald2011} to study competitive exclusion
-versus coexistence of cytotypes in mixed-ploidy populations with partial
-selfing, assortative mating, competition, \textit{etc.}, but where the focal
-trait that determines the various fitness components is not controlled by a few
+For instance, it could be of interest to develop a complicated individual-based
+model along the lines of \cite{oswald2011} to study the effects of selfing,
+assortative mating and competition on establishment and coexistence of
+tetraploids within diploid populations, but where the focal trait that
+determines fitness and assortative mating is not controlled by a few
 large-effect loci (as in \cite{oswald2011}), but many loci of small effect.
 Similarly, our model could be straightforwardly extended to include population
 regulation and stabilizing selection, which would allow us to study polyploid
