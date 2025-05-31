@@ -12,6 +12,8 @@ Zwaenepoel (2025) (see especially the files `establishment.jl` and
 ### Finite mixed-ploidy WF population
 
 ```julia
+using InfGenetics
+
 # Define the model (use default α, β, V, etc.)
 M = InfDemeMix(U=[0.92 0.08; 0.08 0.08; 0.0 0.92]) 
 
