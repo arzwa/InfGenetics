@@ -1,3 +1,5 @@
+[![DOI](https://zenodo.org/badge/343223258.svg)](https://doi.org/10.5281/zenodo.15560878)
+
 # InfGenetics
 
 This repository contains code for conducting simulations of the mixed-ploidy
